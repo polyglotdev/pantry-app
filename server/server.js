@@ -7,13 +7,11 @@ dotenv.config();
 
 const serverapp = express();
 
-const PASSWORD_NAME = process.env.PASSWORD_NAME;
-
 
 serverapp.use(cors());
 serverapp.use(express.json());
 
-mongoose.connect('mongodb+srv://cevandonica:'+PASSWORD_NAME+'@cluster0.hfturxs.mongodb.net/test', {
+mongoose.connect('mongodb+srv://cevandonica:'+process.env.PASSWORD_NAME+'@cluster0.hfturxs.mongodb.net/test', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

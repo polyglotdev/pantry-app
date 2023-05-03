@@ -2,6 +2,7 @@
   "name": "pantryapp",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -40,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^12.11.0"
+    "cypress": "^12.11.0",
+    "nodemon": "^2.0.15"
   }
 }

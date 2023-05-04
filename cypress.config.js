@@ -1,4 +1,4 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require("cypress")
 
 module.exports = defineConfig({
   projectId: "qn5wq3",
@@ -15,4 +15,4 @@ module.exports = defineConfig({
       bundler: "webpack",
     },
   },
-});
+})

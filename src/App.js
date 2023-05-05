@@ -1,10 +1,13 @@
-import logo from './logo.svg'
+import React from 'react'
 import './App.css'
+import NavBar from './Navbar'
+import Main from './Main'
 
 function App() {
   return (
     <div className="App">
-      <h1>Pantry App</h1>
+      <NavBar />
+      <Main />
     </div>
   )
 }

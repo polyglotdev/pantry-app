@@ -11,7 +11,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD_NAME}@cluster0.hfturxs.mongodb.net/test`, {
+mongoose.connect(`mongodb+srv://mcoleman:QvNosrmc2i9Do46S@cluster0.hfturxs.mongodb.net/test`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {

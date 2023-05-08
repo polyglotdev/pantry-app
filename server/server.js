@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const dotenv = require('dotenv')
 
+
+
 dotenv.config()
 
 const app = express()
@@ -11,6 +13,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+//${process.env.USERNAME}:${process.env.PASSWORD_NAME}
 mongoose.connect(`mongodb+srv://mcoleman:QvNosrmc2i9Do46S@cluster0.hfturxs.mongodb.net/test`, {
   useNewUrlParser: true,
   useUnifiedTopology: true

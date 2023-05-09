@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const dotenv = require('dotenv')
+const userRouter = require('../src/routes/users')
 
 dotenv.config()
 
@@ -10,8 +11,9 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+app.use("/auth", userRouter)
 
-mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD_NAME}@cluster0.hfturxs.mongodb.net/test`, {
+mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD_NAME}@cluster0.hfturxs.mongodb.net/${process.env.PRODUCTION}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {

@@ -263,9 +263,9 @@ export default function SignUpForm() {
                       </div>
                       <div className="text-sm leading-6">
                         <label htmlFor="comments" className="font-medium text-gray-900">
-                          Comments
+                          Updates
                         </label>
-                        <p className="mt-1 text-gray-600">Get notified when someones posts a comment on a posting.</p>
+                        <p className="mt-1 text-gray-600">Get notified of any updates about LazySusan.</p>
                       </div>
                     </div>
                     <div className="relative flex gap-x-3">
@@ -279,9 +279,9 @@ export default function SignUpForm() {
                       </div>
                       <div className="text-sm leading-6">
                         <label htmlFor="candidates" className="font-medium text-gray-900">
-                          Candidates
+                          Expiring foods
                         </label>
-                        <p className="mt-1 text-gray-600">Get notified when a candidate applies for a job.</p>
+                        <p className="mt-1 text-gray-600">Get notified when your food items are expiring</p>
                       </div>
                     </div>
                     <div className="relative flex gap-x-3">
@@ -295,9 +295,9 @@ export default function SignUpForm() {
                       </div>
                       <div className="text-sm leading-6">
                         <label htmlFor="offers" className="font-medium text-gray-900">
-                          Offers
+                         New Recipes
                         </label>
-                        <p className="mt-1 text-gray-600">Get notified when a candidate accepts or rejects an offer.</p>
+                        <p className="mt-1 text-gray-600">Get notified when new recipes are available.</p>
                       </div>
                     </div>
                   </div>
@@ -308,7 +308,7 @@ export default function SignUpForm() {
               <legend className="sr-only">Push Notifications</legend>
               <div className="sm:grid sm:grid-cols-3 sm:items-baseline sm:gap-4 sm:py-6">
                 <div className="text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                  Push Notifications
+                  expirat Notifications
                 </div>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <div className="max-w-lg">

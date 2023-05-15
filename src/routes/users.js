@@ -6,8 +6,9 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const router = express.Router();
-router.post('/register', async (req, res) => {
+const userRouter = express.Router();
+
+userRouter.post('/register', async (req, res) => {
     const { username, password } = req.body;
     const user = await UserModel.findOne({ username });
 
@@ -22,7 +23,7 @@ router.post('/register', async (req, res) => {
 
 });
 
-router.post('/login', async (req, res) => {
+userRouter.post('/login', async (req, res) => {
     const { username, password } = req.body;   
     const user = await UserModel.findOne({ username });
     
@@ -40,6 +41,6 @@ router.post('/login', async (req, res) => {
     res.json({ token, userID: user._id });
 })
 
-module.exports = router;   
+module.exports = userRouter;   
 
 

@@ -1,10 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const {ItemModel} = require('../models/Items')
+const rateLimit = require('express-rate-limit');
 
 const itemRouter = express.Router();
 
-itemRouter.post('/newItem', async (req, res) => {
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100
+});
+
+itemRouter.post('/newItem', limiter, async (req, res) => {
     const item = new ItemModel(req.body)
     try { 
         const response = await item.save()
@@ -14,7 +20,7 @@ itemRouter.post('/newItem', async (req, res) => {
     }
 });
 
-itemRouter.get("/inventory", async (req, res) => {
+itemRouter.get("/inventory", limiter, async (req, res) => {
     try { 
         const response = await ItemModel.find({})
         res.json(response)

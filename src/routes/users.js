@@ -3,13 +3,18 @@ const jwt = require('jsonwebtoken');
 const { UserModel } = require('../models/Users');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
+const rateLimit = require('express-rate-limit');
 
 dotenv.config();
 
 const userRouter = express.Router();
 
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100
+});
 
-userRouter.post('/register', async (req, res) => {
+userRouter.post('/register', limiter, async (req, res) => {
     const { username, password } = req.body;
     const user = await UserModel.findOne({ username });
 
@@ -24,7 +29,7 @@ userRouter.post('/register', async (req, res) => {
 
 });
 
-userRouter.post('/login', async (req, res) => {
+userRouter.post('/login', limiter, async (req, res) => {
     const { username, password } = req.body;   
     const user = await UserModel.findOne({ username });
     

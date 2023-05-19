@@ -18,7 +18,10 @@ const ItemSchema = new mongoose.Schema({
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> main
 =======
 >>>>>>> main
 ItemSchema.methods.isExpiringSoon = function() {
@@ -40,7 +43,10 @@ ItemSchema.methods.isBelowMinimum = function() {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 1b19d8a62ca2b2fc12d3e2eb1e9499af99510583
+=======
+>>>>>>> main
 =======
 >>>>>>> main
 const ItemModel = mongoose.model('Item', ItemSchema);

@@ -9,6 +9,10 @@ import Pantry from './Pages/Pantry'
 import ShoppingList from './Pages/ShoppingList'
 import LoginPage from './Pages/LoginPage'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import LazySusan from './Pages/LazySusan'
+>>>>>>> main
 =======
 import LazySusan from './Pages/LazySusan'
 >>>>>>> main
@@ -24,6 +28,12 @@ function App() {
         <Route path="/shoppinglist" element={<ShoppingList />} />
         <Route path="/login" element={<LoginPage />} />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        <Route path="/lazysusan" element={<LazySusan />} />
+        
+      
+>>>>>>> main
 =======
         <Route path="/lazysusan" element={<LazySusan />} />
         

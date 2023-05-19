@@ -11,6 +11,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import NavBar from './Navbar'
 
 
 const yourLazySusan = [
@@ -47,6 +48,7 @@ export default function Main() {
         ```
       */}
       <div>
+        <NavBar />
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50 xl:hidden" onClose={setSidebarOpen}>
             <Transition.Child

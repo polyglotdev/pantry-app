@@ -16,14 +16,7 @@ const ItemSchema = new mongoose.Schema({
     }
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> main
-=======
->>>>>>> main
+
 ItemSchema.methods.isExpiringSoon = function() {
     const today = new Date();
     const expirationDate = new Date(this.expirationDate);
@@ -42,12 +35,7 @@ ItemSchema.methods.isBelowMinimum = function() {
     return this.quantity <= this.minimumQuantity;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 1b19d8a62ca2b2fc12d3e2eb1e9499af99510583
-=======
->>>>>>> main
-=======
->>>>>>> main
+
+
 const ItemModel = mongoose.model('Item', ItemSchema);
 exports.ItemModel = ItemModel;

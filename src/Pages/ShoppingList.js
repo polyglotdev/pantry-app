@@ -4,7 +4,7 @@ import NavBar from "../Navbar";
 function ShoppingList() {
   return <div className="App">
     <NavBar />
-    <h1>Shopping List Page</h1>
+    <h1>Shopping List</h1>
 </div>
 }
 

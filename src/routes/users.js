@@ -3,12 +3,18 @@ const jwt = require('jsonwebtoken');
 const { UserModel } = require('../models/Users');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
+const rateLimit = require('express-rate-limit');
 
 dotenv.config();
 
 const userRouter = express.Router();
 
-userRouter.post('/register', async (req, res) => {
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100
+});
+
+userRouter.post('/register', limiter, async (req, res) => {
     const { username, password } = req.body;
     const user = await UserModel.findOne({ username });
 
@@ -39,8 +45,8 @@ userRouter.post('/login', async (req, res) => {
     
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.json({ token, userID: user._id });
-})
+});
 
-module.exports = userRouter;   
+module.exports = userRouter;
 
 

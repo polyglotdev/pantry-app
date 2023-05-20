@@ -1,12 +1,12 @@
 import React from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { 
-  TbFridge
- } from 'react-icons/tb'
- import { 
-  MdShelves
- } from 'react-icons/md'
+// import { 
+//   TbFridge
+//  } from 'react-icons/tb'
+//  import { 
+//   MdShelves
+//  } from 'react-icons/md'
 import {
   ChartBarSquareIcon,
   Cog6ToothIcon,

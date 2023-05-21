@@ -48,9 +48,10 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
 
           const currentDate = new Date();
           const expiringItems = inventoryData.filter((item) => {
-            const expirationDate = new Date(item.expirationDate);
-            return expirationDate < currentDate;
-           });
+            const alertDate = new Date(item.alertDate);
+            return alertDate <= currentDate;
+          });
+
            setExpiringItems(expiringItems);
 
         } catch (error) {

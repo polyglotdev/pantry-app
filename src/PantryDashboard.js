@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
 import axios from 'axios'
+import { ItemModel } from './models/Items'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { 
   TbFridge
@@ -22,6 +23,8 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
 
 
   export default function Dashboard() {
+    const [inventory, setInventory] = useState([]);
+    const [expiringItems, setExpiringItems] = useState([]);
     const [pantryItems, setPantryItems] = useState([]);
     const [refrigeratorItems, setRefrigeratorItems] = useState([]);
     const [freezerItems, setFreezerItems] = useState([]);
@@ -31,8 +34,9 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
         try {
           const response = await axios.get('http://localhost:3001/item/inventory');
           const inventoryData = response.data;
+
+          setInventory(inventoryData);
   
-          
           const pantryItems = inventoryData.filter((item) => item.location === 'pantry');
           setPantryItems(pantryItems);
   
@@ -41,6 +45,14 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
   
           const freezerItems = inventoryData.filter((item) => item.location === 'freezer');
           setFreezerItems(freezerItems);
+
+          const currentDate = new Date();
+          const expiringItems = inventoryData.filter((item) => {
+            const expirationDate = new Date(item.expirationDate);
+            return expirationDate < currentDate;
+           });
+           setExpiringItems(expiringItems);
+
         } catch (error) {
           console.error('Error fetching inventory:', error);
         }
@@ -48,6 +60,8 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
   
       fetchInventory();
     }, []);
+
+
     return ( 
       <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
 
@@ -61,7 +75,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
               <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 2c-.8 0-1.5.7-1.5 1.5v.688C7.344 4.87 5 7.62 5 11v4.5l-2 2.313V19h18v-1.188L19 15.5V11c0-3.379-2.344-6.129-5.5-6.813V3.5c0-.8-.7-1.5-1.5-1.5zm-2 18c0 1.102.898 2 2 2 1.102 0 2-.898 2-2z"></path></svg>
             </div>
             <div className="text-right">
-              <p className="text-2xl">3</p>
+              <p className="text-2xl">{expiringItems.length}</p>
               <p>Expiring Soon</p>
             </div>
           </div>

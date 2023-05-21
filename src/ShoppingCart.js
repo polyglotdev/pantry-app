@@ -8,24 +8,18 @@ import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 const products = [
   {
     id: 1,
-    name: 'Nomad Tumbler',
+    name: 'Apples- Honey Crisp',
     href: '#',
-    price: '$35.00',
-    color: 'White',
+    itemTotal: '4',
     inStock: true,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-03.jpg',
-    imageAlt: 'Insulated bottle with white base and black snap lid.',
-  },
+    },
   {
     id: 2,
-    name: 'Basic Tee',
+    name: 'Zucchini',
     href: '#',
-    price: '$32.00',
-    color: 'Sienna',
-    inStock: true,
-    size: 'Large',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg',
-    imageAlt: "Front of men's Basic Tee in sienna.",
+    itemTotal: '1',
+    inStock: false,
+
   },
   // More products...
 ]
@@ -34,7 +28,7 @@ export default function Example() {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Shopping Cart</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Shopping</h1>
 
         <form className="mt-12">
           <div>
@@ -44,11 +38,7 @@ export default function Example() {
               {products.map((product, productIdx) => (
                 <li key={product.id} className="flex py-6 sm:py-10">
                   <div className="flex-shrink-0">
-                    <img
-                      src={product.imageSrc}
-                      alt={product.imageAlt}
-                      className="h-24 w-24 rounded-lg object-cover object-center sm:h-32 sm:w-32"
-                    />
+                    
                   </div>
 
                   <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
@@ -60,11 +50,9 @@ export default function Example() {
                               {product.name}
                             </a>
                           </h3>
-                          <p className="mt-1 text-sm text-gray-500">{product.color}</p>
-                          {product.size ? <p className="mt-1 text-sm text-gray-500">{product.size}</p> : null}
                         </div>
 
-                        <p className="text-right text-sm font-medium text-gray-900">{product.price}</p>
+                        <p className="text-right text-sm font-medium text-gray-900">{product.itemTotal}</p>
                       </div>
 
                       <div className="mt-4 flex items-center sm:absolute sm:left-1/2 sm:top-0 sm:mt-0 sm:block">
@@ -84,13 +72,14 @@ export default function Example() {
                           <option value={6}>6</option>
                           <option value={7}>7</option>
                           <option value={8}>8</option>
+                          {/* need to add 1-100 or a text input box */}
                         </select>
 
                         <button
                           type="button"
                           className="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:ml-0 sm:mt-3"
                         >
-                          <span>Remove</span>
+                          <span>Add to List</span>
                         </button>
                       </div>
                     </div>
@@ -102,7 +91,7 @@ export default function Example() {
                         <ClockIcon className="h-5 w-5 flex-shrink-0 text-gray-300" aria-hidden="true" />
                       )}
 
-                      <span>{product.inStock ? 'In stock' : `Ships in ${product.leadTime}`}</span>
+                      <span>{product.inStock ? 'Currently in your pantry' : `Not in your pantry`}</span>
                     </p>
                   </div>
                 </li>
@@ -117,39 +106,36 @@ export default function Example() {
 
               <div className="flow-root">
                 <dl className="-my-4 divide-y divide-gray-200 text-sm">
+                  
                   <div className="flex items-center justify-between py-4">
-                    <dt className="text-gray-600">Subtotal</dt>
-                    <dd className="font-medium text-gray-900">$99.00</dd>
-                  </div>
-                  <div className="flex items-center justify-between py-4">
-                    <dt className="text-gray-600">Shipping</dt>
-                    <dd className="font-medium text-gray-900">$5.00</dd>
-                  </div>
-                  <div className="flex items-center justify-between py-4">
-                    <dt className="text-gray-600">Tax</dt>
-                    <dd className="font-medium text-gray-900">$8.32</dd>
-                  </div>
-                  <div className="flex items-center justify-between py-4">
-                    <dt className="text-base font-medium text-gray-900">Order total</dt>
-                    <dd className="text-base font-medium text-gray-900">$112.32</dd>
+                    <dt className="text-base font-medium text-gray-900">Total Items in Cart</dt>
+                    <dd className="text-base font-medium text-gray-900">999</dd>
                   </div>
                 </dl>
               </div>
             </div>
             <div className="mt-10">
               <button
+                type="submit-update-list"
+                className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              >
+                Update List
+              </button>
+
+      
+              <button
                 type="submit"
                 className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
               >
-                Checkout
+                Start Shopping 
               </button>
             </div>
 
             <div className="mt-6 text-center text-sm text-gray-500">
               <p>
-                or
+                
                 <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Continue Shopping
+                  Return to your LazySusan Dashboard
                   <span aria-hidden="true"> &rarr;</span>
                 </a>
               </p>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
 import axios from 'axios'
-import { ItemModel } from './models/Items'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 // import { 
 //   TbFridge

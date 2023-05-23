@@ -9,11 +9,11 @@ const ItemSchema = new mongoose.Schema({
     foodGroup: {type: String, required: true},
     restock: {type: Boolean, required: true, default: false},
     alertDate: {type: Date, required: false},
-    userOwner:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    }
+    // userOwner:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User',
+    //     required: true
+    // }
 });
 
 ItemSchema.methods.isExpiringSoon = function() {

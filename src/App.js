@@ -8,18 +8,10 @@ import SignUpPage from './Pages/SignUpPage'
 import Pantry from './Pages/Pantry'
 import ShoppingList from './Pages/ShoppingList'
 import LoginPage from './Pages/LoginPage'
-<<<<<<< HEAD
-
-=======
->>>>>>> a1482174933d195d820a5de5f371a2f8dfcd0399
 import LazySusan from './Pages/LazySusan'
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a1482174933d195d820a5de5f371a2f8dfcd0399
 
 function App() {
   return (
@@ -33,10 +25,6 @@ function App() {
         <Route path="/lazysusan" element={<LazySusan />} />
         
       
-<<<<<<< HEAD
-
-=======
->>>>>>> a1482174933d195d820a5de5f371a2f8dfcd0399
       </Routes>
     </Router>
   )

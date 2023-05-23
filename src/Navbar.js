@@ -4,10 +4,6 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-<<<<<<< HEAD
-
-=======
->>>>>>> a1482174933d195d820a5de5f371a2f8dfcd0399
   { name: 'LazySusan', href: '/lazysusan', current: true },
   { name: 'Pantry', href: '/pantry', current: false },
   { name: 'Shopping List', href: '/shoppinglist', current: false },

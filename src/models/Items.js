@@ -17,7 +17,6 @@ const ItemSchema = new mongoose.Schema({
     }*/
 });
 
-
 ItemSchema.methods.isExpiringSoon = function() {
     const today = new Date();
     const expirationDate = new Date(this.expirationDate);

@@ -1,7 +1,10 @@
 import React from "react"
 import NavBar from "../Navbar"
-
-/*
+import { useState } from "react"
+import axios from "axios"
+import { useCookies } from "react-cookie"
+import { useNavigate } from "react-router-dom"
+/*`
   This example requires some changes to your config:
   
   ```
@@ -16,6 +19,26 @@ import NavBar from "../Navbar"
   ```
 */
 export default function LoginPage() {
+    /* mike start here*/
+    const[username, setUsername] = useState("");
+    const[password, setPassword] = useState("");
+
+    const [_, setCookies] = useCookies(["access_token"]);
+
+    const navigate = useNavigate()
+    
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post("http://localhost:3001/login", { username, password});
+            console.log(response)
+            setCookies("access_token", response.data.taken);
+            window.localStorage.setItem("userID", response.data.userID)
+            navigate("/");
+        } catch(err) {
+            console.error("Database not found");
+        }
+    };
     return (
         <>
             <NavBar />
@@ -84,7 +107,7 @@ export default function LoginPage() {
                             <button
                                 type="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
+                                >
                                 Sign in
                             </button>
                         </div>

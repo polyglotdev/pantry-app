@@ -14,10 +14,6 @@ app.use(cors())
 app.use(express.json())
 app.use("/auth", userRouter)
 app.use("/item", itemRouter)
-<<<<<<< HEAD
-=======
-
->>>>>>> a1482174933d195d820a5de5f371a2f8dfcd0399
 
 
 mongoose.connect(`mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD_NAME}@cluster0.hfturxs.mongodb.net/${process.env.TEST}`, {

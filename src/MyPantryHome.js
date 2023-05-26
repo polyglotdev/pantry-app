@@ -1,5 +1,6 @@
 import React from 'react'
-import { Fragment, useState } from 'react'
+import axios from 'axios'
+import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
   ChartBarSquareIcon,
@@ -13,20 +14,34 @@ import {
 import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 
 
-const pantryItem = [
-    { name: 'Baked Beans', quantity: '2', unit: 'cans', foodType: 'Canned Goods', expirationDate: 'October 2, 2025' },
-    // More pantryItem...
-  ]
-  const refrigeratorItem = [
-    { name: 'Yogurt', quantity: '12', unit: 'oz', foodType: 'Dairy', expirationDate: 'October 2, 2023' },
-    // More pantryItem...
-  ]
-  const freezerItem = [
-    { name: 'Chicken ', quantity: '2', unit: 'lbs', foodType: 'Meat', expirationDate: 'October 2, 2023' },
-    // More pantryItem...
-  ]
-
   export default function Example() {
+    const [pantryItems, setPantryItems] = useState([]);
+    const [refrigeratorItems, setRefrigeratorItems] = useState([]);
+    const [freezerItems, setFreezerItems] = useState([]);
+  
+    useEffect(() => {
+      const fetchInventory = async () => {
+        try {
+          const response = await axios.get('http://localhost:3001/item/inventory');
+          const inventoryData = response.data;
+  
+          
+          const pantryItems = inventoryData.filter((item) => item.location === 'pantry');
+          setPantryItems(pantryItems);
+  
+          const refrigeratorItems = inventoryData.filter((item) => item.location === 'refrigerator');
+          setRefrigeratorItems(refrigeratorItems);
+  
+          const freezerItems = inventoryData.filter((item) => item.location === 'freezer');
+          setFreezerItems(freezerItems);
+        } catch (error) {
+          console.error('Error fetching inventory:', error);
+        }
+      };
+  
+      fetchInventory();
+    }, []);
+
     return ( 
   
     <div className="mx-auto max-w-5xl">
@@ -75,15 +90,15 @@ const pantryItem = [
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-800">
-                        {pantryItem.map((item) => (
+                        {pantryItems.map((item) => (
                           <tr key={item.unit}>
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-night sm:pl-0">
                               {item.name}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.quantity}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.unit}</td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.foodType}</td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.expirationDate}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.foodGroup}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{new Date(item.expirationDate).toLocaleDateString('en-US')}</td>
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                               <a href="#" className="text-indigo-400 hover:text-indigo-300">
                                 Restock<span className="sr-only">, {item.name}</span>
@@ -150,15 +165,15 @@ const pantryItem = [
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-800">
-                        {refrigeratorItem.map((item) => (
+                        {refrigeratorItems.map((item) => (
                           <tr key={item.unit}>
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-night sm:pl-0">
                               {item.name}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.quantity}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.unit}</td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.foodType}</td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.expirationDate}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.foodGroup}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{new Date(item.expirationDate).toLocaleDateString('en-US')}</td>
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                               <a href="#" className="text-indigo-400 hover:text-indigo-300">
                                 Restock<span className="sr-only">, {item.name}</span>
@@ -212,15 +227,15 @@ const pantryItem = [
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-800">
-                          {freezerItem.map((item) => (
+                          {freezerItems.map((item) => (
                             <tr key={item.unit}>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-night sm:pl-0">
                                 {item.name}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.quantity}</td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.unit}</td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.foodType}</td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.expirationDate}</td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.foodGroup}</td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{new Date(item.expirationDate).toLocaleDateString('en-US')}</td>
                               <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                 <a href="#" className="text-indigo-400 hover:text-indigo-300">
                                   Restock<span className="sr-only">, {item.name}</span>

@@ -4,16 +4,17 @@ const ItemSchema = new mongoose.Schema({
     name: {type: String, required: true, unique: true},
     expirationDate: {type: Date, required: false},
     quantity: {type: Number, required: true},
+    unit: {type: String, required: true},
     minimumQuantity: {type: Number, required: true},
     location: {type: String, required: true},
     foodGroup: {type: String, required: true},
     restock: {type: Boolean, required: true, default: false},
     alertDate: {type: Date, required: false},
-    userOwner:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    }
+    // userOwner:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User',
+    //     required: true
+    // }
 });
 
 ItemSchema.methods.isExpiringSoon = function() {

@@ -9,6 +9,7 @@ import Pantry from './Pages/Pantry'
 import ShoppingList from './Pages/ShoppingList'
 import LoginPage from './Pages/LoginPage'
 import LazySusan from './Pages/LazySusan'
+import ItemForm from './Pages/CreateItem'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/shoppinglist" element={<ShoppingList />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/lazysusan" element={<LazySusan />} />
+        <Route path="/itemform" element={<ItemForm />} />
         
       
       </Routes>

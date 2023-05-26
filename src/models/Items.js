@@ -35,19 +35,5 @@ ItemSchema.methods.isBelowMinimum = function() {
     return this.quantity <= this.minimumQuantity;
 }
 
-<<<<<<< HEAD
-ItemSchema.methods.searchByFoodGroup = function(foodGroup){
-    let foodGroupList = new Array;
-    for(i = 0; i < ItemSchema.length; i++) {
-        if(this.foodGroup === foodGroup) {
-            foodGroupList.push(ItemSchema)
-            foodGroupList = foodGroupList.ascending()
-        }
-        return foodGroupList
-    }
-}
-
-=======
->>>>>>> main
 const ItemModel = mongoose.model('Item', ItemSchema);
 exports.ItemModel = ItemModel;

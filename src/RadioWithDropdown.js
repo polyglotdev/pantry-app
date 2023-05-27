@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 
 
+
 const RadioWithDropdown = () => {
   const [selectedLocation, setSelectedLocation] = useState('');
 
@@ -18,7 +19,7 @@ const RadioWithDropdown = () => {
   return (
     <div>
       <label className="text-base font-semibold text-gray-900">Item Location</label>
-      <p className="text-sm text-gray-500">Where would you like to store your Lazy Susan Item?</p>
+      <p className="text-sm text-gray-500">Where would you like to store your Lazy Susan item?</p>
       <fieldset className="mt-5">
         <legend className="sr-only">location</legend>
         <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
@@ -40,14 +41,17 @@ const RadioWithDropdown = () => {
           ))}
         </div>
        </fieldset>
-     
-      {selectedLocation && (
-        <select className="inline-flex w-2/3 justify-center gap-x-1. rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+      
+       <select className="inline-flex w-2/3 justify-center gap-x-1 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" value={selectedLocation} onChange={handleLocationChange}>
+
+         <option value="" disabled>
+              Select a food group
+            </option>
+
           {locations.find((location) => location.id === selectedLocation)?.foodGroups.map((foodGroup, index) => (
             <option key={index}>{foodGroup}</option>
           ))}
         </select>
-      )}
     </div>
   );
 };

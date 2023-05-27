@@ -1,9 +1,9 @@
 import React from "react";
 import NavBar from "../Navbar";
-import LazySusanForm from "../AddItemForm";
+import LazySusanForm from "../LazySusanForm";
 
 
-function ItemForm() {
+function CreateItem() {
   return <div className="App">
     <NavBar />
     <LazySusanForm />
@@ -14,4 +14,4 @@ function ItemForm() {
 </div>
 }
 
-export default ItemForm;
+export default CreateItem;

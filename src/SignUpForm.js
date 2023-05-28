@@ -22,7 +22,7 @@ import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 export default function SignUpForm() {
   return (
     <form>
-      <div className="space-y-12 sm:space-y-16">
+      <div>className="space-y-12 sm:space-y-16"</div> 
         <div>
           <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
           <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-600">

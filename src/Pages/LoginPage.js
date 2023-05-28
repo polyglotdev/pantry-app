@@ -4,6 +4,7 @@ import { useState } from "react"
 import axios from "axios"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
+
 /*`
   This example requires some changes to your config:
   
@@ -30,7 +31,7 @@ export default function LoginPage() {
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post("localhost3000", { username, password});
+            const response = await axios.post("localhost3001/auth/login", { username, password});
             console.log(response)
             setCookies("access_token", response.data.token);
             window.localStorage.setItem("user", response.data.userID)
@@ -109,7 +110,8 @@ export default function LoginPage() {
 
                         <div>
                             <button
-                                type="submit"
+                                type="submit" 
+                                onClick={ LoginPage( username, password) }
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 >
                                 Sign in

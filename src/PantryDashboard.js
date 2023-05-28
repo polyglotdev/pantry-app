@@ -208,9 +208,7 @@ const pantryItem = [
             </div>
             </div>
           </div>
-        
-      
-
+          </div>
 
     )
-  }
+                }

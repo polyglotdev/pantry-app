@@ -5,12 +5,11 @@ import axios from "axios"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 
-
 export default function LoginPage() {
     /* mike start here*/
     const[username, setUsername] = useState("");
     const[password, setPassword] = useState("");
-
+    const[error, setError] = useState(null)
     const [_, setCookies] = useCookies(["access_token"]);
 
     const navigate = useNavigate()
@@ -20,13 +19,14 @@ export default function LoginPage() {
         console.log("username:", username);
         console.log("password:", password);
         try {
-            const response = await axios.post("http://localhost3001/auth/login", { username, password });
-            console.log(response)
+            const response = await axios.post("http://localhost3001/auth/login", { username, hash:password });
+            console.log(response.data)
             setCookies("access_token", response.data.token);
-            window.localStorage.setItem("user", response.data.userID)
-            navigate("/pantry");
-        } catch(err) {
-            console.error("Database not found");
+            window.localStorage.setItem("user", response.data.user_ID)
+            navigate("/");
+        } catch(error) {
+            console.error();
+            setError("Database not found");
         }
     };
     return (
@@ -66,7 +66,6 @@ export default function LoginPage() {
                                     autoComplete="email"
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    value = {username}
                                     onChange={(event) =>setUsername(event.target.value)}
                                 />
                             </div>

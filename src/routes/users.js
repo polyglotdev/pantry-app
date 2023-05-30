@@ -44,7 +44,6 @@ userRouter.post('/login', limiter, async (req, res) => {
         return res.status(400).json({ error: 'Invalid username or password' });
     } 
 
-    if (user && isPasswordValid == true){}
     const token = jwt.sign({ id: user._id }, "secret");
     res.json({ token, userID: user._id });
     console.log("Login successful")

@@ -30,6 +30,7 @@ userRouter.post('/register', limiter, async (req, res) => {
 });
 
 userRouter.post('/login', limiter, async (req, res) => {
+    console.log("Attempting login")
     const { username, password } = req.body;   
     const user = await UserModel.findOne({ username });
     
@@ -41,10 +42,12 @@ userRouter.post('/login', limiter, async (req, res) => {
 
     if(!isPasswordValid) {
         return res.status(400).json({ error: 'Invalid username or password' });
-    }
-    
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    } 
+
+    if (user && isPasswordValid == true){}
+    const token = jwt.sign({ id: user._id }, "secret");
     res.json({ token, userID: user._id });
+    console.log("Login successful")
 });
 
 module.exports = userRouter;

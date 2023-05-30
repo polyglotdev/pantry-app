@@ -5,6 +5,7 @@ import axios from "axios"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 
+
 /*`
   This example requires some changes to your config:
   
@@ -28,14 +29,16 @@ export default function LoginPage() {
 
     const navigate = useNavigate()
     
-    const onSubmit = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log("username:", username);
+        console.log("password:", password);
         try {
-            const response = await axios.post("localhost3001/auth/login", { username, password});
+            const response = await axios.post("http://localhost3001/auth/login", { username, password });
             console.log(response)
             setCookies("access_token", response.data.token);
             window.localStorage.setItem("user", response.data.userID)
-            navigate("/");
+            navigate("/pantry");
         } catch(err) {
             console.error("Database not found");
         }
@@ -64,15 +67,15 @@ export default function LoginPage() {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" action="#" method="POST">
+                    <form className="space-y-6" /*action="#" method="POST"*/ onSubmit={ handleSubmit }>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                                 Email address
                             </label>
                             <div className="mt-2">
                                 <input
-                                    id="email"
-                                    name="email"
+                                    id="username"
+                                    name="username"
                                     type="email"
                                     autoComplete="email"
                                     required
@@ -110,8 +113,7 @@ export default function LoginPage() {
 
                         <div>
                             <button
-                                type="submit" 
-                                onClick={ LoginPage( username, password) }
+                                type="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 >
                                 Sign in

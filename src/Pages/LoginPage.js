@@ -6,20 +6,6 @@ import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 
 
-/*`
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 export default function LoginPage() {
     /* mike start here*/
     const[username, setUsername] = useState("");

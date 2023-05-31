@@ -1,6 +1,7 @@
 import { CheckIcon, ClockIcon } from '@heroicons/react/20/solid'
 import React from 'react'
 import { Fragment, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
@@ -79,23 +80,16 @@ export default function Example() {
                         <label htmlFor={`quantity-${productIdx}`} className="sr-only">
                           Quantity, {product.name}
                         </label>
-                        <select
-                          id={`quantity-${productIdx}`}
-                          name={`quantity-${productIdx}`}
-                          className="block max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
-                        >
-                          <option value={1}>1</option>
-                          <option value={2}>2</option>
-                          <option value={3}>3</option>
-                          <option value={4}>4</option>
-                          <option value={5}>5</option>
-                          <option value={6}>6</option>
-                          <option value={7}>7</option>
-                          <option value={8}>8</option>
-                          {/* need to add 1-100 or a text input box */}
-                        </select>
-
-                        <p className="ml-4 text-sm font-medium text-gray-600 sm:ml-0 sm:mt-3">
+                          <input
+                            type="number"
+                            id={`quantity-${productIdx}`}
+                            name={`quantity-${productIdx}`}
+                            className="block max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+                            min="1" // Optional: Set minimum value
+                            max="100" // Optional: Set maximum value
+                            defaultValue={1} // Optional: Set default value
+                          />
+                        `<p className="ml-4 text-sm font-medium text-gray-600 sm:ml-0 sm:mt-3">
                           <span>Amount</span>
                         </p>
                       </div>
@@ -155,7 +149,7 @@ export default function Example() {
             <div className="mt-6 text-center text-sm text-gray-500">
               <p>
                 
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a href="/LazySusan" className="font-medium text-indigo-600 hover:text-indigo-500">
                   Return to your LazySusan Dashboard
                   <span aria-hidden="true"> &rarr;</span>
                 </a>

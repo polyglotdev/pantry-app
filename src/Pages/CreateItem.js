@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../Navbar";
 import LazySusanForm from "../CreateItemForm";
-import ParentComponent from "../ItemComponent";
+
 
 
 function CreateItem() {

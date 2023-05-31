@@ -130,7 +130,7 @@ export default function Example() {
                   
                   <div className="flex items-center justify-between py-4">
                     <dt className="text-base font-medium text-gray-900">Total Items in Cart</dt>
-                    <dd className="text-base font-medium text-gray-900">999</dd>
+                    <dd className="text-base font-medium text-gray-900">{products.length}</dd>
                   </div>
                 </dl>
               </div>

@@ -46,4 +46,21 @@ itemRouter.put('/:id', limiter, async (req, res) => {
     }
 });
 
+itemRouter.delete('/:id', limiter, async (req, res) => {
+    const itemId = req.params.id;
+
+    try {
+        const deletedItem = await ItemModel.findByIdAndDelete(itemId);
+
+        if (!deletedItem) {
+            return res.status(404).json({ error: 'Item not found' });
+        }
+
+        res.json(deletedItem);
+    } catch (err) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
 module.exports = itemRouter;

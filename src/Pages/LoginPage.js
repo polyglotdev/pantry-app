@@ -5,6 +5,7 @@ import axios from "axios"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 
+
 export default function LoginPage() {
     /* mike start here*/
     const[username, setUsername] = useState("");
@@ -19,11 +20,11 @@ export default function LoginPage() {
         console.log("username:", username);
         console.log("password:", password);
         try {
-            const response = await axios.post("http://localhost3001/auth/login", { username, hash:password });
+            const response = await axios.post("http://localhost:3001/auth/login", { username, password });
             console.log(response.data)
             setCookies("access_token", response.data.token);
-            window.localStorage.setItem("user", response.data.user_ID)
-            navigate("/");
+            window.localStorage.setItem("user", response.data.userID)
+            navigate("/pantry");
         } catch(error) {
             console.error();
             setError("Database not found");

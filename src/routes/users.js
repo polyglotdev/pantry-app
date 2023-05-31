@@ -4,6 +4,7 @@ const { UserModel } = require('../models/Users');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 const rateLimit = require('express-rate-limit');
+const cors = require('cors')
 
 dotenv.config();
 
@@ -13,6 +14,8 @@ const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100
 });
+
+userRouter.use(cors())
 
 userRouter.post('/register', limiter, async (req, res) => {
     const { username, password } = req.body;

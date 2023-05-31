@@ -23,7 +23,7 @@ export default function LoginPage() {
             const response = await axios.post("http://localhost:3001/auth/login", { username, password });
             console.log(response.data)
             setCookies("access_token", response.data.token);
-            window.localStorage.setItem("user", response.data.userID)
+            window.localStorage.setItem("user", response.data.userID);
             navigate("/pantry");
         } catch(error) {
             console.error();

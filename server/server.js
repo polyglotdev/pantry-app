@@ -4,7 +4,6 @@ const cors = require('cors')
 const dotenv = require('dotenv')
 const userRouter = require('../src/routes/users')
 const itemRouter = require('../src/routes/item')
-const csurf = require('csurf')
 
 dotenv.config()
 
@@ -15,7 +14,7 @@ const corsOptions = {
     credentials: true
 }
 
-app.use(csurf({ cookie: true}))
+
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use("/auth", userRouter)

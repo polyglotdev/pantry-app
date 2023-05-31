@@ -1,14 +1,16 @@
 import React from "react";
 import NavBar from "../Navbar";
-import LazySusanForm from "../LazySusanForm";
+import LazySusanForm from "../CreateItemForm";
+import ParentComponent from "../ItemComponent";
 
 
 function CreateItem() {
   return <div className="App">
     <NavBar />
     <LazySusanForm />
+   
 
-    <h1>Lazy Susan Inventory Page</h1>
+   
 
 
 </div>

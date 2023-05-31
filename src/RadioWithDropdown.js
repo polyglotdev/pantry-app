@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types'
+import ItemInformation from './ItemInformation';
 
 
 
 
 const RadioWithDropdown = () => {
-  const [selectedLocation, setSelectedLocation] = useState('');
+  const [selectedLocation , setSelectedLocation] = useState('');
+  const[selectedFoodGroup, setSelectedFoodGroup] = useState('');
 
   const locations = [
     { id: 'pantry', label: 'Pantry', foodGroups: ['Baking Supplies', 'Canned Goods', 'Condiments', 'Grain','Legumes', 'Snacks'] },
@@ -13,8 +16,14 @@ const RadioWithDropdown = () => {
   ];
 
   const handleLocationChange = (event) => {
+    const selectedLocation  = event.target.value;
     setSelectedLocation(event.target.value);
+    setSelectedFoodGroup('');
   };
+  const handleFoodGroupChange =(event) =>{
+    const selectedFoodGroup = event.target.value;
+    setSelectedFoodGroup(event.target.value);
+  }
 
   return (
     <div>
@@ -42,18 +51,27 @@ const RadioWithDropdown = () => {
         </div>
        </fieldset>
       
-       <select className="inline-flex w-2/3 justify-center gap-x-1 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" value={selectedLocation} onChange={handleLocationChange}>
+       <select 
+       className='w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1
+       hover:border-gray-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring
+        active:ring-blue-500/40'
+       value={selectedFoodGroup} 
+       onChange={handleFoodGroupChange}>
 
-         <option value="" disabled>
+         <option value='' disabled>
               Select a food group
             </option>
 
           {locations.find((location) => location.id === selectedLocation)?.foodGroups.map((foodGroup, index) => (
-            <option key={index}>{foodGroup}</option>
+            <option key={index} value={foodGroup}>
+            {foodGroup}  
+            </option>
+            
           ))}
         </select>
     </div>
   );
 };
+
 
 export default RadioWithDropdown;

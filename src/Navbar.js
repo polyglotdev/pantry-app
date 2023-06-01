@@ -2,7 +2,8 @@ import React from 'react'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import LazySusanLogo from './LazySusanLogo.png';
+import LazySusanRoundLogo from './LazySusanRoundLogo.png'
+
 
 const navigation = [
   { name: 'LazySusan', href: '/lazysusan', current: true },
@@ -38,11 +39,11 @@ export default function NavBar() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-12 w-auto lg:hidden"
-                    src={LazySusanLogo}
+                    src={LazySusanRoundLogo}
                     alt="Lazy Susan Logo"
                   />
                 <img
-                    src={LazySusanLogo}
+                    src={LazySusanRoundLogo}
                     className="hidden h-12 w auto lg:block"
                     alt="Lazy Susan Logo" />
                 </div>

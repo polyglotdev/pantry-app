@@ -4,6 +4,7 @@ const { UserModel } = require('../models/Users');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 const rateLimit = require('express-rate-limit');
+const cors = require('cors')
 
 dotenv.config();
 
@@ -13,6 +14,8 @@ const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100
 });
+
+userRouter.use(cors())
 
 userRouter.post('/register', limiter, async (req, res) => {
     const { username, password } = req.body;
@@ -30,6 +33,7 @@ userRouter.post('/register', limiter, async (req, res) => {
 });
 
 userRouter.post('/login', limiter, async (req, res) => {
+    console.log("Attempting login")
     const { username, password } = req.body;   
     const user = await UserModel.findOne({ username });
     
@@ -41,12 +45,11 @@ userRouter.post('/login', limiter, async (req, res) => {
 
     if(!isPasswordValid) {
         return res.status(400).json({ error: 'Invalid username or password' });
-    }
-    
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    } 
+
+    const token = jwt.sign({ id: user._id }, "secret");
     res.json({ token, userID: user._id });
+    console.log("Login successful")
 });
 
 module.exports = userRouter;
-
-

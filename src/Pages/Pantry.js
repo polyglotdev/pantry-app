@@ -9,6 +9,7 @@ function Pantry() {
     <NavBar />
 
     <MyPantryHome />
+   
 </div>
 }
 

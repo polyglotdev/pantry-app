@@ -6,7 +6,7 @@ function Pantry() {
   return <div className="App">
     <NavBar />
     <MyPantryHome />
-    <h1>Pantry Page</h1>
+   
 </div>
 }
 

@@ -1,30 +1,49 @@
 import { CheckIcon, ClockIcon } from '@heroicons/react/20/solid'
 import React from 'react'
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-
-const products = [
-  {
-    id: 1,
-    name: 'Apples- Honey Crisp',
-    href: '#',
-    itemTotal: '4',
-    inStock: true,
-    },
-  {
-    id: 2,
-    name: 'Zucchini',
-    href: '#',
-    itemTotal: '1',
-    inStock: false,
-
-  },
-  // More products...
-]
+import axios from 'axios'
 
 export default function Example() {
+  const [products, setProducts] = useState([]);
+  const [quantityToAdd, setQuantityToAdd] = useState(1);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/item/inventory');
+        const formattedProducts = response.data
+        .filter((item) => item.restock === true)
+        .map((item) => ({
+          id: item._id.$oid,
+          name: item.name,
+          href: `#`,
+          expiration: formatDate(item.expirationDate),
+          quantity: item.quantity,
+          unit: item.unit,
+          inStock: item.quantity > 0,
+          isExpiringSoon: item.expirationDate < item.alertDate,
+        }));
+        setProducts(formattedProducts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  };
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
@@ -52,35 +71,27 @@ export default function Example() {
                           </h3>
                         </div>
 
-                        <p className="text-right text-sm font-medium text-gray-900">{product.itemTotal}</p>
+                        <p className="text-right text-sm font-medium text-gray-900">
+                          Expiration Date: {product.expiration}
+                        </p>
                       </div>
 
                       <div className="mt-4 flex items-center sm:absolute sm:left-1/2 sm:top-0 sm:mt-0 sm:block">
                         <label htmlFor={`quantity-${productIdx}`} className="sr-only">
                           Quantity, {product.name}
                         </label>
-                        <select
-                          id={`quantity-${productIdx}`}
-                          name={`quantity-${productIdx}`}
-                          className="block max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
-                        >
-                          <option value={1}>1</option>
-                          <option value={2}>2</option>
-                          <option value={3}>3</option>
-                          <option value={4}>4</option>
-                          <option value={5}>5</option>
-                          <option value={6}>6</option>
-                          <option value={7}>7</option>
-                          <option value={8}>8</option>
-                          {/* need to add 1-100 or a text input box */}
-                        </select>
-
-                        <button
-                          type="button"
-                          className="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:ml-0 sm:mt-3"
-                        >
-                          <span>Add to List</span>
-                        </button>
+                          <input
+                            type="number"
+                            id={`quantity-${productIdx}`}
+                            name={`quantity-${productIdx}`}
+                            className="block max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+                            min="1" // Optional: Set minimum value
+                            max="100" // Optional: Set maximum value
+                            defaultValue={1} // Optional: Set default value
+                          />
+                        `<p className="ml-4 text-sm font-medium text-gray-600 sm:ml-0 sm:mt-3">
+                          <span>Amount</span>
+                        </p>
                       </div>
                     </div>
 
@@ -88,10 +99,14 @@ export default function Example() {
                       {product.inStock ? (
                         <CheckIcon className="h-5 w-5 flex-shrink-0 text-green-500" aria-hidden="true" />
                       ) : (
-                        <ClockIcon className="h-5 w-5 flex-shrink-0 text-gray-300" aria-hidden="true" />
+                        <XMarkIcon className="h-5 w-5 flex-shrink-0 text-red-500" aria-hidden="true" />
                       )}
 
-                      <span>{product.inStock ? 'Currently in your pantry' : `Not in your pantry`}</span>
+                      {product.inStock ? (
+                        <span>{`You currently have ${product.quantity} ${product.unit} in stock`}</span>
+                      ) : (
+                        <span>Not in your pantry</span>
+                      )}
                     </p>
                   </div>
                 </li>
@@ -109,7 +124,7 @@ export default function Example() {
                   
                   <div className="flex items-center justify-between py-4">
                     <dt className="text-base font-medium text-gray-900">Total Items in Cart</dt>
-                    <dd className="text-base font-medium text-gray-900">999</dd>
+                    <dd className="text-base font-medium text-gray-900">{products.length}</dd>
                   </div>
                 </dl>
               </div>
@@ -134,7 +149,7 @@ export default function Example() {
             <div className="mt-6 text-center text-sm text-gray-500">
               <p>
                 
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a href="/LazySusan" className="font-medium text-indigo-600 hover:text-indigo-500">
                   Return to your LazySusan Dashboard
                   <span aria-hidden="true"> &rarr;</span>
                 </a>

@@ -53,5 +53,3 @@ userRouter.post('/login', limiter, async (req, res) => {
 });
 
 module.exports = userRouter;
-
-

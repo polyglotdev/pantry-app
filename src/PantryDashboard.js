@@ -28,10 +28,15 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
     const [refrigeratorItems, setRefrigeratorItems] = useState([]);
     const [freezerItems, setFreezerItems] = useState([]);
 
+    const user = localStorage.getItem('user');
+
     useEffect(() => {
       const fetchInventory = async () => {
         try {
-          const response = await axios.get('http://localhost:3001/item/inventory');
+          const userID = localStorage.getItem('user');
+
+          // Make API request with the userID
+          const response = await axios.get(`http://localhost:3001/item/inventory/${user}`);
           const inventoryData = response.data;
 
           setInventory(inventoryData);

@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LazySusan />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/pantry" element={<Pantry />} />
+        <Route path="/inventory" element={<Pantry />} />
         <Route path="/shoppinglist" element={<ShoppingList />} />
         <Route path="/login" element={<LoginPage />}/>
         <Route path="/itemform" element={<ItemForm />} />

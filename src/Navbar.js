@@ -10,7 +10,7 @@ const navigation = [
   { name: 'Pantry', href: '/pantry', current: false },
   { name: 'Shopping List', href: '/shoppinglist', current: false },
   { name: 'Recipes', href: '#', current: false },
-  { name: 'Search', href: '#', current: false },
+  { name: 'Search', href: '/search', current: false },
 ]
 
 function classNames(...classes) {

@@ -1,6 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchDropdown from "./SearchDropdown";
+import axios from "axios";
 
 
 export default function Search() {
@@ -16,35 +17,25 @@ export default function Search() {
     const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('http://localhost:3001/item/inventory');
+          const items = response.data; // Assuming the API response contains the items
+          setItems(items);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+
   
     const handleSearchSubmit = (event) => {
       event.preventDefault();
-
-      const locations = [
-        { id: 'pantry', label: 'Pantry', foodGroups: ['Baking Supplies', 'Canned Goods', 'Condiments', 'Grain','Legumes', 'Snacks'] },
-        { id: 'refrigerator', label: 'Refrigerator', foodGroups: ['Condiments & Sauces', 'Dairy Products', 'Eggs', 'Fresh Fruits & Vegetables', 'Meat & Poultry'] },
-        { id: 'freezer', label: 'Freezer', foodGroups: ['Frozen Breads', 'Frozen Fruits and Vegetables', 'Meat and Poultry', 'Prepared Meals', 'Seafood'] },
-      ];
-    
-      const items = [
-        {
-          name: 'Rice',
-          location: 'Pantry ',
-          foodGroup: 'Canned Goods',
-          quantity: 3,
-          unit: 'oz',
-          expirationDate: 'June 12, 2023'
-        },
-        {
-          name: 'Dr. Pepper',
-          location: 'Refrigerator ',
-          foodGroup: 'Canned Goods',
-          quantity: 5,
-          unit: 'gal',
-          expirationDate: 'July 4, 2023'
-        }
-      ]
-
 
       const filtered = items.filter(item => {
         if (selectedOption.id === 'item'){
@@ -52,24 +43,12 @@ export default function Search() {
         }else if (selectedOption.id === 'foodGroup'){
           return item.foodGroup.toLowerCase().includes(searchQuery.toLowerCase());
         } else if (selectedOption.id === 'pantry') {
-          const selectedLocation = locations.find(location => location.id === selectedOption.id);
-          return (
-            item.location.toLowerCase().includes(searchQuery.toLowerCase()) &&
-            selectedLocation.foodGroups.includes(item.foodGroup)
-          );
+          return item.location === 'pantry' && item.name.toLowerCase().includes(searchQuery.toLowerCase());
         } else if (selectedOption.id === 'refrigerator') {
-          const selectedLocation = locations.find(location => location.id === selectedOption.id);
-          return (
-            item.location.toLowerCase().includes(searchQuery.toLowerCase()) &&
-            selectedLocation.foodGroups.includes(item.foodGroup)
-          );
+          return item.location === 'refrigerator' && item.name.toLowerCase().includes(searchQuery.toLowerCase());
         } else if (selectedOption.id === 'freezer') {
-          const selectedLocation = locations.find(location => location.id === selectedOption.id);
-          return (
-            item.location.toLowerCase().includes(searchQuery.toLowerCase()) &&
-            selectedLocation.foodGroups.includes(item.foodGroup)
-          );
-       } 
+          return item.location === 'freezer' && item.name.toLowerCase().includes(searchQuery.toLowerCase());
+        }
        return false;
       })
 
@@ -109,7 +88,6 @@ export default function Search() {
                 placeholder={selectedOption.label}
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                required
               />
               <button
                 type="submit"
@@ -156,6 +134,9 @@ export default function Search() {
             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-night">
               Expiration Date
             </th>
+            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-night">
+              Location
+            </th>
             <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
               <span className="sr-only">Restock</span>
             </th>
@@ -169,6 +150,7 @@ export default function Search() {
               <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.unit}</td>
               <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.foodGroup}</td>
               <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{new Date(item.expirationDate).toLocaleDateString('en-US')}</td>
+              <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.location}</td>
             </tr>
           ))}
         </tbody>

@@ -6,11 +6,12 @@ import LazySusanRoundLogo from './LazySusanRoundLogo.png'
 
 
 const navigation = [
-  { name: 'LazySusan', href: '/lazysusan', current: true },
-  { name: 'Pantry', href: '/pantry', current: false },
+  { name: 'Home', href: '/', current: true },
+  { name: 'Inventory', href: '/pantry', current: false },
   { name: 'Shopping List', href: '/shoppinglist', current: false },
   { name: 'Recipes', href: '#', current: false },
   { name: 'Search', href: '#', current: false },
+  { name: 'Add Item', href: '/itemform', current: false },
 ]
 
 function classNames(...classes) {

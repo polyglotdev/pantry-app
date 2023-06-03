@@ -58,23 +58,12 @@ const handleAddItem = () => {
     
   <main className="relative flex min-h-screen flex-col justify-center bg-gray-600 p-12">
    
-  <h1 className="text-3xl font-bold text-white ">Lazy Susan Inventory</h1>
-  <p className="mb-8 font-semibold text-gray-100">Add Items to your Lazy Susan</p>
+  <h1 className="text-3xl font-bold text-white ">Add Item</h1>
+  <br></br>
   <div className="w-full rounded-xl bg-white p-4 shadow-2xl shadow-teal/40">
     {/* White Background  */}
     <div className="mb-5 grid grid-cols-1 gap-5">
       <div className="flex flex-col md: gap-5">
-    {/* Item Information */}
-      {/* <div className='md:col-span-2'>
-      <div className='flex justify-end items-start'>
-     <div className='w-1/2 bg-white p-4 shadow-2xl shadow-teal/40'>
-  <div className='absolute inset-y-0 right-0 w-16'></div>
-
-      <ItemInformation 
-        item={item} 
-         
-        />
-    </div></div></div> */}
         <label htmlFor="name" className="mb-2 font-semibold">Name</label>
         <input 
         type="text" 

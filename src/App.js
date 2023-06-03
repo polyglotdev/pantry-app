@@ -12,6 +12,8 @@ import LazySusan from './Pages/LazySusan'
 import ItemForm from './Pages/CreateItem'
 import Update from './Pages/EditItem'
 import SearchPage from './Pages/SearchPage';
+import StartShopping from './Pages/StartShopping'
+
 
 
 function App() {
@@ -27,6 +29,9 @@ function App() {
         <Route path="/itemform" element={<ItemForm />} />
         <Route path="/update" element={<Update />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/startshopping" element={<StartShopping />} />
+
+        
       
       </Routes>
     </Router>

@@ -37,7 +37,9 @@ export default function Dashboard() {
 
   return (
   <div className="flex justify-center">
+    <h1 className="text-3xl font-bold text-black ">Inventory</h1>
   <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
+  <h1 className="text-3xl font-bold text-black ">Inventory</h1>
     {/* <!-- Statistics Cards --> */}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
       <div className="bg-blue-300 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">

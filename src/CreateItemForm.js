@@ -127,7 +127,7 @@ return(
                 Select a unit
               </option>
               <option value= "">Select Unit</option>
-              <option value="fl_oz">Fluid Ounce (fl oz)</option>
+              <option value="fl oz">Fluid Ounce (fl oz)</option>
               <option value="cups">Cup (c)</option>
               <option value="pt">Pint (pt)</option>
               <option value="qt">Quart (qt)</option>

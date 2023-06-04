@@ -8,11 +8,6 @@ function Update() {
   return <div className="App">
     <NavBar />
     <EditItem />
-   
-
-   
-
-
 </div>
 }
 

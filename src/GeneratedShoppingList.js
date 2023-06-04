@@ -1,17 +1,6 @@
 import React from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import {
-  ChartBarSquareIcon,
-  Cog6ToothIcon,
-  FolderIcon,
-  GlobeAltIcon,
-  ServerIcon,
-  SignalIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import NavBar from './Navbar'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 
 const statuses = {

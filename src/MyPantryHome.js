@@ -105,7 +105,9 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                         {pantryItems.map((item) => (
                           <tr key={item.unit}>
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-night sm:pl-0">
+                            <a href={`/updateitem/${item._id}`} className="text-blue-600">
                               {item.name}
+                            </a>
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.quantity}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.unit}</td>
@@ -180,7 +182,9 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                         {refrigeratorItems.map((item) => (
                           <tr key={item.unit}>
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-night sm:pl-0">
+                            <a href={`/updateitem/${item._id}`} className="text-blue-600">
                               {item.name}
+                            </a>
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.quantity}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.unit}</td>
@@ -242,7 +246,9 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                           {freezerItems.map((item) => (
                             <tr key={item.unit}>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-night sm:pl-0">
+                              <a href={`/updateitem/${item._id}`} className="text-blue-600">
                                 {item.name}
+                              </a>
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.quantity}</td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.unit}</td>

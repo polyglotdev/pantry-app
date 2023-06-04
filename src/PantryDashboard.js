@@ -27,6 +27,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
     const [pantryItems, setPantryItems] = useState([]);
     const [refrigeratorItems, setRefrigeratorItems] = useState([]);
     const [freezerItems, setFreezerItems] = useState([]);
+    const [scrollPosition, setScrollPosition] = useState(0);
 
     const user = localStorage.getItem('user');
 
@@ -65,6 +66,11 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
   
       fetchInventory();
     }, []);
+
+    useEffect(() => {
+      // Store the current scroll position in the session storage
+      sessionStorage.setItem('scrollPosition', scrollPosition);
+    }, [scrollPosition]);
 
 
     return ( 
@@ -175,7 +181,9 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                   key={item.id}
                   className="bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer"
                 >
+                <a href={`/updateitem/${item._id}`} className="text-blue-600">
                   {item.name}
+                </a>
                   {expiringItems.includes(item) && (
                   <div className="flex justify-between items-start mt-2 ml-2 text-white text-xs">
                     <span className="bg-red-700 rounded p-1 text-xs flex items-right">
@@ -214,7 +222,9 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                   key={item.id}
                   className="bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer"
                 >
+                <a href={`/updateitem/${item._id}`} className="text-blue-600">
                   {item.name}
+                </a>
                   {expiringItems.includes(item) && (
                   <div className="flex justify-between items-start mt-2 ml-2 text-white text-xs">
                     <span className="bg-red-700 rounded p-1 text-xs flex items-right">

@@ -6,16 +6,11 @@ import { useParams, useLocation, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 const Update = () => {
-  const [item, setItem] = useState({});
-  const [items, setItems] = useState([]);
-  const [alertOption, setAlertOption] = useState('');
-
   const { itemId } = useParams();
   const navigate = useNavigate();
 
-  const location = useLocation();
-  const { returnUrl } = location.search;
-  
+  const [item, setItem] = useState({});
+  const [alertOption, setAlertOption] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,80 +26,62 @@ const Update = () => {
         console.log(error);
       }
     };
-  
+
     fetchData();
   }, [itemId]);
 
-  const initialState = {
-    name: '',
-    unit: '',
-    quantity: 0,
-    expirationDate: '',
-    location: '',
-    foodGroup: '',
-    minimumQuantity: 0,
-    alertDate: '',
+  const options = [
+    { label: '1 week before', value: '1' },
+    { label: '2 weeks before', value: '2' },
+    { label: '3 weeks before', value: '3' },
+    { label: '1 month before', value: '4' },
+  ];
+
+  const calculateAlertDate = () => {
+    if (!item.expirationDate || !alertOption) {
+      return '';
+    }
+
+    const expirationDate = new Date(item.expirationDate);
+    const parsedAlertOption = parseInt(alertOption);
+    const alertDate = new Date(
+      expirationDate.getTime() - parsedAlertOption * 7 * 24 * 60 * 60 * 1000
+    );
+
+    return alertDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    });
   };
 
   useEffect(() => {
-    setItem(initialState);
-  }, []);
-  
+    if (item.expirationDate && alertOption) {
+      const calculateDate = calculateAlertDate();
+      setItem((prevItem) => ({ ...prevItem, alertDate: calculateDate }));
+    }
+  }, [item.expirationDate, alertOption]);
 
-  const options = [
-    {label: '1 week before',value: '1'},
-    {label: '2 weeks before',value: '2'},
-    {label: '3 weeks before',value: '3'},
-    {label: '1 month before',value: '4'},
-]
+  const handleUpdateItem = async () => {
+    try {
+      // Make the HTTP request to update the item
+      const response = await axios.put(`http://localhost:3001/item/${itemId}`, item);
 
-const calculateAlertDate = () => {
-  if (!item.expirationDate || !alertOption) {
-    return '';
-  }
-
-  const expirationDate = new Date(item.expirationDate);
-  const parsedAlertOption = parseInt(alertOption);
-  const alertDate = new Date(
-    expirationDate.getTime() - parsedAlertOption * 7 * 24 * 60 * 60 * 1000
-  );
-
-  return alertDate.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  });
-};
- 
-useEffect(() => {
-
-if (item.expirationDate && alertOption) {
-  const calculateDate = calculateAlertDate();
-  setItem((prevItem) => ({...prevItem, alertDate: calculateDate }))
-}
-
-},[item.expirationDate, alertOption]);
-
-const handleUpdateItem = async () => {
-  try {
-    // Make the HTTP request to update the item
-    const response = await axios.put(`http://localhost:3001/item/${itemId}`, item);
-
-    // Handle the successful update
-    console.log('Item updated successfully:', response.data);
-    navigate(-1);
-  } catch (error) {
-    // Handle the error
-    console.log('Error updating item:', error);
-    // You can perform additional error handling here, such as displaying an error message
-  }
+      // Handle the successful update
+      console.log('Item updated successfully:', response.data);
+      navigate(-1);
+    } catch (error) {
+      // Handle the error
+      console.log('Error updating item:', error);
+      // You can perform additional error handling here, such as displaying an error message
+    }
 };
 
 
   return(
     
     <main className="relative flex min-h-screen flex-col justify-center bg-gray-600 p-12">
-    <h1 className="text-3xl font-bold text-white ">Update Item</h1>
+    <h1 className="text-3xl font-bold text-white ">Update: {item.name}</h1>
     <br></br>
     <div className="w-full rounded-xl bg-white p-4 shadow-2xl shadow-teal/40">
       {/* White Background  */}
@@ -181,11 +158,8 @@ const handleUpdateItem = async () => {
           value={item.quantity}
           onChange={(e) => setItem({...item, quantity: Number(e.target.value)})}
           className="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-gray-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" />
-        <div className="mb-5 grid-cols-1 gap-1 flex flex-col"></div>
-  
         {/* Expiration Date Input */}
-        
-          <div className= "mb-5 grid-cols-1 gap-1 flex flex-col">
+        <div className= "mb-5 grid-cols-1 gap-1 flex flex-col">
         <label htmlFor="expirationDate" className="mb-2 w-2/3 font-semibold">Expiration Date</label>
           <svg xmlns="http://www.w3.org/2000/svg" className="absolute left-2 top-2 h-5 w-5 text-slate-400" viewBox="0 0 0 20" fill="currentColor">
             <path fillRule="evenodd" d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0-1.537-.586-3.07-1.757-4.243zM12 10a2 2 0 10-4 0 2 2 0 004 0z" clipRule="evenodd" />
@@ -197,7 +171,6 @@ const handleUpdateItem = async () => {
           required
           onChange={(e) => setItem({...item, expirationDate: e.target.value})}
           className="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-gray-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" />
-       
         {/* Add Radio with dropdown feature*/}
         <div className="mb-5 grid-cols-1 gap-1 flex flex-col"></div>
         <label htmlFor="location" className="mb-2 font-semibold">
@@ -249,8 +222,8 @@ const handleUpdateItem = async () => {
         <option value="Frozen Fruits and Vegetables">Frozen Fruits and Vegetables</option>
         <option value="Prepared Meals">Prepared Meals</option>
         <option value="Seafood">Seafood</option>
-      `  </select>
-      </div>`
+      </select>
+      </div>
     </div>
   
         {/* Alert Date Input */}
@@ -323,7 +296,7 @@ const handleUpdateItem = async () => {
   </div>
   
   </main>   
-  )
+ )
 }
 
 export default Update;

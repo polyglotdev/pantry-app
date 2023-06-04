@@ -12,8 +12,6 @@ import LazySusan from './Pages/LazySusan'
 import ItemForm from './Pages/CreateItem'
 import StartShopping from './Pages/StartShopping'
 import Update from './Pages/EditItem'
-import Update from './Pages/EditItem'
-
 
 
 function App() {

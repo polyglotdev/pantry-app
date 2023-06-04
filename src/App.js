@@ -13,6 +13,7 @@ import ItemForm from './Pages/CreateItem'
 import Update from './Pages/EditItem'
 import SearchPage from './Pages/SearchPage';
 import StartShopping from './Pages/StartShopping'
+import RecipePage from './Pages/RecipePage'
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/updateitem" element={< Update />} />
         <Route path="/startshopping" element={<StartShopping />} />
+        <Route path="/recipes" element={<RecipePage />} />
       </Routes>
     </Router>
   )

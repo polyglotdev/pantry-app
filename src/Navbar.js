@@ -9,7 +9,7 @@ const navigation = [
   { name: 'LazySusan', href: '/lazysusan', current: true },
   { name: 'Pantry', href: '/pantry', current: false },
   { name: 'Shopping List', href: '/shoppinglist', current: false },
-  { name: 'Recipes', href: '#', current: false },
+  { name: 'Recipes', href: '/recipe', current: false },
   { name: 'Search', href: '#', current: false },
 ]
 

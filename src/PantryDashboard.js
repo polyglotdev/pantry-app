@@ -10,29 +10,42 @@ export default function Dashboard() {
   const [refrigeratorItems, setRefrigeratorItems] = useState([]);
   const [freezerItems, setFreezerItems] = useState([]);
 
+    const user = localStorage.getItem('user');
+
     useEffect(() => {
-    const fetchInventory = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/item/inventory');
-        const inventoryData = response.data;
-        setInventory(inventoryData);
-        const pantryItems = inventoryData.filter((item) => item.location === 'pantry');
-        setPantryItems(pantryItems);
-        const refrigeratorItems = inventoryData.filter((item) => item.location === 'refrigerator');
-        setRefrigeratorItems(refrigeratorItems);
-        const freezerItems = inventoryData.filter((item) => item.location === 'freezer');
-        setFreezerItems(freezerItems);
-        const currentDate = new Date();
-        const expiringItems = inventoryData.filter((item) => {
-          const alertDate = new Date(item.alertDate);
-          return alertDate <= currentDate;
-        });
-          setExpiringItems(expiringItems);
-      } catch (error) {
-        console.error('Error fetching inventory:', error);
-      }
-    };
-    fetchInventory();
+      const fetchInventory = async () => {
+        try {
+          const userID = localStorage.getItem('user');
+
+          // Make API request with the userID
+          const response = await axios.get(`http://localhost:3001/item/inventory/${user}`);
+          const inventoryData = response.data;
+
+          setInventory(inventoryData);
+  
+          const pantryItems = inventoryData.filter((item) => item.location === 'pantry');
+          setPantryItems(pantryItems);
+  
+          const refrigeratorItems = inventoryData.filter((item) => item.location === 'refrigerator');
+          setRefrigeratorItems(refrigeratorItems);
+  
+          const freezerItems = inventoryData.filter((item) => item.location === 'freezer');
+          setFreezerItems(freezerItems);
+
+          const currentDate = new Date();
+          const expiringItems = inventoryData.filter((item) => {
+            const alertDate = new Date(item.alertDate);
+            return alertDate <= currentDate;
+          });
+
+           setExpiringItems(expiringItems);
+
+        } catch (error) {
+          console.error('Error fetching inventory:', error);
+        }
+      };
+  
+      fetchInventory();
     }, []);
 
   return (

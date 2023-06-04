@@ -20,9 +20,9 @@ itemRouter.post('/newItem', limiter, async (req, res) => {
     }
 });
 
-itemRouter.get("/inventory", limiter, async (req, res) => {
+itemRouter.get("/inventory/:user", limiter, async (req, res) => {
     try { 
-        const response = await ItemModel.find({})
+        const response = await ItemModel.find({userOwner: req.params.user})
         res.json(response)
     } catch (err) { 
         res.json(err) 

@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import RadioWithDropdown from './RadioWithDropdown';
-import UnitDropdown from './UnitDropdown';
+import axios from 'axios';
 // import ItemInformation from './ItemInformation'
 
 const initialState = {
-  name: '',
-  unit: '',
+  name: ' ',
+  unit: ' ', // Set the initial value for unit
   quantity: 0,
-  expirationDate: '',
-  location: '',
-  foodGroup: '',
+  expirationDate: ' ',
+  location: ' ', // Set the initial value for location
+  foodGroup: ' ', // Set the initial value for foodGroup
   minimumQuantity: 0,
-  alertDate: '',
+  alertDate: ' '
 };
 
 const CreateItem = () => {
@@ -40,19 +39,46 @@ const calculateAlertDate = () => {
 };
  
 useEffect(() => {
-
-if (item.expirationDate && alertOption) {
-  const calculateDate = calculateAlertDate();
-  setItem((prevItem) => ({...prevItem, alertDate: calculateDate }))
-}
-
-},[item.expirationDate, alertOption]);
+  if (item.expirationDate && alertOption) {
+    const calculateDate = calculateAlertDate();
+    setItem((prevItem) => ({ ...prevItem, alertDate: calculateDate }));
+  }
+}, [item.expirationDate, alertOption]);
  
-const handleAddItem = () => {
-    const quantityValue = parseInt(item.quantity, 10)
-    setItems((prevItems) => [...prevItems, {...item, quantity: quantityValue}]);
-    setItem(initialState);
+const handleAddItem = (event) => {
+  event.preventDefault();
+
+  const userId = window.localStorage.getItem('user');
+
+  // Create a new item using the ItemModel
+  const newItem = {
+    name: item.name,
+    expirationDate: item.expirationDate,
+    quantity: item.quantity,
+    unit: item.unit,
+    minimumQuantity: item.minimumQuantity,
+    location: item.location,
+    foodGroup: item.foodGroup,
+    restock: false,
+    alertDate: item.alertDate,
+    userOwner: userId
   };
+
+  console.log('New item:', newItem);
+
+  // Send the new item to the server
+  axios.post('http://localhost:3001/item/newItem', newItem)
+    .then(response => {
+      console.log('Item saved:', response.data);
+      // Clear form fields or perform other actions as needed
+      setItem(initialState); // Clear the form fields
+    })
+    .catch(error => {
+      console.error('Error saving item:', error);
+      // Handle the error appropriately
+    });
+};
+
 
   return(
     
@@ -78,11 +104,38 @@ const handleAddItem = () => {
       </div>
 
       {/* Unit input */}
-      <UnitDropdown 
-      items={items}
-      selectedOption={item.unit}
-      setSelectedUnit={(unit) => setItem(Object.assign({}, item, { unit }))}/>
-      
+      <div className="mb-5 flex flex-col">
+        <label htmlFor="unit" className="mb-2 font-semibold">
+          Unit
+        </label>
+        <div>
+          <select
+            id="unit"
+            value={item.unit}
+            onChange={(e) => setItem({ ...item, unit: e.target.value })}
+            className="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-gray-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"
+          >
+            <option value="" disabled>
+              Select a unit
+            </option>
+            <option value="fl_oz">Fluid Ounce (fl oz)</option>
+            <option value="cups">Cup (c)</option>
+            <option value="pt">Pint (pt)</option>
+            <option value="qt">Quart (qt)</option>
+            <option value="gal">Gallon (gal)</option>
+            <option value="oz">Ounce (oz)</option>
+            <option value="lb">Pound (lb)</option>
+            <option value="bags">Bags</option>
+            <option value="boxes">Boxes</option>
+            <option value="bunches">Bunches</option>
+            <option value="heads">Heads</option>
+            <option value="pieces">Pieces</option>
+            <option value="packs">Packs</option>
+            <option value="jars">Jars</option>
+            <option value="bottles">Bottles</option>
+          </select>
+        </div>
+      </div>
 
       {/* Quanity Input */}
       <div className="mb-5 grid-cols-1 gap-1 flex flex-col">
@@ -116,14 +169,58 @@ const handleAddItem = () => {
      
       {/* Add Radio with dropdown feature*/}
       <div className="mb-5 grid-cols-1 gap-1 flex flex-col"></div>
-      <RadioWithDropdown
-      items={items}
-      selectedLocation={item.location}
-      setSelectedLocation={(location) => setItem({ ...item,location })}
-      selectedFoodGroup={item.foodGroup}
-      setSelectedFoodGroup={(foodGroup)=> setItem({...item, foodGroup})}
-      />
-      </div>
+      <label htmlFor="location" className="mb-2 font-semibold">
+    Location
+  </label>
+  <div>
+    <select
+      id="location"
+      value={item.location}
+      onChange={(e) => setItem({ ...item, location: e.target.value })}
+      className="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-gray-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"
+    >
+      <option value="" disabled>
+        Select a location
+      </option>
+      <option value="pantry">Pantry</option>
+      <option value="freezer">Freezer</option>
+      <option value="refrigerator">Refrigerator</option>
+    </select>
+  </div>
+</div>
+
+<div className="mb-5 flex flex-col">
+  <label htmlFor="foodGroup" className="mb-2 font-semibold">
+    Food Group
+  </label>
+  <div>
+    <select
+      id="foodGroup"
+      value={item.foodGroup}
+      onChange={(e) => setItem({ ...item, foodGroup: e.target.value })}
+      className="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-gray-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"
+    >
+      <option value="" disabled>
+        Select a food group
+      </option>
+      <option value="Baking Supplies">Baking Supplies</option>
+      <option value="Canned Goods">Canned Goods</option>
+      <option value="Condiments">Condiments</option>
+      <option value="Grain">Grain</option>
+      <option value="Legumes">Legumes</option>
+      <option value="Snacks">Snacks</option>
+      <option value="Condiments & Sauces">Condiments & Sauces</option>
+      <option value="Dairy Products">Dairy Products</option>
+      <option value="Eggs">Eggs</option>
+      <option value="Fresh Fruits & Vegetables">Fresh Fruits & Vegetables</option>
+      <option value="Meat & Poultry">Meat & Poultry</option>
+      <option value="Frozen Breads">Frozen Breads</option>
+      <option value="Frozen Fruits and Vegetables">Frozen Fruits and Vegetables</option>
+      <option value="Prepared Meals">Prepared Meals</option>
+      <option value="Seafood">Seafood</option>
+    `  </select>
+    </div>`
+  </div>
 
       {/* Alert Date Input */}
    <div className= "mb-5 flex flex-col">  

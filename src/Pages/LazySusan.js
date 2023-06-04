@@ -7,8 +7,6 @@ function LazySusan() {
   return <div className="App">
     <NavBar />
     <PantryDashboard />
-   
-  
 </div>
 }
 

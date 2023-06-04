@@ -6,11 +6,12 @@ import LazySusanRoundLogo from './LazySusanRoundLogo.png'
 
 
 const navigation = [
-  { name: 'LazySusan', href: '/lazysusan', current: true },
-  { name: 'Pantry', href: '/pantry', current: false },
+  { name: 'Home', href: '/', current: true },
+  { name: 'Inventory', href: '/inventory', current: false },
   { name: 'Shopping List', href: '/shoppinglist', current: false },
   { name: 'Recipes', href: '#', current: false },
   { name: 'Search', href: '/search', current: false },
+  { name: 'Add Item', href: '/itemform', current: false },
 ]
 
 function classNames(...classes) {
@@ -22,7 +23,7 @@ export default function NavBar() {
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-5xl px-2 sm:px-6 lg:px-6">
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-6">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}

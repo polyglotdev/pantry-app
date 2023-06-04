@@ -1,18 +1,13 @@
 import React from "react";
 import NavBar from "../Navbar";
-import LazySusanForm from "../CreateItemForm";
+import CreateItemForm from "../CreateItemForm";
 
 
 
 function CreateItem() {
   return <div className="App">
     <NavBar />
-    <LazySusanForm />
-   
-
-   
-
-
+    <CreateItemForm/>
 </div>
 }
 

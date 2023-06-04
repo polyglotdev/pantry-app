@@ -5,9 +5,7 @@ import ShoppingCart from "../ShoppingCart"
 function ShoppingList() {
   return <div className="App">
     <NavBar />
-  
-    <h1>Shopping List</h1>
-
+    <ShoppingCart />
 </div>
 }
 

@@ -20,9 +20,10 @@ export default function Search() {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
+      const user = localStorage.getItem('user');
       const fetchData = async () => {
         try {
-          const response = await axios.get('http://localhost:3001/item/inventory');
+          const response = await axios.get(`http://localhost:3001/item/inventory/${user}`);
           const items = response.data; // Assuming the API response contains the items
           setItems(items);
         } catch (error) {

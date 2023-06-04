@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../Navbar";
 
-import Recipe from "./Recipe"
+import Recipe from "../Recipe"
 
 
 function RecipePage() {

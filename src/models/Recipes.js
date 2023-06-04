@@ -14,8 +14,8 @@ const RecipeSchema = new mongoose.Schema({
     likes: {type: Number, required: true},
 });
 
-RecipeSchema.methods.findRecipe() = function() {
-    if(ItemSchema.methods.isBelowMinimum) { 
+RecipeSchema.methods.findRecipe() = async function() {
+    if(ItemSchema.methods.isBelowMinimum === true) { 
         const options = {
             method: 'GET',
             url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients',

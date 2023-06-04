@@ -27,7 +27,6 @@ function App() {
         <Route path="/shoppinglist" element={<ShoppingList />} />
         <Route path="/login" element={<LoginPage />}/>
         <Route path="/itemform" element={<ItemForm />} />
-  
         <Route path="/search" element={<SearchPage />} />
         <Route path="/updateitem" element={< Update />} />
         <Route path="/startshopping" element={<StartShopping />} />

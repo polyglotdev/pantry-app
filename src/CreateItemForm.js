@@ -91,7 +91,6 @@ useEffect(() => {
   validateForm();
 }, [item]);
 
-
 return( 
   <main className="relative flex min-h-screen flex-col justify-center bg-gray-600 p-12">
     <h1 className="text-3xl font-bold text-white ">Add Item</h1>
@@ -248,17 +247,18 @@ return(
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
-          ))}
-        </select>
-        {/* Display Alert Date */}
-        </div>
-        {item.alertDate && (<p className ='mt-2 text-gray-500'>
-          Alert Date: {item.alertDate}
-        </p>
-        )}
-        </div>
-    {/* Minimum Quanity Input */}
-      <div className="flex flex-col">
+        ))}
+      </select>
+      {/* Display Alert Date */}
+      </div>
+      {item.alertDate && (<p className ='mt-2 text-gray-500'>
+        Alert Date: {item.alertDate}
+      </p>
+      )}
+      </div>  
+
+   {/* Minimum Quantity Input */}
+   <div className="flex flex-col">
         <label htmlFor="minimumQuantity" className="mb-2 font-semibold">Minimum Quantity</label>
         <input 
         type="number" 

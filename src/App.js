@@ -12,6 +12,7 @@ import LazySusan from './Pages/LazySusan'
 import ItemForm from './Pages/CreateItem'
 import StartShopping from './Pages/StartShopping'
 import Update from './Pages/EditItem'
+import Update from './Pages/EditItem'
 
 
 
@@ -19,13 +20,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<LazySusan />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/pantry" element={<Pantry />} />
+        <Route path="/inventory" element={<Pantry />} />
         <Route path="/shoppinglist" element={<ShoppingList />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/lazysusan" element={<LazySusan />} />
+        <Route path="/login" element={<LoginPage />}/>
         <Route path="/itemform" element={<ItemForm />} />
+        <Route path="/updateitem" element={< Update />} />
         <Route path="/startshopping" element={<StartShopping />} />
         <Route path="/updateitem/:itemId" element={<Update/>} />
       </Routes>

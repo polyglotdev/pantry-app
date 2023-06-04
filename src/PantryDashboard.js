@@ -1,33 +1,15 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
 import axios from 'axios'
-import { Dialog, Menu, Transition } from '@headlessui/react'
-// import { 
-//   TbFridge
-//  } from 'react-icons/tb'
-//  import { 
-//   MdShelves
-//  } from 'react-icons/md'
-import {
-  ChartBarSquareIcon,
-  Cog6ToothIcon,
-  FolderIcon,
-  GlobeAltIcon,
-  ServerIcon,
-  SignalIcon,
-  XMarkIcon,
-  HiBellAlert,
-} from '@heroicons/react/24/outline'
-import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 
 
-  export default function Dashboard() {
-    const [inventory, setInventory] = useState([]);
-    const [expiringItems, setExpiringItems] = useState([]);
-    const [pantryItems, setPantryItems] = useState([]);
-    const [refrigeratorItems, setRefrigeratorItems] = useState([]);
-    const [freezerItems, setFreezerItems] = useState([]);
-    const [scrollPosition, setScrollPosition] = useState(0);
+export default function Dashboard() {
+  const [inventory, setInventory] = useState([]);
+  const [expiringItems, setExpiringItems] = useState([]);
+  const [pantryItems, setPantryItems] = useState([]);
+  const [refrigeratorItems, setRefrigeratorItems] = useState([]);
+  const [freezerItems, setFreezerItems] = useState([]);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
     const user = localStorage.getItem('user');
 

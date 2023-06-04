@@ -94,7 +94,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                             Unit
                           </th>
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-night">
-                            Food Type
+                            Food Group
                           </th>
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-night">
                             Expiration Date

@@ -44,6 +44,11 @@ const UnitDropdown = () => {
           </select>
         </div>
       </div>
+      {selectedOption &&(
+        <div className='mt-4'>
+        <p>Selected Unit: {unit.value}</p>
+        </div>
+      )}
     </div>
   );
 };

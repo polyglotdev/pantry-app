@@ -21,7 +21,7 @@ app.use("/auth", userRouter)
 app.use("/item", itemRouter)
 
 
-mongoose.connect(`mongodb+srv://${process.env.USERNAME_NAME}:${process.env.PASSWORD_NAME}@cluster0.hfturxs.mongodb.net/${process.env.TEST}`, {
+mongoose.connect(`mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD_NAME}@cluster0.hfturxs.mongodb.net/${process.env.TEST}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {

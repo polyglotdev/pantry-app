@@ -7,7 +7,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import axios from 'axios'
 
-export default function Example() {
+export default function ShoppingCart() {
   const [products, setProducts] = useState([]);
   const [quantityToAdd, setQuantityToAdd] = useState(1);
 
@@ -43,7 +43,13 @@ export default function Example() {
     const year = date.getFullYear();
     return `${month}/${day}/${year}`;
   };
-
+ 
+  const history = useHistory();
+  
+  const routeChange = () =>{ 
+    let path = `newPath`; 
+    history.push(path);
+  }
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
@@ -137,8 +143,8 @@ export default function Example() {
                 Update List
               </button>
 
-      
               <button
+                onClick={"/StartShopping"}
                 type="submit"
                 className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
               >

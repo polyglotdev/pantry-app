@@ -10,7 +10,7 @@ const navigation = [
   { name: 'Inventory', href: '/inventory', current: false },
   { name: 'Shopping List', href: '/shoppinglist', current: false },
   { name: 'Recipes', href: '/recipe', current: false },
-  { name: 'Search', href: '#', current: false },
+  { name: 'Search', href: '/search', current: false },
   { name: 'Add Item', href: '/itemform', current: false },
 ]
 

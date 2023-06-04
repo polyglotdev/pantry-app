@@ -11,6 +11,7 @@ import LoginPage from './Pages/LoginPage'
 import LazySusan from './Pages/LazySusan'
 import ItemForm from './Pages/CreateItem'
 import StartShopping from './Pages/StartShopping'
+import Update from './Pages/EditItem'
 
 
 
@@ -26,9 +27,7 @@ function App() {
         <Route path="/lazysusan" element={<LazySusan />} />
         <Route path="/itemform" element={<ItemForm />} />
         <Route path="/startshopping" element={<StartShopping />} />
-
-        
-      
+        <Route path="/updateitem/:itemId" element={<Update/>} />
       </Routes>
     </Router>
   )

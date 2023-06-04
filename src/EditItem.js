@@ -2,22 +2,44 @@ import React, { useState, useEffect } from 'react';
 import RadioWithDropdown from './RadioWithDropdown';
 import UnitDropdown from './UnitDropdown';
 import ItemInformation from './ItemInformation'
-
-const initialState = {
-  name: '',
-  unit: '',
-  quantity: 0,
-  expirationDate: '',
-  location: '',
-  foodGroup: '',
-  minimumQuantity: 0,
-  alertDate: '',
-};
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Update = () => {
-  const [item, setItem] = useState(initialState)
-  const [items, setItems] = useState([])
-  const [alertOption, setAlertOption]=useState('')
+  const [item, setItem] = useState({});
+  const [items, setItems] = useState([]);
+  const [alertOption, setAlertOption] = useState('');
+
+  const { itemId } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/item/${itemId}`);
+        setItem(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [itemId]);
+
+  const initialState = {
+    name: '',
+    unit: '',
+    quantity: 0,
+    expirationDate: '',
+    location: '',
+    foodGroup: '',
+    minimumQuantity: 0,
+    alertDate: '',
+  };
+
+  useEffect(() => {
+    setItem(initialState);
+  }, [item]);
+  
 
   const options = [
     {label: '1 week before',value: '1'},
@@ -62,13 +84,6 @@ const handleAddItem = () => {
   <p className="mb-8 font-semibold text-gray-100">Update items in your Lazy Susan</p>
   <div className="w-full rounded-xl bg-white p-4 shadow-2xl shadow-teal/40">
     
-    {/* Item Information */}
-     <aside className="col-span-9  flex justify-end h-9">
-  <div className="w-1/2 bg-white p-4 shadow-2xl shadow-teal/40 h-full">
-    <div className="absolute inset-y-0 right-0 w-16"></div>
-    <ItemInformation item={item} />
-  </div>
-</aside>
   {/* <div className="flex-shrink-full border-t border-gray-200 px-2 py-1 sm:px-6 lg:w-96 lg:border-r lg:border-t-0 lg:pl-8 xl:pl-6"> */}
    
     {/* White Background  */}

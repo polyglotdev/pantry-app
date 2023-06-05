@@ -49,6 +49,7 @@ export default function GeneratedShoppingList() {
         <li key={project.id} className="flex items-center justify-between gap-x-6 py-5">
           <div className="min-w-0">
             <div className="flex items-start gap-x-3">
+            <input type="checkbox" />
               <p className="text-sm font-semibold leading-6 text-gray-900">{project.name}</p>
               <p
                 className={classNames(

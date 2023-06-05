@@ -1,7 +1,6 @@
 import React from 'react'
 import './index.css';
 import './App.css'
-import Main from './Main'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import SignUpPage from './Pages/SignUpPage'

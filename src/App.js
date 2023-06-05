@@ -11,8 +11,9 @@ import LoginPage from './Pages/LoginPage'
 import LazySusan from './Pages/LazySusan'
 import ItemForm from './Pages/CreateItem'
 import Update from './Pages/EditItem'
-import SearchPage from './Pages/SearchPage';
+import SearchPage from './Pages/SearchPage'
 import StartShopping from './Pages/StartShopping'
+import ExpiringItems from './Pages/ExpiringItems'
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/updateitem" element={< Update />} />
         <Route path="/startshopping" element={<StartShopping />} />
+        <Route path="/expiringitems" element ={<ExpiringItems />} />
       </Routes>
     </Router>
   )

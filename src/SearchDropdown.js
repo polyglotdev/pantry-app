@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 
 
-const SearchDropdown = ({ dropdownOptions, selectedOption, onSelectOption }) => {
+const SearchDropdown = ({ dropdownOptions, selectedOption, onSelectOption, onSearchSubmit }) => {
     const [isOpen, setIsOpen] = useState(false);
-  
+    const searchRef = useRef(null);
+    
     const handleToggleDropdown = () => {
       setIsOpen(!isOpen);
     };
@@ -13,10 +14,34 @@ const SearchDropdown = ({ dropdownOptions, selectedOption, onSelectOption }) => 
       onSelectOption(option);
       setIsOpen(false);
     };
+    const handleToggleDropdownClick = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+  
+    const handleKeyPress = (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault(); 
+        setIsOpen(false);
+        onSearchSubmit(event);
+      }
+    };
+  
+    useEffect(() => {
+      document.addEventListener('click', handleToggleDropdownClick);
+      document.addEventListener('keypress', handleKeyPress);
+  
+      return () => {
+        document.removeEventListener('click', handleToggleDropdownClick);
+        document.removeEventListener('keypress', handleKeyPress);
+      };
+    }, []);
   
     return (
       <div className="relative">
         <button
+        ref={searchRef}
           className="flex-shrink-0 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center
            text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg
             hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700
@@ -42,7 +67,9 @@ const SearchDropdown = ({ dropdownOptions, selectedOption, onSelectOption }) => 
         </button>
         {isOpen && (
           <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-            <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" role="menu">
+            <ul className="py-2 text-sm text-gray-700 dark:text-gray-200"
+            //  role="menu"
+             >
               {dropdownOptions.map((option) => (
                 <li key={option.id}>
                   <button
@@ -74,6 +101,7 @@ const SearchDropdown = ({ dropdownOptions, selectedOption, onSelectOption }) => 
       label: PropTypes.string.isRequired,
     }).isRequired,
     onSelectOption: PropTypes.func.isRequired,
+    onSearchSubmit: PropTypes.func.isRequired,
   };
   
   export default SearchDropdown; 

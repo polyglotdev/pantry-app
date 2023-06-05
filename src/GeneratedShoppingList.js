@@ -7,7 +7,7 @@ const statuses = {
   Purchased: 'text-green-700 bg-green-50 ring-green-600/20',
   'In progress': 'text-gray-600 bg-gray-50 ring-gray-500/10',
 }
-const projects = [
+const groceries = [
   {
     id: 1,
     name: 'Bananas',
@@ -45,23 +45,24 @@ function classNames(...classes) {
 export default function GeneratedShoppingList() {
   return (
     <ul role="list" className="divide-y divide-gray-100">
-      {projects.map((project) => (
-        <li key={project.id} className="flex items-center justify-between gap-x-6 py-5">
+      {groceries.map((groceries) => (
+        <li key={groceries.id} className="flex items-center justify-between gap-x-6 py-5">
           <div className="min-w-0">
             <div className="flex items-start gap-x-3">
-              <p className="text-sm font-semibold leading-6 text-gray-900">{project.name}</p>
+            <input type="checkbox" />
+              <p className="text-sm font-semibold leading-6 text-gray-900">{groceries.name}</p>
               <p
                 className={classNames(
-                  statuses[project.status],
+                  statuses[groceries.status],
                   'rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset'
                 )}
               >
-                {project.status}
+                {groceries.status}
               </p>
             </div>
             <div className="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
               <p className="whitespace-nowrap">
-                Expires on <time dateTime={project.dueDateTime}>{project.dueDate}</time>
+                Expires on <time dateTime={groceries.dueDateTime}>{groceries.dueDate}</time>
               </p>
               <svg viewBox="0 0 2 2" className="h-0.5 w-0.5 fill-current">
                 <circle cx={1} cy={1} r={1} />
@@ -77,10 +78,10 @@ export default function GeneratedShoppingList() {
             </label>
 </form>
             <a
-              href={project.href}
+              href={groceries.href}
               className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
             >
-              Submit to Pantry<span className="sr-only">, {project.name}</span>
+              Submit to Pantry<span className="sr-only">, {groceries.name}</span>
             </a>
             <Menu as="div" className="relative flex-none">
               <Menu.Button className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
@@ -106,7 +107,7 @@ export default function GeneratedShoppingList() {
                           'block px-3 py-1 text-sm leading-6 text-gray-900'
                         )}
                       >
-                        Add<span className="sr-only">, {project.name}</span>
+                        Add<span className="sr-only">, {groceries.name}</span>
                       </a>
                     )}
                   </Menu.Item>
@@ -119,7 +120,7 @@ export default function GeneratedShoppingList() {
                           'block px-3 py-1 text-sm leading-6 text-gray-900'
                         )}
                       >
-                        Remove<span className="sr-only">, {project.name}</span>
+                        Remove<span className="sr-only">, {groceries.name}</span>
                       </a>
                     )}
                   </Menu.Item>
@@ -132,7 +133,7 @@ export default function GeneratedShoppingList() {
                           'block px-3 py-1 text-sm leading-6 text-gray-900'
                         )}
                       >
-                        Add Expiration<span className="sr-only">, {project.name}</span>
+                        Add Expiration<span className="sr-only">, {groceries.name}</span>
                       </a>
                     )}
                   </Menu.Item>

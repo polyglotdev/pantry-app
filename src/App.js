@@ -1,7 +1,6 @@
 import React from 'react'
 import './index.css';
 import './App.css'
-import Main from './Main'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import SignUpPage from './Pages/SignUpPage'
@@ -21,7 +20,6 @@ import SignedOut from './Pages/SignedOut'
 
 
 
-
 function App() {
   return (
     <Router>
@@ -33,8 +31,8 @@ function App() {
         <Route path="/login" element={<LoginPage />}/>
         <Route path="/itemform" element={<ItemForm />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/updateitem" element={< Update />} />
         <Route path="/startshopping" element={<StartShopping />} />
+        <Route path="/updateitem/:itemId" element={<Update/>} /
         <Route path="/expiringitems" element ={<ExpiringItems />} />
         <Route path="/settings" element ={<Settings />} />
         <Route path="/signedout" element ={<SignedOut />} />

@@ -18,11 +18,14 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
     const [pantryItems, setPantryItems] = useState([]);
     const [refrigeratorItems, setRefrigeratorItems] = useState([]);
     const [freezerItems, setFreezerItems] = useState([]);
-  
+    
     useEffect(() => {
       const fetchInventory = async () => {
+
+        const user = localStorage.getItem('user');
+
         try {
-          const response = await axios.get('http://localhost:3001/item/inventory');
+          const response = await axios.get(`http://localhost:3001/item/inventory/${user}`);
           const inventoryData = response.data;
   
           
@@ -45,9 +48,12 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
     return ( 
   
     <div className="mx-auto max-w-7xl">
-       
+      <div>
+      <br></br>
+      <h1 className="text-3xl font-bold text-black ">Inventory</h1>
+      <br></br>
+      </div>
         <div className="mb-8 bg-blue-100 p-4 rounded-lg shadow">
-        
             <div className="px-5 sm:px-6 lg:px-8">
               <div className="sm:flex sm:items-center">
                 <div className="sm:flex-auto">
@@ -88,7 +94,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                             Unit
                           </th>
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-night">
-                            Food Type
+                            Food Group
                           </th>
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-night">
                             Expiration Date

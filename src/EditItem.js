@@ -5,11 +5,11 @@ import ItemInformation from './ItemInformation'
 
 const initialState = {
   name: '',
-  unit: '',
+  unit: ' ',
   quantity: 0,
   expirationDate: '',
-  location: '',
-  foodGroup: '',
+  location: ' ',
+  foodGroup: ' ',
   minimumQuantity: 0,
   alertDate: '',
 };
@@ -100,7 +100,7 @@ const handleAddItem = () => {
       setSelectedUnit={(unit) => setItem(Object.assign({}, item, { unit }))}/>
       
 
-      {/* Quanity Input */}
+      {/* Quantity Input */}
       <div className="mb-5 grid-cols-1 gap-1 flex flex-col">
         <label htmlFor="quantity" className="mb-2 font-semibold">Quantity</label>
         <input 
@@ -148,7 +148,7 @@ const handleAddItem = () => {
         <div className="w-full border-t border-gray-300" />
       </div>
       <div className="relative flex justify-center">
-        <span className="bg-gray-200 px-3 text-base font-semibold leading-6 text-gray-900">Alert Notificantion Settings</span>
+        <span className="bg-gray-200 px-3 text-base font-semibold leading-6 text-gray-900">Alert Notification Settings</span>
       </div>
     </div>
 
@@ -183,7 +183,7 @@ const handleAddItem = () => {
       )}
       </div>  
 
-   {/* Minimum Quanity Input */}
+   {/* Minimum Quantity Input */}
    <div className="flex flex-col">
     
         <label htmlFor="minimumQuantity" className="mb-2 font-semibold">Minimum Quantity</label>

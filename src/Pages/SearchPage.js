@@ -1,12 +1,14 @@
 import React from "react";
 import NavBar from "../Navbar";
-import MyPantryHome from "../MyPantryHome"
+import Search from '../Search'
 
-function Pantry() {
+
+function SearchPage() {
   return <div className="App">
     <NavBar />
-    <MyPantryHome />
+    <Search /> 
+  
 </div>
 }
 
-export default Pantry;
+export default SearchPage;

@@ -1,16 +1,16 @@
 import { CheckIcon, ClockIcon } from '@heroicons/react/20/solid'
 import React from 'react'
 import { Fragment, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 export default function ShoppingCart() {
   const [products, setProducts] = useState([]);
   const [quantityToAdd, setQuantityToAdd] = useState(1);
-
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -136,14 +136,16 @@ export default function ShoppingCart() {
               >
                 Update List
               </button>
-
+              
+              <Link to="/startShopping">
+             
               <button
                 type="submit"
                 className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-                //onClick={startShopping}
               >
                 Start Shopping 
               </button>
+              </Link>
             </div>
 
             <div className="mt-6 text-center text-sm text-gray-500">

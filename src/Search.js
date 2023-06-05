@@ -20,9 +20,10 @@ export default function Search() {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
+      const user = localStorage.getItem('user');
       const fetchData = async () => {
         try {
-          const response = await axios.get('http://localhost:3001/item/inventory');
+          const response = await axios.get(`http://localhost:3001/item/inventory/${user}`);
           const items = response.data; // Assuming the API response contains the items
           setItems(items);
         } catch (error) {
@@ -54,24 +55,14 @@ export default function Search() {
       })
       setFilteredItems(filtered);
       };
-
+      
 
       const handleSelectOption = (option) => {
       setSelectedOption(option);
       setSearchQuery('')
-
-      if (option.id === "item") {
-        setSearchQuery("Item");
-      } else if (option.id === "foodGroup") {
-        setSearchQuery("Food Group");
-      } else if (option.id === "pantry") {
-        setSearchQuery("Pantry");
-      } else if (option.id === "refrigerator") {
-        setSearchQuery("Refrigerator");
-      } else if (option.id === "freezer") {
-        setSearchQuery("Freezer");
-      }
       setFilteredItems([])
+      
+      
        };
   
     
@@ -90,6 +81,7 @@ export default function Search() {
               dropdownOptions={dropdownOptions}
               selectedOption={selectedOption}
               onSelectOption={handleSelectOption}
+              onSearchSubmit={handleSearchSubmit}
             />
             <div className="relative w-full">
               <input
@@ -99,6 +91,12 @@ export default function Search() {
                 placeholder={selectedOption.label}
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    event.preventDefault(); 
+                    handleSearchSubmit(event); 
+                  }
+                }}
               />
               <button
                 type="submit"

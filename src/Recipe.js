@@ -1,8 +1,18 @@
-import React from 'react'
-import { useEffect,useState } from 'react'
-import axios from 'axios'
+import { useEffect } from "react";
 
+function Recipe(){
 
-export default function Recipe() {
-    const [recipes, setRecipes] = useState([]);
+useEffect(() => {
+    getRecipes();
+}, []);
+
+const getRecipes = async() => {
+    const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=a088ac7df3e54e29b9bc9e5d4e75a7db&number=5`);
+    const data = await api.json();
+    console.log(data)
 }
+
+}
+
+
+export default Recipe

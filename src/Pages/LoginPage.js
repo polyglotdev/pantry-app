@@ -33,6 +33,7 @@ export default function LoginPage() {
     return (
         <>
             <NavBar />
+        
             {/*
           This example requires updating your template:
   

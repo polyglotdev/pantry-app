@@ -11,9 +11,10 @@ import LoginPage from './Pages/LoginPage'
 import LazySusan from './Pages/LazySusan'
 import ItemForm from './Pages/CreateItem'
 import Update from './Pages/EditItem'
-import SearchPage from './Pages/SearchPage';
+import SearchPage from './Pages/SearchPage'
 import StartShopping from './Pages/StartShopping'
-import Recipe from './Pages/Recipe';
+import RecipePage from './Pages/RecipePage'
+
 
 
 
@@ -30,7 +31,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/updateitem" element={< Update />} />
         <Route path="/startshopping" element={<StartShopping />} />
-        <Route path="/recipe" element={<Recipe />} />
+        <Route path="/recipe" element={<RecipePage />} />
       </Routes>
     </Router>
   )

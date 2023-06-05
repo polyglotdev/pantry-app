@@ -14,6 +14,10 @@ import Update from './Pages/EditItem'
 import SearchPage from './Pages/SearchPage'
 import StartShopping from './Pages/StartShopping'
 import ExpiringItems from './Pages/ExpiringItems'
+import Settings from './Pages/Settings'
+import SignedOut from './Pages/SignedOut'
+
+
 
 
 
@@ -32,6 +36,8 @@ function App() {
         <Route path="/updateitem" element={< Update />} />
         <Route path="/startshopping" element={<StartShopping />} />
         <Route path="/expiringitems" element ={<ExpiringItems />} />
+        <Route path="/settings" element ={<Settings />} />
+        <Route path="/signedout" element ={<SignedOut />} />
       </Routes>
     </Router>
   )

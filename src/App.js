@@ -32,7 +32,7 @@ function App() {
         <Route path="/itemform" element={<ItemForm />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/startshopping" element={<StartShopping />} />
-        <Route path="/updateitem/:itemId" element={<Update/>} /
+        <Route path="/updateitem/:itemId" element={<Update/>} />
         <Route path="/expiringitems" element ={<ExpiringItems />} />
         <Route path="/settings" element ={<Settings />} />
         <Route path="/signedout" element ={<SignedOut />} />

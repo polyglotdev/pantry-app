@@ -15,6 +15,8 @@ import StartShopping from './Pages/StartShopping'
 import ExpiringItems from './Pages/ExpiringItems'
 import Settings from './Pages/Settings'
 import SignedOut from './Pages/SignedOut'
+import Recipe from './Pages/RecipePage'
+import Recipes from './Pages/RecipePage';
 
 
 
@@ -36,6 +38,7 @@ function App() {
         <Route path="/expiringitems" element ={<ExpiringItems />} />
         <Route path="/settings" element ={<Settings />} />
         <Route path="/signedout" element ={<SignedOut />} />
+        <Route path="/recipe" element ={<Recipes />} />
       </Routes>
     </Router>
   )

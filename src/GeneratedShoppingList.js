@@ -56,22 +56,51 @@ export default function GeneratedShoppingList() {
       };
   
       await axios.put(`http://localhost:3001/item/${itemId}`, updatedItem);
-      // Remove the submitted item from the list
-      setItems((prevItems) => prevItems.filter((item) => item._id !== itemId));
+  
+      // Update the quantity in the state
+      setItems((prevItems) =>
+        prevItems.map((item) => {
+          if (item._id === itemId) {
+            return {
+              ...item,
+              quantity: updatedItem.quantity,
+            };
+          }
+          return item;
+        })
+      );
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleSubmitAll = () => {
-    items.forEach((item) => {
-      if (item.checked) {
-        submitToPantry(item._id, item.quantity);
-      }
-    });
+  const handleSubmitAll = async () => {
+    try {
+      const submitPromises = items
+        .filter((item) => item.checked)
+        .map((item) => {
+          const quantityInput = document.querySelector(`input[name="quantity_${item._id}"]`);
+          const quantity = parseInt(quantityInput.value);
+  
+          return submitToPantry(item._id, quantity);
+        });
+  
+      await Promise.all(submitPromises);
+  
+      // Fetch the updated items from the server
+      const user = localStorage.getItem('user');
+      const response = await axios.get(`http://localhost:3001/item/inventory/${user}`);
+      const formattedProducts = response.data.filter(
+        (item) => item.restock === true || item.quantity === 0
+      );
+  
+      // Update the state with the updated items
+      setItems(formattedProducts);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-
+  
   return (
     <div className="flex-1 flex-col justify-center px-6 py-14 lg:px-8">
       <div className="py-4 text-left">
@@ -107,7 +136,7 @@ export default function GeneratedShoppingList() {
         >
           <label className="text-sm font-semibold leading-6 text-gray-900">
             Quantity
-            <input type="text" name="quantity" />
+            <input type="number" name={`quantity_${item._id}`} />
           </label>
           <button
             type="submit"

@@ -40,10 +40,13 @@ export default function SignUpForm() {
     }
 
     return (
+        <div className="flex justify-center">
+            <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
+    {/* <!-- Statistics Cards --> */}
         <form>
             <div className="space-y-12 sm:space-y-16">
                 <div>
-                    <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
+                    <h2 className="text-base font-semibold leading-7 text-gray-900">New User</h2>
                     <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
                         Create a username and password for your LazySusan.
                     </p>
@@ -92,7 +95,11 @@ export default function SignUpForm() {
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+                <button 
+                type="button" 
+                className="text-sm font-semibold leading-6 text-gray-900"
+                onClick={() => navigate('/login')}
+                >
                     Cancel
                 </button>
                 <button
@@ -100,9 +107,11 @@ export default function SignUpForm() {
                     className="inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     onClick={handleSubmit}
                 >
-                    Save
+                    Sign Up
                 </button>
             </div>
         </form>
+        </div>
+        </div>
     )
 }

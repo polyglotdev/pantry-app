@@ -47,7 +47,8 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
 
     return ( 
   
-    <div className="mx-auto max-w-7xl">
+      <div className="flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+
       <div>
       <br></br>
       <h1 className="text-3xl font-bold text-black ">Inventory</h1>

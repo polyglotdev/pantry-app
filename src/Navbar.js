@@ -10,10 +10,14 @@ import { Link } from 'react-router-dom'
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'Inventory', href: '/inventory', current: false },
+  { name: 'Recipes', href: '#', current: false },
   { name: 'Shopping List', href: '/shoppinglist', current: false },
   { name: 'Recipes', href: '/recipes', current: false },
   { name: 'Search', href: '/search', current: false },
   { name: 'Add Item', href: '/itemform', current: false },
+  { name: 'Search', href: '/search', current: false },
+  { name: 'About', href: '/lazysusan', current: false },
+
 ]
 
 function classNames(...classes) {
@@ -40,7 +44,21 @@ export default function NavBar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
+                  
+                  <button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2">
+                    <img
+                    className="block h-12 w-auto lg:hidden"
+                    src={LazySusanRoundLogo}
+                    alt="Lazy Susan Logo"
+                    />
+                     <img
+                    src={LazySusanRoundLogo}
+                    className="hidden h-12 w auto lg:block"
+                    alt="Lazy Susan Logo" />
+                  </button>
+                      
+                      
+                      {/* <img
                     className="block h-12 w-auto lg:hidden"
                     src={LazySusanRoundLogo}
                     alt="Lazy Susan Logo"
@@ -48,8 +66,10 @@ export default function NavBar() {
                 <img
                     src={LazySusanRoundLogo}
                     className="hidden h-12 w auto lg:block"
-                    alt="Lazy Susan Logo" />
+                    alt="Lazy Susan Logo" /> */}
                 </div>
+              
+
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
@@ -129,22 +149,27 @@ export default function NavBar() {
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
+                          <Link to="/settings">
+                            <a
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Settings
                           </a>
+                          </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
+                          <Link to="/signedout">
+
                           <a
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Sign out
                           </a>
+                          </Link>
                         )}
                       </Menu.Item>
                     </Menu.Items>

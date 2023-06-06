@@ -69,6 +69,8 @@ export default function Search() {
   
     return (
       <main className="flex-grow min-h-screen flex-col justify-center bg-green-900 p-12">
+        <h1 className="text-3xl font-bold text-white ">Search</h1>
+        <br></br>
         <form onSubmit={handleSearchSubmit}>
           <div className="flex">
             <label
@@ -127,27 +129,27 @@ export default function Search() {
             <p className="px-3 py-4 text-center text-sm text-gray-500">
         No items found.</p>
          ) : (
-  <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+  <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 rounded-md">
     <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
       <table className="min-w-full divide-y divide-gray-700">
         <thead>
           <tr>
-            <th scope="col" className="py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-night sm:pl-0">
+            <th scope="col" className="py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-white sm:pl-0">
               Name
             </th>
-            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-night">
+            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-white">
               Quantity
             </th>
-            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-night">
+            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-white">
               Unit
             </th>
-            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-night">
+            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-white">
               Food Group
             </th>
-            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-night">
+            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-white">
               Expiration Date
             </th>
-            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-night">
+            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-white">
               Location
             </th>
           </tr>

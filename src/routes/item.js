@@ -29,6 +29,17 @@ itemRouter.get("/inventory/:user", limiter, async (req, res) => {
     }
 })
 
+itemRouter.get('/:id', limiter, async (req, res) => {
+    const itemId = req.params.id;
+    try{
+        const response = await ItemModel.findById(itemId)
+        res.json(response)
+    }
+    catch (err) {
+        res.json(err)
+    }
+})
+
 itemRouter.put('/:id', limiter, async (req, res) => {
     const itemId = req.params.id;
     const updateData = req.body;

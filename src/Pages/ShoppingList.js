@@ -6,6 +6,7 @@ function ShoppingList() {
   return <div className="App">
     <NavBar />
     <ShoppingCart />
+     
 </div>
 }
 

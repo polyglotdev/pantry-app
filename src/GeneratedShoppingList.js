@@ -104,47 +104,47 @@ export default function GeneratedShoppingList() {
   return (
     <div className="flex-1 flex-col justify-center px-6 py-14 lg:px-8">
       <div className="py-4 text-left">
-      <Link to={'/itemform'}>
-        <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          Add New Item
-        </button>
-      </Link>
+        <Link to="/itemform">
+          <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Add New Item
+          </button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 gap-4">
-      {items.map((item, index) => (
-  <div key={item._id} className="py-5">
-    <div className="flex items-center justify-between">
-      <div className="flex items-start gap-x-3">
-        <input type="checkbox" onChange={() => handleCheckboxChange(index)} />
-        <p className="text-sm font-semibold leading-6 text-gray-900">{item.name}</p>
-        <p
-          className={classNames(
-            item.checked ? statuses.Purchased : statuses['In progress'],
-            'rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset'
-          )}
-        >
-          {item.checked ? 'Purchased' : 'In progress'}
-        </p>
-      </div>
-      <div className="flex flex-none items-center gap-x-4">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            submitToPantry(item._id, e.target.elements.quantity.value);
-          }}
-          className="flex items-center gap-x-4"
-        >
-          <label className="text-sm font-semibold leading-6 text-gray-900">
-            Quantity
-            <input type="number" name={`quantity_${item._id}`} />
-          </label>
-          <button
-            type="submit"
-            className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
-          >
-            Submit to Pantry<span className="sr-only">, {item.name}</span>
-          </button>
-        </form>
+        {items.map((item, index) => (
+          <div key={item._id} className="py-5">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+              <div className="flex items-start gap-x-3">
+                <input type="checkbox" onChange={() => handleCheckboxChange(index)} />
+                <p className="text-sm font-semibold leading-6 text-gray-900">{item.name}</p>
+                <p
+                  className={classNames(
+                    item.checked ? statuses.Purchased : statuses['In progress'],
+                    'rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset'
+                  )}
+                >
+                  {item.checked ? 'Purchased' : 'In progress'}
+                </p>
+              </div>
+              <div className="flex flex-none items-center gap-x-4 mt-4 sm:mt-0">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    submitToPantry(item._id, e.target.elements.quantity.value);
+                  }}
+                  className="flex items-center gap-x-4"
+                >
+                  <label className="text-sm font-semibold leading-6 text-gray-900">
+                    Quantity
+                    <input type="number" name={`quantity_${item._id}`} />
+                  </label>
+                  <button
+                    type="submit"
+                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
+                  >
+                    Submit to Pantry<span className="sr-only">, {item.name}</span>
+                  </button>
+                </form>
                 <Menu as="div" className="relative flex-none">
                   <Menu.Button className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
                     <span className="sr-only">Open options</span>

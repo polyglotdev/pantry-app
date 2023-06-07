@@ -56,7 +56,7 @@ export default function Dashboard() {
 
 
     return ( 
-      <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
+      <div className="flex-1 flex-col justify-center px-6 py-12 lg:px-8">
 
     
         {/* <!-- Statistics Cards --> */}

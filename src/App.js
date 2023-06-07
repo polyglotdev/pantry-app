@@ -11,7 +11,7 @@ import ItemForm from './Pages/CreateItem'
 import Update from './Pages/EditItem'
 import SearchPage from './Pages/SearchPage'
 import StartShopping from './Pages/StartShopping'
-import RecipePage from './Pages/RecipePage'
+import Recipes from './Pages/RecipePage'
 import ExpiringItems from './Pages/ExpiringItems'
 import Settings from './Pages/Settings'
 import SignedOut from './Pages/SignedOut'
@@ -37,7 +37,7 @@ function App() {
         <Route path="/itemform" element={<ItemForm />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/startshopping" element={<StartShopping />} />
-        <Route path="/recipes" element={<RecipePage />} />
+        <Route path="/recipes" element={<Recipes />} />
         <Route path="/updateitem/:itemId" element={<Update/>} />
         <Route path="/expiringitems" element ={<ExpiringItems />} />
         <Route path="/settings" element ={<Settings />} />

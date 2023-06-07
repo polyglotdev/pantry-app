@@ -59,9 +59,7 @@ const getIngredientRecipes = async() => {
     const data = await api.json();
     console.log(data);
     }
-} 
-
-  return (
+ return (
     <div className="m-0 p-0 box-border bg-white-100">
       <div className="wrapper flex flex-wrap hover:flex-wrap-reverse m-4">
         <h3 className="text-2xl font-bold mb-4 text-gradient">Popular Dishes</h3>
@@ -106,3 +104,4 @@ const getIngredientRecipes = async() => {
       </div>
     </div>
   );
+        }

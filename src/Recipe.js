@@ -53,18 +53,19 @@ function Recipe() {
                     <p
                       className="text-white text-xl font-semibold"
                       style={{ 
-                        textShadow: "0px 2px 4px rgba(0, 0, 0, 0.8)" }}
+                        textShadow: "0px 2px 4px rgba(0, 0, 0, 0.8)",
+                       }}
                     >
                       {recipe.title}
                     </p>
-                    
+                     </div>
                     <img
                       className="mt-2 rounded-xl w-full h-full object-cover border border-gray-200"
                       src={recipe.image}
                       alt={recipe.title}
                       style={{ borderRadius: "2rem" }}
                     />
-                    </div>
+                   
                     
                   </Link>
                 </div>

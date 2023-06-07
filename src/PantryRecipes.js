@@ -5,43 +5,44 @@ import { Link } from "react-router-dom";
 
 
     
-function Veggie() {
-    const [veggie, setVeggie] = useState([]);
+function PantryRecipe() {
+    const [pantryRecipe, setPantryRecipe] = useState([]);
   
     useEffect(() => {
-      getVeggies();
+      getPantryRecipe();
     }, []);
   
-    const getVeggies = async () => {
+    const getPantryRecipe = async () => {
       // const check = localStorage.getItem('veggie');
   
       // if (check) {
       //   setVeggie(JSON.parse(check));
       // } else {
-        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=0ebd3d63b0f742c988e9f8f0764797b2&number=9&tags=vegetarian`);
+        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=fafd9ff6a143416a83ad19289ee5490d&number=9&tags=vegetarian`);
         const data = await api.json();
         // localStorage.setItem('veggie', JSON.stringify(data.recipes));
-        setVeggie(data.recipes);
+        setPantryRecipe(data.recipes);
         console.log(data.recipes);
       }
     
 
     return  (
-    
-    <div className="m-0 p-0 box-border bg-white-100"><h3 className="text-2xl font-bold mb-4 text-gradient">Low Stock Dishes </h3>
+    <div className="flex justify-center">
+    <div className="h-full ml-14 mr-14  mb-10 md:ml-20 md:mr-20 w-screen">
+    <div className="m-0 p-0 box-border bg-white-100"><h3 className="text-1xl font-semi-bold mb-4 text-gradient">Pantry Dishes </h3>
     <div className=" bg-gray-100 wrapper flex flex-wrap hover:flex-wrap-reverse m-4">
     
-      {veggie && veggie.length > 0 ? (
+      {pantryRecipe && pantryRecipe.length > 0 ? (
         <Splide
           options={{
-            perPage: 3,
-            arrows: false,
+            perPage: 4,
+            arrows: true,
             pagination: false,
             drag: "free",
-            gap: "5rem",
+            gap: "1rem",
           }}
         >
-          {veggie.map((recipe) => (
+          {pantryRecipe.map((recipe) => (
             <SplideSlide key={recipe.id}>
               <div className="min-h-25rem rounded overflow-hidden relative">
               <Link to={'/recipedetail/'+ recipe.id}>
@@ -71,9 +72,11 @@ function Veggie() {
             )}
         </div>
     </div>
+    </div>
+    </div>
     )
 }
 ;
 
 
-export default Veggie;
+export default PantryRecipe;

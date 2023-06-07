@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const { type } = require('os');
 
 const ItemSchema = new mongoose.Schema({
     name: {type: String, required: true, unique: true},
-    expirationDate: {type: Date, required: true},
+    expirationDate: {type: Date, required: false},
     quantity: {type: Number, required: true},
     unit: {type: String, required: true},
     minimumQuantity: {type: Number, required: true},

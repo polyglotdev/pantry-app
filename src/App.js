@@ -17,7 +17,9 @@ import Settings from './Pages/Settings'
 import SignedOut from './Pages/SignedOut'
 import Home from './Pages/Home';
 import LazySusan from './Pages/LazySusan';
-
+import Cuisine from './Pages/Cuisine';
+import RecipeSearched from './Pages/RecipeSearched';
+import RecipeDetail from './Pages/RecipeDetail';
 
 
 
@@ -41,6 +43,9 @@ function App() {
         <Route path="/settings" element ={<Settings />} />
         <Route path="/signedout" element ={<SignedOut />} />
         <Route path="/home" element ={<Home />} />
+        <Route path="/cuisine/:type" element ={<Cuisine />} />
+        <Route path="/recipesearched/:recipesearch" element ={<RecipeSearched />} />
+        <Route path="/recipedetail/:name" element ={<RecipeDetail />} />
 
       </Routes>
     </Router>

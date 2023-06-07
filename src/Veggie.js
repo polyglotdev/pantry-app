@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import "@splidejs/splide/dist/css/splide.min.css";
+import { Link } from "react-router-dom";
 
 
     
@@ -12,17 +13,17 @@ function Veggie() {
     }, []);
   
     const getVeggies = async () => {
-      const check = localStorage.getItem('veggie');
+      // const check = localStorage.getItem('veggie');
   
-      if (check) {
-        setVeggie(JSON.parse(check));
-      } else {
-        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`);
+      // if (check) {
+      //   setVeggie(JSON.parse(check));
+      // } else {
+        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=b547eeba93b64b919c846a7549289de9&number=9&tags=vegetarian`);
         const data = await api.json();
-        localStorage.setItem('veggie', JSON.stringify(data.recipes));
+        // localStorage.setItem('veggie', JSON.stringify(data.recipes));
         setVeggie(data.recipes);
         console.log(data.recipes);
-      }}
+      }
     
 
     return  (
@@ -43,6 +44,7 @@ function Veggie() {
           {veggie.map((recipe) => (
             <SplideSlide key={recipe.id}>
               <div className="min-h-25rem rounded overflow-hidden relative">
+              <Link to={'/recipedetail/'+ recipe.id}>
                 <div className="absolute z-10 left-0 bottom-0 mb-4 text-center w-full">
                   <p
                     className="text-white text-xl font-semibold"
@@ -59,6 +61,7 @@ function Veggie() {
                   alt={recipe.title}
                   style={{ borderRadius: "2rem" }}
                 />
+                </Link>
               </div>
             </SplideSlide>
           ))}
@@ -69,8 +72,8 @@ function Veggie() {
         </div>
     </div>
     )
-
-};
+}
+;
 
 
 export default Veggie;

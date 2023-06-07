@@ -63,14 +63,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                     A list of all items in your pantry including their name, quantity, unit, type and expiration date.
                   </p>
                 </div>   
-                  <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <button
-                      type="button"
-                      className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                    >
-                      Edit My Pantry
-                    </button>
-                  </div>
+                 
                 </div>
                 </div>  
                 <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -146,14 +139,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                       A list of all items in my refrigerator including their name, quantity, unit, type and expiration date.
                     </p>
                   </div>
-                  <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <button
-                      type="button"
-                      className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                    >
-                      Edit My Refrigerator
-                    </button>
-                  </div>
+                  
                 </div>
               </div>
               <div className="mt-8 flow-root">
@@ -219,14 +205,6 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                     <p className="mt-2 text-sm text-night-300">
                       A list of all items in my freezer including their name, quantity, unit, type and expiration date.
                     </p>
-                  </div>
-                  <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <button
-                      type="button"
-                      className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                    >
-                      Edit My Freezer
-                    </button>
                   </div>
                 </div>
                 </div>

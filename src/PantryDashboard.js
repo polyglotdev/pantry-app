@@ -54,8 +54,9 @@ export default function Dashboard() {
 
 
     return ( 
-      <div className="h-full ml-14 mt-14 mb-10 md:ml-64">
-
+      <div className="flex justify-center">
+        <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
+    {/* <!-- Statistics Cards --> */}
     
         {/* <!-- Statistics Cards --> */}
 
@@ -233,7 +234,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        
+       </div> 
       
 
 

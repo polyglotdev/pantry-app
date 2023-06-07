@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import "@splidejs/splide/dist/css/splide.min.css";
 import {Link} from "react-router-dom"
+import { data } from "browserslist";
 
 
 export default function Recipe(){
@@ -37,20 +38,20 @@ export default function Recipe(){
       
   
 
-/*useEffect(() => {
+useEffect(() => {
     getRandomRecipes();
-}, []);*/
+}, []);
 
 useEffect(() => {
     getIngredientRecipes();
 }, [ExpiringItems]);
 
 
-// const getRandomRecipes = async() => {
-//     const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=b547eeba93b64b919c846a7549289de9&number=8`);
-//     const randomData = await api.json();
-//     console.log(randomData);
-//     }
+ const getRandomRecipes = async() => {
+     const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=0ae06dc4401d466997fffeb5bdf5ff3d&number=8`);
+     const randomData = await api.json();
+     console.log(randomData);
+     }
 
 const getIngredientRecipes = async() => {
     const ingredientsNames = expiringItems.map((item)=> item.name).join(",");

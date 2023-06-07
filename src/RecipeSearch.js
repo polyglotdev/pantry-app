@@ -14,14 +14,16 @@ function RecipeSearch() {
   return (
     <form 
     onSubmit={submitHandler}
-    className="justify-center flex pt-2 relative w-full">
-        <div>
-            <FaSearch style={{ color: 'white' }} className="absolute top-1/2 left-0 transform -translate-x-full -translate-y-1/2"></FaSearch>
+    className="justify-center flex pt-4 relative w-full">
+       <div className='relative w-full mt-6 mx-28'>
+        <div className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-900">
+            <FaSearch style={{ color: 'green' }} ></FaSearch>
+            </div>
             <input 
             onChange={(e)=> setInput(e.target.value)}
             type="text" 
             value={input}
-            className="w-full border-none bg-gradient-to-br from-gray-900 to-gray-700 text-white text-lg px-12 py-2 rounded-lg focus:outline-none"/>
+            className="w-full border-none bg-gradient-to-br from-gray-100 to-blue-200 text-gray text-lg px-12 py-2 rounded-lg focus:outline-none"/>
 
         </div>
     </form>

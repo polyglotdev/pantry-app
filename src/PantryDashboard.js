@@ -11,13 +11,11 @@ export default function Dashboard() {
   const [freezerItems, setFreezerItems] = useState([]);
   const [scrollPosition, setScrollPosition] = useState(0);
 
-    const user = localStorage.getItem('user');
+  const user = localStorage.getItem('user');
 
     useEffect(() => {
       const fetchInventory = async () => {
         try {
-          const userID = localStorage.getItem('user');
-
           // Make API request with the userID
           const response = await axios.get(`http://localhost:3001/item/inventory/${user}`);
           const inventoryData = response.data;

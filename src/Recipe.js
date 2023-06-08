@@ -53,6 +53,8 @@ function Recipe() {
   }, [expiringItems]);
 
   return (
+    <div className="flex justify-center">
+    <div className="h-full ml-14 mr-14  mb-10 md:ml-20 md:mr-20 w-screen">
     <div className="m-0 p-0 box-border bg-white-100">
       <h3 className="text-2xl font-bold mb-4 text-gradient">Pantry Fare Farewell: Transforming Expiring Ingredients</h3>
       <div className="bg-gray-100 wrapper flex flex-wrap hover:flex-wrap-reverse m-4">
@@ -100,6 +102,8 @@ function Recipe() {
         )}
       </div>
     </div>
+     </div>
+     </div>
   );
 }
 

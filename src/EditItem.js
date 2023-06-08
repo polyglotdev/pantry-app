@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import RadioWithDropdown from './RadioWithDropdown';
-import UnitDropdown from './UnitDropdown';
-import ItemInformation from './ItemInformation'
 import { useParams, useLocation, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 

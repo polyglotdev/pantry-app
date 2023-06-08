@@ -11,8 +11,8 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'Inventory', href: '/inventory', current: false },
-  { name: 'Recipes', href: '#', current: false },
   { name: 'Shopping List', href: '/shoppinglist', current: false },
+  { name: 'Recipes', href: '/recipes', current: false },
   { name: 'Add Item', href: '/itemform', current: false },
   { name: 'Search', href: '/search', current: false },
   { name: 'About', href: '/lazysusan', current: false },

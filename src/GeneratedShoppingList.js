@@ -88,7 +88,8 @@ export default function GeneratedShoppingList() {
 
 
   return (
-    <div className="flex-1 flex-col justify-center px-6 py-14 lg:px-8">
+    <div className="flex justify-center">
+    <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
       <div className="py-4 text-left">
         <Link to="/itemform">
           <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -192,6 +193,7 @@ export default function GeneratedShoppingList() {
           Update Items
         </button>
       </div>
+    </div>
     </div>
   );
 }

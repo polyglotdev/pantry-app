@@ -338,7 +338,7 @@ return(
       onClick={handleAddItemAndReturn}
       disabled={!isFormValid}
     >
-      Add Item and Return
+      Add Item and Return to Previous Page
     </button> 
       </div>
       </div>

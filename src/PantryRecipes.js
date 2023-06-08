@@ -2,29 +2,43 @@ import React, { useEffect, useState } from "react";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import "@splidejs/splide/dist/css/splide.min.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
     
 function PantryRecipe() {
-    const [pantryRecipe, setPantryRecipe] = useState([]);
+  const [inventory, setInventory] = useState([]);
+  const [pantryRecipe, setPantryRecipe] = useState([]);
   
-    useEffect(() => {
-      getPantryRecipe();
-    }, []);
-  
-    const getPantryRecipe = async () => {
-      // const check = localStorage.getItem('veggie');
-  
-      // if (check) {
-      //   setVeggie(JSON.parse(check));
-      // } else {
-        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=fafd9ff6a143416a83ad19289ee5490d&number=9&tags=vegetarian`);
-        const data = await api.json();
-        // localStorage.setItem('veggie', JSON.stringify(data.recipes));
-        setPantryRecipe(data.recipes);
-        console.log(data.recipes);
+  useEffect(() => {
+    const fetchInventory = async () => {
+      try {
+        const userID = localStorage.getItem("user");
+        const response = await axios.get(`http://localhost:3001/item/inventory/${userID}`);
+        const inventoryData = response.data;
+        setInventory(inventoryData);
+      } catch (error) {
+        console.error(error);
       }
-    
+    };
+    fetchInventory();
+  }, []);
+
+  useEffect(() => {
+    const fetchPantryRecipe = async () => {
+      const ingredientsNames = inventory.map((item) => item.name).join(",");
+      console.log(ingredientsNames);
+      try {
+        const response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=0ae06dc4401d466997fffeb5bdf5ff3d&ingredients=${ingredientsNames}&number=4`);
+        const data = response.data;
+        console.log(data);
+        setPantryRecipe(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchPantryRecipe();
+  }, [inventory]);
 
     return  (
     <div className="flex justify-center">

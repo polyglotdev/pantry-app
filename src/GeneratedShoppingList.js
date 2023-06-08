@@ -116,7 +116,7 @@ export default function GeneratedShoppingList() {
                 <form className="flex items-center gap-x-4">
                   <label className="-sm font-semibold leading-6 text-gray-900 ">
                     Quantity:
-                    <input type="number" name={`quantity_${item._id}`} onChange={(event) => handleQuantityChange(event, item._id)} />
+                    <input type="number" name={`quantity_${item._id}`} onChange={(event) => handleQuantityChange(event, item._id)}  className="w-16 px-2 py-1 border border-gray-300 rounded-md" />
                   </label>
                 </form>
                 <Menu as="div" className="relative flex-none">

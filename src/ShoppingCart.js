@@ -13,8 +13,9 @@ export default function ShoppingCart() {
   
   useEffect(() => {
     const fetchProducts = async () => {
+      const user = localStorage.getItem('user');
       try {
-        const response = await axios.get('http://localhost:3001/item/inventory');
+        const response = await axios.get(`http://localhost:3001/item/inventory/${user}`);
         const formattedProducts = response.data
         .filter((item) => item.restock === true)
         .map((item) => ({

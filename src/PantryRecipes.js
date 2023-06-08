@@ -53,7 +53,7 @@ function PantryRecipe() {
             arrows: true,
             pagination: false,
             drag: "free",
-            gap: "1rem",
+            gap: "5rem",
           }}
         >
           {pantryRecipe.map((recipe) => (

@@ -46,9 +46,8 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
     }, []);
 
     return ( 
-  
-      <div className="flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-
+      <div className="flex justify-center">
+      <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
       <div>
       <br></br>
       <h1 className="text-3xl font-bold text-black ">Inventory</h1>
@@ -63,14 +62,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                     A list of all items in your pantry including their name, quantity, unit, type and expiration date.
                   </p>
                 </div>   
-                  <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <button
-                      type="button"
-                      className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                    >
-                      Edit My Pantry
-                    </button>
-                  </div>
+                 
                 </div>
                 </div>  
                 <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -132,11 +124,6 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                 </div>
               </div>
             </div>
-          
-        
-        
-                     
-        
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 bg-blue-100 p-4 rounded-lg shadow">
               <div className="px-4 sm:px-6 lg:px-8">
@@ -148,14 +135,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                       A list of all items in my refrigerator including their name, quantity, unit, type and expiration date.
                     </p>
                   </div>
-                  <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <button
-                      type="button"
-                      className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                    >
-                      Edit My Refrigerator
-                    </button>
-                  </div>
+                  
                 </div>
               </div>
               <div className="mt-8 flow-root">
@@ -222,14 +202,6 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                       A list of all items in my freezer including their name, quantity, unit, type and expiration date.
                     </p>
                   </div>
-                  <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <button
-                      type="button"
-                      className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                    >
-                      Edit My Freezer
-                    </button>
-                  </div>
                 </div>
                 </div>
                 <div className="mt-8 flow-root">
@@ -275,7 +247,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
               
             </div>
           </div>
-       
       </div>
+    </div>
     )
   }

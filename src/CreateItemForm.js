@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 // import ItemInformation from './ItemInformation'
 
 const initialState = {
@@ -18,6 +19,8 @@ const CreateItem = () => {
   const [items, setItems] = useState([])
   const [alertOption, setAlertOption]=useState('')
   const [isFormValid, setIsFormValid] = useState(false);
+  const [addToShoppingList, setAddToShoppingList] = useState(false);
+  const navigate = useNavigate();
 
   const options = [
     {label: '1 week before',value: '1'},
@@ -44,7 +47,8 @@ useEffect(() => {
     setItem((prevItem) => ({ ...prevItem, alertDate: calculateDate }));
   }
 }, [item.expirationDate, alertOption]);
-const handleAddItem = (event) => {
+
+const handleAddAnotherItem = (event) => {
   event.preventDefault();
 
   const userId = window.localStorage.getItem('user');
@@ -58,7 +62,7 @@ const handleAddItem = (event) => {
     minimumQuantity: item.minimumQuantity,
     location: item.location,
     foodGroup: item.foodGroup,
-    restock: false,
+    restock: addToShoppingList,
     alertDate: item.alertDate,
     userOwner: userId
   };
@@ -77,6 +81,41 @@ const handleAddItem = (event) => {
       // Handle the error appropriately
     });
 };
+
+const handleAddItemAndReturn = (event) => {
+  event.preventDefault();
+
+  const userId = window.localStorage.getItem('user');
+
+  // Create a new item using the ItemModel
+  const newItem = {
+    name: item.name,
+    expirationDate: item.expirationDate,
+    quantity: item.quantity,
+    unit: item.unit,
+    minimumQuantity: item.minimumQuantity,
+    location: item.location,
+    foodGroup: item.foodGroup,
+    restock: addToShoppingList,
+    alertDate: item.alertDate,
+    userOwner: userId
+  };
+
+  console.log('New item:', newItem);
+
+  // Send the new item to the server
+  axios.post('http://localhost:3001/item/newItem', newItem)
+    .then(response => {
+      console.log('Item saved:', response.data);
+      // Clear form fields or perform other actions as needed
+      navigate(-1)
+    })
+    .catch(error => {
+      console.error('Error saving item:', error);
+      // Handle the error appropriately
+    });
+};
+
 
 const validateForm = () => {
   const { name, unit, quantity, expirationDate, location, foodGroup, minimumQuantity } = item;
@@ -272,14 +311,35 @@ return(
         onChange={(e) => setItem({...item, minimumQuantity: Number(e.target.value)})}
         className="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-gray-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" />
       {/* Add item button*/}
+      <div className="flex items-center mt-2">
+        <input
+          type="checkbox"
+          id="addToShoppingList"
+          checked={addToShoppingList}
+          onChange={(e) => setAddToShoppingList(e.target.checked)}
+          className="mr-2"
+        />
+        <label htmlFor="addToShoppingList" className="mb-2 font-semibold">
+          Add to Shopping List
+        </label>
+        </div>
       <div className="mb-5 grid-cols-1 gap-5 flex flex-col"></div>
       <button
-        type="submit"
-        className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
-        onClick={handleAddItem}
-        disabled={!isFormValid}
-        >Add Item
-      </button> 
+      type="submit"
+      className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      onClick={handleAddAnotherItem}
+      disabled={!isFormValid}
+    >
+      Add Item
+    </button>
+    <button
+      type="submit"
+      className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      onClick={handleAddItemAndReturn}
+      disabled={!isFormValid}
+    >
+      Add Item and Return to Previous Page
+    </button> 
       </div>
       </div>
     </div> 

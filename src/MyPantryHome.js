@@ -118,7 +118,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{new Date(item.expirationDate).toLocaleDateString('en-US')}</td>
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                               <a href="#" className="text-indigo-400 hover:text-indigo-300">
-                                Restock<span className="sr-only">, {item.name}</span>
+                                Add to Shopping List<span className="sr-only">, {item.name}</span>
                               </a>
                             </td>
                           </tr>
@@ -190,7 +190,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{new Date(item.expirationDate).toLocaleDateString('en-US')}</td>
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                               <a href="#" className="text-indigo-400 hover:text-indigo-300">
-                                Restock<span className="sr-only">, {item.name}</span>
+                                Add to Shopping List<span className="sr-only">, {item.name}</span>
                               </a>
                             </td>
                           </tr>
@@ -253,8 +253,8 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.foodGroup}</td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{new Date(item.expirationDate).toLocaleDateString('en-US')}</td>
                               <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                <a href="#" className="text-indigo-400 hover:text-indigo-300">
-                                  Restock<span className="sr-only">, {item.name}</span>
+                                <a href="#" className="text-blue-400 hover:text-blue-300">
+                                 Add to Shopping Cart<span className="sr-only">, {item.name}</span>
                                 </a>
                               </td>
                             </tr>

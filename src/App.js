@@ -20,6 +20,7 @@ import LazySusan from './Pages/LazySusan';
 import Cuisine from './Pages/Cuisine';
 import RecipeSearched from './Pages/RecipeSearched';
 import RecipeDetail from './Pages/RecipeDetail';
+import LowStock from './Pages/LowStockPage';
 
 
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="/cuisine/:type" element ={<Cuisine />} />
         <Route path="/recipesearched/:recipesearch" element ={<RecipeSearched />} />
         <Route path="/recipedetail/:name" element ={<RecipeDetail />} />
+        <Route path="/lowStock" element ={<LowStock />} />
 
       </Routes>
     </Router>

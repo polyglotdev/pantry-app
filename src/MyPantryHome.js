@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BsFillTrashFill, BsFillCartPlusFill,} from "react-icons/bs";
+import { BsFillTrashFill, BsFillCartPlusFill,BsFillPencilFill} from "react-icons/bs";
 
 export default function Example() {
   const [pantryItems, setPantryItems] = useState([]);
@@ -40,6 +40,10 @@ export default function Example() {
     // Shopping logic here
   };
 
+  const editRow = (itemName) => {
+    // Edit logic here
+  };
+
   return (
     <div className="flex justify-center">
       <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
@@ -72,13 +76,13 @@ export default function Example() {
               {pantryItems.map((item) => (
                   <tr key={item._id} className="border-b border-gray-400">
                     <td className="py-2 px-8 text-left">
-                      <a href={`/updateitem/${item._id}`} className="text-green-800 hover:text-green-600">
+                      {/* <a href={`/updateitem/${item._id}`} className="text-green-800 hover:text-green-600"> */}
                       {item.name 
                         .split(' ')
                         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                         .join(' ')
                         }
-                      </a>
+                      {/* </a> */}
                     </td>
                     <td className="py-2 px-8 text-left">{item.quantity}</td>
                     <td className="py-2 px-8 text-left">
@@ -89,6 +93,10 @@ export default function Example() {
                       {new Date(item.expirationDate).toLocaleDateString("en-US")}
                     </td>
                     <td className="py-2 px-8 text-left flex items-center">
+                    <BsFillPencilFill
+                        className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
+                        onClick={() => editRow(item)}
+                      />
                       <BsFillTrashFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
                         onClick={() => deleteRow(item)}
@@ -133,13 +141,13 @@ export default function Example() {
               {refrigeratorItems.map((item) => (
                   <tr key={item._id} className="border-b border-gray-400">
                     <td className="py-2 px-8 text-left">
-                      <a href={`/updateitem/${item._id}`} className="text-green-800 hover:text-green-600">
+                      {/* <a href={`/updateitem/${item._id}`} className="text-green-800 hover:text-green-600"> */}
                       {item.name 
                         .split(' ')
                         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                         .join(' ')
                         }
-                      </a>
+                      {/* </a> */}
                     </td>
                     <td className="py-2 px-8 text-left">{item.quantity}</td>
                     <td className="py-2 px-8 text-left">
@@ -150,6 +158,10 @@ export default function Example() {
                       {new Date(item.expirationDate).toLocaleDateString("en-US")}
                     </td>
                     <td className="py-2 px-8 text-left flex items-center">
+                      <BsFillPencilFill
+                        className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
+                        onClick={() => editRow(item)}
+                      />
                       <BsFillTrashFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
                         onClick={() => deleteRow(item)}
@@ -195,13 +207,13 @@ export default function Example() {
               {freezerItems.map((item) => (
                   <tr key={item._id} className="border-b border-gray-400">
                     <td className="py-2 px-8 text-left">
-                      <a href={`/updateitem/${item._id}`} className="text-green-800 hover:text-green-600">
+                      {/* <a href={`/updateitem/${item._id}`} className="text-green-800 hover:text-green-600"> */}
                       {item.name 
                         .split(' ')
                         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                         .join(' ')
                         }
-                      </a>
+                      {/* </a> */}
                     </td>
                     <td className="py-2 px-8 text-left">{item.quantity}</td>
                     <td className="py-2 px-8 text-left">
@@ -212,6 +224,10 @@ export default function Example() {
                       {new Date(item.expirationDate).toLocaleDateString("en-US")}
                     </td>
                     <td className="py-2 px-8 text-left flex items-center">
+                    <BsFillPencilFill
+                        className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
+                        onClick={() => editRow(item)}
+                      />
                       <BsFillTrashFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
                         onClick={() => deleteRow(item)}

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.0-placeholder-for-preset-env.2",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
     "@splidejs/react-splide": "^0.7.12",

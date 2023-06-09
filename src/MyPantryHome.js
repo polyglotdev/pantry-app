@@ -18,7 +18,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
     const [pantryItems, setPantryItems] = useState([]);
     const [refrigeratorItems, setRefrigeratorItems] = useState([]);
     const [freezerItems, setFreezerItems] = useState([]);
-    
+
     useEffect(() => {
       const fetchInventory = async () => {
 
@@ -27,16 +27,16 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
         try {
           const response = await axios.get(`http://localhost:3001/item/inventory/${user}`);
           const inventoryData = response.data;
-  
           
           const pantryItems = inventoryData.filter((item) => item.location === 'pantry');
           setPantryItems(pantryItems);
-  
+          
           const refrigeratorItems = inventoryData.filter((item) => item.location === 'refrigerator');
           setRefrigeratorItems(refrigeratorItems);
   
           const freezerItems = inventoryData.filter((item) => item.location === 'freezer');
           setFreezerItems(freezerItems);
+
         } catch (error) {
           console.error('Error fetching inventory:', error);
         }
@@ -101,7 +101,9 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                             Expiration Date
                           </th>
                           <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                            <span className="sr-only">Restock</span>
+                            <span type="button" className="sr-only">
+                              Restock
+                            </span>
                           </th>
                         </tr>
                       </thead>
@@ -118,8 +120,8 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.foodGroup}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{new Date(item.expirationDate).toLocaleDateString('en-US')}</td>
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                              <a href="#" className="text-indigo-400 hover:text-indigo-300">
-                                Restock<span className="sr-only">, {item.name}</span>
+                              <a href="#" className="text-indigo-400 hover:text-indigo-300"> 
+                              Restock<span className="sr-only">, {item.name}</span>
                               </a>
                             </td>
                           </tr>

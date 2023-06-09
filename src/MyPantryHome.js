@@ -37,16 +37,19 @@ export default function Example() {
 
 
   const deleteRow = (itemID, location) => {
-    axios.delete(`http://localhost:3001/item/${itemID}`);
-    if (location === "pantry") {
-      setPantryItems(pantryItems.filter((item) => item._id !== itemID));
-    }
-    if (location === "refrigerator") {
-      setRefrigeratorItems(refrigeratorItems.filter((item) => item._id !== itemID));
-    }
-    if (location === "freezer") {
-      setFreezerItems(freezerItems.filter((item) => item._id !== itemID));
-    }
+    const confirmed = window.confirm('Are you sure you want to delete this item?');
+    if (confirmed) {
+      axios.delete(`http://localhost:3001/item/${itemID}`);
+      if (location === "pantry") {
+        setPantryItems(pantryItems.filter((item) => item._id !== itemID));
+      }
+      if (location === "refrigerator") {
+        setRefrigeratorItems(refrigeratorItems.filter((item) => item._id !== itemID));
+      }
+      if (location === "freezer") {
+        setFreezerItems(freezerItems.filter((item) => item._id !== itemID));
+      }
+  }
   };
 
   const shopRow = (itemID) => {

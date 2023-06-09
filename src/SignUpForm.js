@@ -2,6 +2,8 @@ import React from 'react'
 import { useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+
 
 /*
   This example requires some changes to your config:
@@ -93,12 +95,14 @@ export default function SignUpForm() {
                     <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
                         Cancel
                     </button>
+                    <Link to="/login"> 
                     <button
                         type="submit"
                         className="inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Save
                     </button>
+                    </Link>
                 </div>
             </form> 
         </div>

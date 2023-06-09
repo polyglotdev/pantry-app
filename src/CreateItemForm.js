@@ -332,15 +332,24 @@ return(
     >
       Add Item
     </button>
-    <button
+    {/* <button
       type="submit"
       className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       onClick={handleAddItemAndReturn}
       disabled={!isFormValid}
     >
       Add Item and Return to Previous Page
-    </button> 
+    </button>  */}
       </div>
+      <div className="mt-6 text-center text-sm text-gray-500">
+                <p>
+                  or <br/> 
+                  <a href="/inventory" className="font-medium text-indigo-600 hover:text-indigo-500">
+                    Return to Inventory page
+                    <span aria-hidden="true"> &rarr;</span>
+                  </a>
+                </p>
+              </div>
       </div>
     </div> 
   </div>

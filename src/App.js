@@ -22,7 +22,7 @@ import RecipeSearched from './Pages/RecipeSearched';
 import RecipeDetail from './Pages/RecipeDetail';
 
 // Simulating the user login status
-const isAuthenticated = localStorage.getItem('user');
+const isAuthenticated = localStorage.getItem('user')
 
 function App() {
   return (
@@ -52,7 +52,7 @@ function App() {
           </>
         )}
         {/* Redirect to /lazysusan if not logged in */}
-        {!isAuthenticated && <Route path="*" element={<Navigate to="/lazysusan" replace />} />}
+        {!isAuthenticated && <Route path="/" element={<Home/>} />}
       </Routes>
     </Router>
   );

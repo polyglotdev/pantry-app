@@ -24,20 +24,31 @@ export default function SignUpForm() {
     
     const navigate = useNavigate();
 
+    const validateEmail = (email) => {
+        // Regular expression for email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
     const handleSubmit = (e) => {
-        e.preventDefault()
-        const user = { username, password }
-        try{
-            axios.post('http://localhost:3001/auth/register', user)
-            .then(res => {
-                console.log(res)
-                console.log(res.data)
-                navigate('/login')
-            })
-        } catch (err) {
-            console.log(err)
-        }
+    e.preventDefault();
+
+    if (!validateEmail(username)) {
+        alert('Please enter a valid email address.');
+        return;
     }
+
+    const user = { username, password };
+    try {
+        axios.post('http://localhost:3001/auth/register', user).then((res) => {
+        console.log(res);
+        console.log(res.data);
+        navigate('/login');
+        });
+    } catch (err) {
+        console.log(err);
+    }
+    };
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"> 
@@ -57,12 +68,12 @@ export default function SignUpForm() {
                                 <div className="mt-2 sm:col-span-2 sm:mt-0">
                                     <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <input
-                                            type="text"
+                                            type="email"
                                             name="username"
                                             id="username"
                                             autoComplete="username"
                                             className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                            placeholder="janesmith"
+                                            placeholder="janesmith@gmail.com"
                                             value={username}
                                             onChange={(e) => setUsername(e.target.value)}
                                         />

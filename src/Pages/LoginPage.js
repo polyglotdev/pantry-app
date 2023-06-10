@@ -25,11 +25,11 @@ export default function LoginPage() {
             console.log(response.data)
             setCookies("access_token", response.data.token);
             window.localStorage.setItem("user", response.data.userID);
+            navigate("/");
         } catch(error) {
             console.error();
             setError("Database not found");
         }
-        navigate("/");
     };
     return (
         <>

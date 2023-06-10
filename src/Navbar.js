@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Fragment } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { Disclosure, Menu, Transition, Dialog } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import LazySusanRoundLogo from './LazySusanRoundLogo.png';
 import { Link } from 'react-router-dom';
 import { HiOutlineUserCircle } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
+import CreateItemForm from "./CreateItemForm";
 
 const userLoggedIn = [
   { name: 'Home', href: '/', current: true },
   { name: 'Inventory', href: '/inventory', current: false },
   { name: 'Shopping List', href: '/shoppinglist', current: false },
   { name: 'Recipes', href: '/recipes', current: false },
-  { name: 'Add Item', href: '/itemform', current: false },
   { name: 'Search', href: '/search', current: false },
   { name: 'About', href: '/lazysusan', current: false },
 ];
@@ -27,6 +27,7 @@ function classNames(...classes) {
 
 
 export default function NavBar() {
+  const [openModal, setOpenModal] = useState(false); // State for modal open/close
   const navigate = useNavigate();
   const loggedIn = localStorage.getItem('user');
 
@@ -68,7 +69,6 @@ export default function NavBar() {
                     />
                   </button>
                 </div>
-
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {loggedIn
@@ -92,6 +92,7 @@ export default function NavBar() {
                             key={item.name}
                             to={item.href}
                             className={classNames(
+                              'bg-gray-900 text-white',
                               'text-gray-300 hover:bg-gray-700 hover:text-white',
                               'rounded-md px-3 py-2 text-sm font-medium'
                             )}
@@ -102,6 +103,19 @@ export default function NavBar() {
                         ))}
                   </div>
                 </div>
+                {loggedIn && (
+                  <div className="hidden sm:ml-6 sm:block flex items-center">
+                    <button
+                      onClick={() => setOpenModal(true)}
+                      className={classNames(
+                        'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        'rounded-md py-2 px-3 text-sm font-medium'
+                      )}
+                    >
+                      <span className="flex items-center">+ Add Item</span>
+                    </button>
+                  </div>
+                )}
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {loggedIn && (
@@ -120,7 +134,7 @@ export default function NavBar() {
 
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button  className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
                       <HiOutlineUserCircle className="h-6 w-6" aria-hidden="true" />
                     </Menu.Button>
@@ -201,6 +215,34 @@ export default function NavBar() {
                   ))}
             </div>
           </Disclosure.Panel>
+
+          {/* Modal */}
+          <Dialog
+            open={openModal}
+            onClose={() => setOpenModal(false)}
+            className="fixed inset-0 z-10 overflow-y-auto"
+          >
+            <div className="flex items-center justify-center min-h-screen p-4">
+              <Dialog.Overlay className="bg-black opacity-30" />
+
+              <div className="bg-white rounded-lg shadow-lg p-6 max-w-xl">
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => setOpenModal(false)}
+                    className="text-gray-600 hover:text-gray-800 focus:outline-none"
+                  >
+                    <XMarkIcon className="h-6 w-6" />
+                  </button>
+                </div>
+
+                <Dialog.Title className="text-lg font-medium text-gray-900 mb-4">
+                  Add Item
+                </Dialog.Title>
+
+                <CreateItemForm />
+              </div>
+            </div>
+          </Dialog>
         </>
       )}
     </Disclosure>

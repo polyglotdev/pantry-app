@@ -25,6 +25,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
+const signOut = () => {
+  localStorage.removeItem('user');
+  window.location.reload();
+};
+
 export default function NavBar() {
   const loggedIn = localStorage.getItem('user');
 
@@ -117,7 +122,6 @@ export default function NavBar() {
                       <HiOutlineUserCircle className="h-6 w-6 text-gray-400" aria-hidden="true" />
                     </Menu.Button>
                   </div>
-                  {/* ... */}
                 </Menu>
               </div>
             </div>

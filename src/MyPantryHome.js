@@ -13,6 +13,21 @@ import {
 } from '@heroicons/react/24/outline'
 import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 
+const handleRestockTrue = async () => {
+  try {
+    // Make the HTTP request to update the item
+    const response = await axios.put(`http://localhost:3001/item/${itemId}`, item.restock === true);
+
+    // Handle the successful update
+    console.log('Item updated successfully:', response.data);
+    navigate(-1);
+  } catch (error) {
+    // Handle the error
+    console.log('Error updating item:', error);
+    // You can perform additional error handling here, such as displaying an error message
+  }
+};
+
 
   export default function Example() {
     const [pantryItems, setPantryItems] = useState([]);
@@ -41,6 +56,9 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
           console.error('Error fetching inventory:', error);
         }
       };
+
+      
+    
   
       fetchInventory();
     }, []);
@@ -93,7 +111,7 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                             Expiration Date
                           </th>
                           <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                            <span type="button" className="sr-only">
+                            <span className="sr-only">
                               Restock
                             </span>
                           </th>
@@ -112,8 +130,8 @@ import { Bars3Icon, ChevronRightIcon, ChevronUpDownIcon, MagnifyingGlassIcon } f
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{item.foodGroup}</td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-night-300">{new Date(item.expirationDate).toLocaleDateString('en-US')}</td>
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                              <a href="#" className="text-indigo-400 hover:text-indigo-300"> 
-                              Restock<span className="sr-only">, {item.name}</span>
+                              <a href={'#'} className="text-indigo-400 hover:text-indigo-300"> 
+                              Restock<span  className="sr-only">, {item.name}</span>
                               </a>
                             </td>
                           </tr>

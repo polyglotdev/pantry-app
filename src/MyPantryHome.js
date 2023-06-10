@@ -36,6 +36,7 @@ export default function Example() {
   }, []);
 
 
+
   const deleteRow = (itemID, location) => {
     const confirmed = window.confirm('Are you sure you want to delete this item?');
     if (confirmed) {
@@ -52,13 +53,26 @@ export default function Example() {
   }
   };
 
-  const shopRow = (itemID) => {
-    // Shopping logic here
-  };
+  const shopRow = async (itemId, restock) => { 
+      const addNow = window.confirm("Are you sure you want to add this to your shopping list?")
+        // Make the HTTP request to update the item
+        if (addNow) {
+          try{
+           const response = await axios.put(`http://localhost:3001/item/${itemId}`, {restock: true});
+          console.log("Shopping list updated!")
+          console.log(response.data)
+        } catch (error) {
+          console.error("Something went wrong")
+
+        };
+      };
+    }
+
 
   const editRow = (itemID) => {
     navigate(`/updateitem/${itemID}`);
   };
+
 
   return (
     <div className="flex justify-center">
@@ -119,7 +133,7 @@ export default function Example() {
                       />
                       <BsFillCartPlusFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                        onClick={() => shopRow(item._id)}
+                        onClick={() => shopRow(item._id, item.restock)}
                       />
                     </td>
                   </tr>
@@ -184,7 +198,7 @@ export default function Example() {
                       />
                       <BsFillCartPlusFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                        onClick={() => shopRow(item._id)}
+                        onClick={() => shopRow(item._id, item.restock)}
                       />
                     </td>
                   </tr>
@@ -251,7 +265,7 @@ export default function Example() {
                       />
                       <BsFillCartPlusFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                        onClick={() => shopRow(item._id)}
+                        onClick={() => shopRow(item._id, item.restock)}
                       />
                     </td>
                   </tr>

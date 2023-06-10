@@ -26,22 +26,22 @@ export default function SignUpForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const user = { username, password }
+
+        const newUser = { username, password }
         try{
-            axios.post('http://localhost:3001/auth/register', user)
-            .then(res => {
-                console.log(res)
-                console.log(res.data)
-                navigate('/login')
-            })
+
+            const response = axios.post('http://localhost:3001/auth/register', user)
+            console.log(response);
+            console.log(response.data);
+            navigate('/login');
         } catch (err) {
             console.log(err)
         }
-    }
+    };
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"> 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="space-y-12 sm:space-y-16">
                     <div>
                         <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
@@ -62,7 +62,9 @@ export default function SignUpForm() {
                                             id="username"
                                             autoComplete="username"
                                             className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                            placeholder="janesmith"
+                                            placeholder="janesmith@email.com"
+                                            value={username}
+                                                
                                         />
                                     </div>
                                 </div>
@@ -80,7 +82,8 @@ export default function SignUpForm() {
                                             autoComplete="password"
                                             className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                             placeholder="Your password must be at least 8 characters long."
-                                        
+                                            value = {password}
+                                            
                                         />
                                     </div>
                                 </div>
@@ -93,11 +96,9 @@ export default function SignUpForm() {
                     <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
                         Cancel
                     </button>
-                    <button
-                        type="submit"
-                        className="inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                        Save
+                    <button type="button" className="inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                       Save
                     </button>
                 </div>
             </form> 

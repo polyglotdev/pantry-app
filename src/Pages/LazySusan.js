@@ -3,8 +3,11 @@ import NavBar from "../Navbar"
 import LazySusanRoundLogo from '../LazySusanRoundLogo.png'
 import { Link } from "react-router-dom"
 
+
 export default function LoginPage() {
-   
+    
+
+
     return (
         <>
             <NavBar />

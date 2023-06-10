@@ -60,7 +60,7 @@ const Update = () => {
   }, [item.expirationDate, alertOption]);
 
   const handleUpdateItem = async () => {
-    try {
+    try { 
       // Make the HTTP request to update the item
       const response = await axios.put(`http://localhost:3001/item/${itemId}`, item);
 

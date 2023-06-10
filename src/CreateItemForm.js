@@ -114,6 +114,8 @@ const CreateItem = () => {
         // Clear form fields or perform other actions as needed
         setItem(initialState); // Clear the form fields
         closeModal(); // Open the modal
+        window.location.reload();        
+
       })
       .catch((error) => {
         console.error('Error saving item:', error);

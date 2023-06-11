@@ -69,6 +69,7 @@ export default function Search() {
   
     return (
       <main className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <h1 className="text-2xl font-extrabold mb-4">Search</h1>
         <form onSubmit={handleSearchSubmit}>
           <div className="flex">
             <label
@@ -169,6 +170,7 @@ export default function Search() {
   </div>
       )}
 </div>
+
       </main>
     );
   }

@@ -39,7 +39,7 @@ export default function LoginPage() {
                     Look no further for your solution.
                     </h4>
                     <h4 className="mt-10 text-center text-xl leading-9 tracking-tight text-gray-900">
-                         Team Rocket presents its first app - Lazy Susan. This app was curated by the finest engineers in the industry. With the shared mission to reduce food waste, the team banded together to utilize ReactJS, MongoDB, and TailwindCSS to make a one-of-a-kind solution.   Whether it is in the pantry, refridgerator, or freezer, get information (like quanitity, expiration date, etc.) you need to shop and find unique recipes for you and the family. 
+                         Team Rocket presents its first app - Lazy Susan. This app was curated by the finest engineers in the industry. With the shared mission to reduce food waste, the team banded together to utilize ReactJS, MongoDB, ExpressJS, and NodeJS to make a one-of-a-kind solution.   Whether it is in the pantry, refridgerator, or freezer, get information (like quanitity, expiration date, etc.) you need to shop and find unique recipes for you and the family. 
                     </h4>
                     <h2 className="mt-10 text-center text-2xl font-bold leading- tracking-tight text-gray-1000">
                     JOIN LAZY SUSAN TODAY!                    

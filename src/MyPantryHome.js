@@ -79,7 +79,7 @@ export default function Example() {
       <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
       <h1 className="text-2xl font-extrabold mb-4">My Lazy Susan Inventory</h1>
         {/* Pantry Card */}
-        <h2 className="text-2xl font-bold mb-4">Pantry</h2>
+        <section id='1' className="text-2xl font-bold mb-4">Pantry</section>
         <div className="table-wrapper overflow-x-auto">
           <div className="container flex bg-gray-200 rounded-lg p-2">
             <table className="table flex-auto bg-blue-100 shadow-lg rounded-lg min-w-max-screen">
@@ -145,7 +145,7 @@ export default function Example() {
 
         {/* Refrigerator Card */}
         <div className="mt-6"></div>
-        <h2 className="text-2xl font-bold mt-2 mb-4">Refrigerator</h2>
+        <section id="2" className="text-2xl font-bold mt-2 mb-4">Refrigerator</section>
         <div className="table-wrapper overflow-x-auto">
           <div className="container flex bg-gray-200 rounded-lg p-2">
             <table className="table flex-auto bg-blue-100 shadow-lg rounded-lg min-w-max-screen">
@@ -211,7 +211,7 @@ export default function Example() {
         {/* Freezer Card */}
         
         <div className="mt-6"></div>
-        <h2 className="text-2xl font-bold mt-2 mb-4">Freezer</h2>
+        <section id='3' className="text-2xl font-bold mt-2 mb-4">Freezer</section>
         <div className="table-wrapper overflow-x-auto">
           <div className="container flex bg-gray-200 rounded-lg p-2">
             <table className="table flex-auto bg-blue-100 shadow-lg rounded-lg min-w-max-screen">

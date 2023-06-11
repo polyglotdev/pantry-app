@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom";
+import {  Dialog } from '@headlessui/react';
+import {  XMarkIcon } from '@heroicons/react/24/outline';
 import axios from "axios";
 import { BsFillTrashFill, BsFillCartPlusFill,BsFillPencilFill} from "react-icons/bs";
+import EditItem from "./EditItem"
 
 export default function Example() {
   const [pantryItems, setPantryItems] = useState([]);
   const [refrigeratorItems, setRefrigeratorItems] = useState([]);
   const [freezerItems, setFreezerItems] = useState([]);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [editItemId, setEditItemId] = useState(null);
 
   const navigate = useNavigate();
   
@@ -53,7 +58,7 @@ export default function Example() {
   }
   };
 
-  const shopRow = async (itemId, restock) => { 
+  const shopRow = async (itemId) => { 
       const addNow = window.confirm("Are you sure you want to add this to your shopping list?")
         // Make the HTTP request to update the item
         if (addNow) {
@@ -73,6 +78,14 @@ export default function Example() {
     navigate(`/updateitem/${itemID}`);
   };
 
+  const openEditModal = (itemId) => {
+    setEditItemId(itemId);
+    setIsEditModalOpen(true);
+  };
+  
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+  };
 
   return (
     <div className="flex justify-center">
@@ -125,7 +138,7 @@ export default function Example() {
                     <td className="py-2 px-8 text-left flex items-center">
                     <BsFillPencilFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                        onClick={() => editRow(item._id)}
+                        onClick={() => openEditModal(item._id)}
                       />
                       <BsFillTrashFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
@@ -133,7 +146,7 @@ export default function Example() {
                       />
                       <BsFillCartPlusFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                        onClick={() => shopRow(item._id, item.restock)}
+                        onClick={() => shopRow(item._id)}
                       />
                     </td>
                   </tr>
@@ -190,7 +203,7 @@ export default function Example() {
                     <td className="py-2 px-8 text-left flex items-center">
                       <BsFillPencilFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                        onClick={() => editRow(item._id)}
+                        onClick={() => openEditModal(item._id)}
                       />
                       <BsFillTrashFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
@@ -198,7 +211,7 @@ export default function Example() {
                       />
                       <BsFillCartPlusFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                        onClick={() => shopRow(item._id, item.restock)}
+                        onClick={() => shopRow(item._id)}
                       />
                     </td>
                   </tr>
@@ -254,10 +267,9 @@ export default function Example() {
                       {new Date(item.expirationDate).toLocaleDateString("en-US")}
                     </td>
                     <td className="py-2 px-8 text-left flex items-center">
-                    <BsFillPencilFill
+                      <BsFillPencilFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                        //this should navigate you to the edit item page with the item id
-                        onClick={() => editRow(item._id)}
+                        onClick={() => openEditModal(item._id)}
                       />
                       <BsFillTrashFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
@@ -265,7 +277,7 @@ export default function Example() {
                       />
                       <BsFillCartPlusFill
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                        onClick={() => shopRow(item._id, item.restock)}
+                        onClick={() => shopRow(item._id)}
                       />
                     </td>
                   </tr>
@@ -274,6 +286,24 @@ export default function Example() {
             </table>
           </div>
           </div>
+          <Dialog
+        open={isEditModalOpen}
+        onClose={closeEditModal}
+        className="fixed z-10 inset-0 overflow-y-auto"
+      >
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="bg-white rounded-lg w-full max-w-md mx-auto p-6">
+            <div className="flex justify-end">
+              <XMarkIcon
+                className="h-6 w-6 text-gray-700 cursor-pointer hover:text-gray-900"
+                onClick={closeEditModal}
+              />
+            </div>
+
+            <EditItem itemId={editItemId} closeModal={closeEditModal} />
+          </div>
+        </div>
+      </Dialog>
         </div>
       </div>
   );

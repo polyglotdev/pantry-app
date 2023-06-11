@@ -97,7 +97,7 @@ export default function GeneratedShoppingList() {
             <div className="flex items-center justify-between">
               <div className="flex items-start gap-x-3">
                 <input type="checkbox" checked={item.checked} onChange={() => handleCheckboxChange(index)} />
-                <p className="text-sm font-semibold leading-6 text-gray-900">{item.name}</p>
+                <p className="-sm font-semibold leading-6 text-gray-900">{item.name}</p>
                 <p
                   className={classNames(
                     item.checked ? statuses.Purchased : statuses['In progress'],
@@ -107,9 +107,8 @@ export default function GeneratedShoppingList() {
                   {item.checked ? 'Purchased' : 'In progress'}
                 </p>
               </div>
-              <div className="flex flex-none items-center gap-x-4">
                 <form className="flex items-center gap-x-4">
-                  <label className="-sm font-semibold leading-6 text-gray-900 ">
+                  <label className="text-sm font-semibold leading-6 text-gray-900 ">
                     Quantity:
                     <input type="number" name={`quantity_${item._id}`} onChange={(event) => handleQuantityChange(event, item._id)}  className="w-16 px-2 py-1 border border-gray-300 rounded-md" />
                   </label>
@@ -145,7 +144,7 @@ export default function GeneratedShoppingList() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-              </div>
+              
             </div>
             <div className="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
             <p className="whitespace-nowrap">you currently have {item.quantity} {item.unit} in stock</p>

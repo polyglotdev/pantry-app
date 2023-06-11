@@ -90,7 +90,8 @@ export default function Alerts() {
   return (
     <div className="flex justify-center">
     <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
-      <div className="py-4 text-left">
+    <h1 className="text-3xl font-extrabold ml-2 mb-4">Shopping List</h1> 
+    <div className="py-4 text-left">
         <Link to="/itemform">
           <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-900 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             Add New Item

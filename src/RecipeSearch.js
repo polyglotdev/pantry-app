@@ -13,7 +13,7 @@ function RecipeSearch() {
 
   return (
     <main className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <h1 className="text-2xl font-extrabold mb-4">Recipes</h1>
+      {/* <h1 className="text-2xl font-extrabold mb-4">Recipes</h1> */}
     <form 
     onSubmit={submitHandler}
     className="justify-center flex pt-4 relative w-full">

@@ -1,7 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import SearchDropdown from "./SearchDropdown";
+import {useNavigate} from "react-router-dom";
+import {  Dialog } from '@headlessui/react';
+import {  XMarkIcon } from '@heroicons/react/24/outline';
+import { BsFillTrashFill, BsFillCartPlusFill,BsFillPencilFill} from "react-icons/bs";
+import { FaSearch } from 'react-icons/fa'
+import EditItem from "./EditItem"
 import axios from "axios";
+
 
 
 export default function Search() {
@@ -13,11 +20,13 @@ export default function Search() {
       { id: 'freezer', label: 'Freezer' },
       // { id: 'dietaryType', label: 'Dietary Type'}
     ];
-  
+    const navigate = useNavigate();
     const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
     const [items, setItems] = useState([]);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [editItemId, setEditItemId] = useState(null);
 
     useEffect(() => {
       const user = localStorage.getItem('user');
@@ -34,7 +43,15 @@ export default function Search() {
       fetchData();
     }, []);
 
-    
+    const openEditModal = (itemId) => {
+      setEditItemId(itemId);
+      setIsEditModalOpen(true);
+    };
+   
+    const closeEditModal = () => {
+      setIsEditModalOpen(false);
+    };
+  
  
     const handleSearchSubmit = (event) => {
       event.preventDefault();
@@ -64,112 +81,165 @@ export default function Search() {
       
       
        };
-  
-    
-  
-    return (
-      <main className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <h1 className="text-2xl font-extrabold mb-4">Search</h1>
-        <form onSubmit={handleSearchSubmit}>
-          <div className="flex">
-            <label
-              htmlFor="search-dropdown"
-              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-            >
-              {selectedOption.label}
-            </label>
-            <SearchDropdown
-              dropdownOptions={dropdownOptions}
-              selectedOption={selectedOption}
-              onSelectOption={handleSelectOption}
-              onSearchSubmit={handleSearchSubmit}
-            />
-            <div className="relative w-full">
-              <input
-                type="search"
-                id="search-dropdown"
-                className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                placeholder={selectedOption.label}
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter') {
-                    event.preventDefault(); 
-                    handleSearchSubmit(event); 
-                  }
-                }}
+       const deleteRow = (itemID) => {
+        const confirmed = window.confirm('Are you sure you want to delete this item?');
+       
+          axios.delete(`http://localhost:3001/item/${itemID}`);
+         window.location.reload()
+      }
+      
+   
+      const shopRow = (itemID) => {
+        // Shopping logic here
+      };
+   
+      const editRow = (itemID) => {
+        navigate(`/updateitem/${itemID}`);
+      };
+
+      return (
+        <main className="min-h-full flex-1 flex-col px-6 py-12">
+         
+          <div className="mt-14 mb-10 md:ml-20 md:mr-20">
+             {/* <h1 className="text-2xl font-extrabold mb-4">Search</h1> */}
+            <form onSubmit={handleSearchSubmit} className="flex items-center">
+              <label htmlFor="search-dropdown" className="sr-only">
+                {selectedOption.label}
+              </label>
+              <SearchDropdown
+                dropdownOptions={dropdownOptions}
+                selectedOption={selectedOption}
+                onSelectOption={handleSelectOption}
+                onSearchSubmit={handleSearchSubmit}
               />
-              <button
-                type="submit"
-                className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-300 rounded-r-lg border border-blue-300 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+              <div className="relative flex-grow">
+                <input
+                  type="search"
+                  id="search-dropdown"
+                  className="w-10/12 py-2.5 pl-9 pr-12 text-sm text-gray-900 bg-gradient-to-bl from-gray-100 to-blue-200  hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700
+                  dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                  placeholder={selectedOption.label}
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                      event.preventDefault();
+                      handleSearchSubmit(event);
+                    }
+                  }}
+                />
+                <button
+                  type="submit"
+                  className="absolute top-0  px-9 py-2.5 text-sm font-medium text-white bg-gradient-to-br from-gray-100 to-blue-200  rounded-r-lg  hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700
+                  dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-                <span className="sr-only">Search </span>
-              </button>
-            </div>
+                  <FaSearch style={{ color: 'green' }} className="w-5 h-5 " />
+                  <span className="sr-only">Search</span>
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
-        <div className="mt-8 flow-root">
+    
           {filteredItems.length === 0 && searchQuery !== '' ? (
             <p className="px-3 py-4 text-center text-sm text-gray-500">
-        No items found.</p>
-         ) : (
-  <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-      <table className="min-w-full divide-y divide-gray-700">
+              No items found.
+            </p>
+          ) : (
+            <div className="flex justify-center">
+              <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
+            
+    
+  
+     
+            <div className="table-wrapper overflow-x-auto">
+                  <div className="container flex bg-gray-200 rounded-lg p-2">
+                    <table className="table flex-auto bg-blue-100 shadow-lg rounded-lg min-w-max-screen">
+                   
+                    <colgroup>
+                    <col style={{ width: "20%" }} />
+                    <col style={{ width: "15%" }} />
+                    <col style={{ width: "15%" }} />
+                    <col style={{ width: "20%" }} />
+                    <col style={{ width: "20%" }} />
+                    <col style={{ width: "10%" }} />
+                    </colgroup>
         <thead>
           <tr>
-            <th scope="col" className="py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-night sm:pl-0">
-              Name
-            </th>
-            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-night">
-              Quantity
-            </th>
-            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-night">
-              Unit
-            </th>
-            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-night">
-              Food Group
-            </th>
-            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-night">
-              Expiration Date
-            </th>
-            <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-night">
-              Location
-            </th>
+            <th className="py-2 px-8 text-left">Name</th>
+            <th className="py-2 px-8 text-left">Quantity</th>
+            <th className="py-2 px-8 text-left">Unit</th>
+            <th className="py-2 px-8 text-left">Food Group</th>
+            <th className="py-2 px-8 text-left">Expiration Date</th>
+            <th className="py-2 px-8 text-left">Action</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-800 bg-blue-100 rounded-s pl-4 pr-4 py-2 shadow-s">
-          {filteredItems.map((item, index) => (
-            <tr key={index}> 
-              <td className="whitespace-nowrap py-3 pr-3 text-sm text-center font-medium text-night sm:pl-0">{item.name}</td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-night-300">{item.quantity}</td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-night-300">{item.unit}</td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-night-300">{item.foodGroup}</td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-night-300">{new Date(item.expirationDate).toLocaleDateString('en-US')}</td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-center text-night-300">{item.location}</td>
-            </tr>
+                      <tbody>
+           
+                  {filteredItems.map((item, index) => (
+                    <tr key={index} className='border-b border-gray-400'>
+                        <td className="py-2 px-8 text-left">
+                           
+                              {item.name
+                                .split(' ')
+                                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                                .join(' ')
+                                }
+                              {/* </a> */}
+                            </td>
+                            <td className="py-2 px-8 text-left">{item.quantity}</td>
+                            <td className="py-2 px-8 text-left">
+                              {item.unit.charAt(0).toUpperCase() + item.unit.slice(1)}
+                            </td>
+                            <td className="py-2 px-8 text-left">{item.foodGroup}</td>
+                            <td className="py-2 px-8 text-left">
+                              {new Date(item.expirationDate).toLocaleDateString("en-US")}
+                            </td>
+                            <td className="py-2 px-8 text-left flex items-center">
+                           
+                            <BsFillPencilFill
+                             className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
+                              onClick={() => openEditModal(item._id)}
+                             />
+
+                              <BsFillTrashFill
+                                className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
+                                onClick={() => deleteRow(item._id)}
+                              />
+                              <BsFillCartPlusFill
+                                className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
+                                onClick={() => shopRow(item._id)}
+                              />
+                            </td>
+                          </tr>
           ))}
         </tbody>
       </table>
+      </div>
     </div>
+    <Dialog
+        open={isEditModalOpen}
+        onClose={closeEditModal}
+        className="fixed z-10 inset-0 overflow-y-auto"
+      >
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="bg-white rounded-lg w-full max-w-md mx-auto p-6">
+            <div className="flex justify-end">
+              <XMarkIcon
+                className="h-6 w-6 text-gray-700 cursor-pointer hover:text-gray-900"
+                onClick={closeEditModal}
+              />
+            </div>
+
+
+            <EditItem itemId={editItemId} closeModal={closeEditModal} />
+          </div>
+        </div>
+      </Dialog>
+
+  </div>
   </div>
       )}
-</div>
+
 
       </main>
     );

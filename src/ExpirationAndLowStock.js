@@ -6,10 +6,9 @@ import axios from "axios";
 import { BsFillTrashFill, BsFillCartPlusFill,BsFillPencilFill} from "react-icons/bs";
 import EditItem from "./EditItem"
 
-export default function Example() {
+export default function ExpirationAndLowStock() {
   const [pantryItems, setPantryItems] = useState([]);
   const [refrigeratorItems, setRefrigeratorItems] = useState([]);
-  const [freezerItems, setFreezerItems] = useState([]);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [editItemId, setEditItemId] = useState(null);
 
@@ -30,8 +29,7 @@ export default function Example() {
         const refrigeratorItems = inventoryData.filter((item) => item.location === "refrigerator");
         setRefrigeratorItems(refrigeratorItems);
 
-        const freezerItems = inventoryData.filter((item) => item.location === "freezer");
-        setFreezerItems(freezerItems);
+       
       } catch (error) {
         console.error("Error fetching inventory:", error);
       }
@@ -39,7 +37,6 @@ export default function Example() {
 
     fetchInventory();
   }, []);
-
 
 
   const deleteRow = (itemID, location) => {
@@ -58,23 +55,9 @@ export default function Example() {
   }
   };
 
-  const shopRow = async (itemId) => { 
-      const addNow = window.confirm("Are you sure you want to add this to your shopping list?")
-        // Make the HTTP request to update the item
-        if (addNow) {
-          try{
-           const response = await axios.put(`http://localhost:3001/item/${itemId}`, {restock: true});
-          console.log("Shopping list updated!")
-          console.log(response.data)
-        
-        } catch (error) {
-          console.error("Something went wrong")
-
-        };
-        window.location.reload();
-      };
-    }
-
+  const shopRow = (itemID) => {
+    // Shopping logic here
+  };
 
   const editRow = (itemID) => {
     navigate(`/updateitem/${itemID}`);
@@ -92,9 +75,9 @@ export default function Example() {
   return (
     <div className="flex justify-center">
       <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
-      <h1 className="text-2xl font-extrabold mb-4">My Lazy Susan Inventory</h1>
+      <h1 className="text-2xl font-extrabold mb-4">Alerts</h1>
         {/* Pantry Card */}
-        <h2 className="text-2xl font-bold mb-4">Pantry</h2>
+        <h2 className="text-2xl font-bold mb-4">Expiring Items</h2>
         <div className="table-wrapper overflow-x-auto">
           <div className="container flex bg-gray-200 rounded-lg p-2">
             <table className="table flex-auto bg-blue-100 shadow-lg rounded-lg min-w-max-screen">
@@ -146,14 +129,10 @@ export default function Example() {
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
                         onClick={() => deleteRow(item._id, item.location)}
                       />
-                      {!item.restock && (
                       <BsFillCartPlusFill
-                        className={`flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform 
-                        ${item.restock ? 'scale-80' : 'scale-100'
-                        } hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300`}
+                        className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
                         onClick={() => shopRow(item._id)}
                       />
-                      )}
                     </td>
                   </tr>
                 ))}
@@ -164,7 +143,7 @@ export default function Example() {
 
         {/* Refrigerator Card */}
         <div className="mt-6"></div>
-        <h2 className="text-2xl font-bold mt-2 mb-4">Refrigerator</h2>
+        <h2 className="text-2xl font-bold mt-2 mb-4">Low Stock Items</h2>
         <div className="table-wrapper overflow-x-auto">
           <div className="container flex bg-gray-200 rounded-lg p-2">
             <table className="table flex-auto bg-blue-100 shadow-lg rounded-lg min-w-max-screen">
@@ -215,14 +194,10 @@ export default function Example() {
                         className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
                         onClick={() => deleteRow(item._id, item.location)}
                       />
-                       {!item.restock && (
                       <BsFillCartPlusFill
-                        className={`flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform 
-                        ${item.restock ? 'scale-80' : 'scale-100'
-                        } hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300`}
+                        className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
                         onClick={() => shopRow(item._id)}
                       />
-                      )}
                     </td>
                   </tr>
                 ))}
@@ -233,74 +208,8 @@ export default function Example() {
 
         {/* Freezer Card */}
         
-      
         <div className="mt-6"></div>
-        <h2 className="text-2xl font-bold mt-2 mb-4">Freezer</h2>
-        <div className="table-wrapper overflow-x-auto">
-          <div className="container flex bg-gray-200 rounded-lg p-2">
-            <table className="table flex-auto bg-blue-100 shadow-lg rounded-lg min-w-max-screen">
-            <colgroup>
-            <col style={{ width: "20%" }} />
-            <col style={{ width: "15%" }} />
-            <col style={{ width: "15%" }} />
-            <col style={{ width: "20%" }} />
-            <col style={{ width: "20%" }} />
-            <col style={{ width: "10%" }} />
-            </colgroup>
-              <thead>
-                <tr>
-                  <th className="py-2 px-8 text-left">Name</th>
-                  <th className="py-2 px-8 text-left">Quantity</th>
-                  <th className="py-2 px-8 text-left">Unit</th>
-                  <th className="py-2 px-8 text-left">Food Group</th>
-                  <th className="py-2 px-8 text-left">Expiration Date</th>
-                  <th className="py-2 px-8 text-left">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-              {freezerItems.map((item) => (
-                  <tr key={item._id} className="border-b border-gray-400">
-                    <td className="py-2 px-8 text-left">
-                      {/* <a href={`/updateitem/${item._id}`} className="text-green-800 hover:text-green-600"> */}
-                      {item.name 
-                        .split(' ')
-                        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                        .join(' ')
-                        }
-                      {/* </a> */}
-                    </td>
-                    <td className="py-2 px-8 text-left">{item.quantity}</td>
-                    <td className="py-2 px-8 text-left">
-                      {item.unit.charAt(0).toUpperCase() + item.unit.slice(1)}
-                    </td>
-                    <td className="py-2 px-8 text-left">{item.foodGroup}</td>
-                    <td className="py-2 px-8 text-left">
-                      {new Date(item.expirationDate).toLocaleDateString("en-US")}
-                    </td>
-                    <td className="py-2 px-8 text-left flex items-center">
-                      <BsFillPencilFill
-                        className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                        onClick={() => openEditModal(item._id)}
-                      />
-                      <BsFillTrashFill
-                        className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                        onClick={() => deleteRow(item._id, item.location)}
-                      />
-                       {!item.restock && (
-                      <BsFillCartPlusFill
-                        className={`flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform 
-                        ${item.restock ? 'scale-80' : 'scale-100'
-                        } hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300`}
-                        onClick={() => shopRow(item._id)}
-                      />
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          </div>
+        
           <Dialog
         open={isEditModalOpen}
         onClose={closeEditModal}

@@ -90,13 +90,6 @@ export default function GeneratedShoppingList() {
   return (
     <div className="flex justify-center">
     <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
-      <div className="py-4 text-left">
-        <Link to="/itemform">
-          <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            Add New Item
-          </button>
-        </Link>
-      </div>
       <div className="grid grid-cols-1 gap-4">
         {items.map((item, index) => (
           <div key={item._id} className="py-5">
@@ -144,33 +137,7 @@ export default function GeneratedShoppingList() {
                               'block px-3 py-1 text-sm leading-6 text-gray-900'
                             )}
                           >
-                            Add<span className="sr-only">, {item.name}</span>
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? 'bg-gray-50' : '',
-                              'block px-3 py-1 text-sm leading-6 text-gray-900'
-                            )}
-                          >
-                            Remove<span className="sr-only">, {item.name}</span>
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? 'bg-gray-50' : '',
-                              'block px-3 py-1 text-sm leading-6 text-gray-900'
-                            )}
-                          >
-                            Add Expiration<span className="sr-only">, {item.name}</span>
+                            Remove Item<span className="sr-only">, {item.name}</span>
                           </a>
                         )}
                       </Menu.Item>
@@ -185,7 +152,14 @@ export default function GeneratedShoppingList() {
           </div>
         ))}
       </div>
-      <div className="py-4 text-left">
+      <div className="py-4 text-">
+        <Link to="/itemform">
+          <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Add New Item
+          </button>
+        </Link>
+      </div>
+      <div className="py-4 text-right">
         <button
           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           onClick={handleSubmit}

@@ -14,7 +14,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function GeneratedShoppingList() {
+export default function Alerts() {
   const [items, setItems] = useState([]);
   const [updatedQuantities, setUpdatedQuantities] = useState({});
 

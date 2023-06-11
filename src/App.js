@@ -12,8 +12,7 @@ import Update from './Pages/EditItem';
 import SearchPage from './Pages/SearchPage';
 import StartShopping from './Pages/StartShopping';
 import RecipePage from './Pages/RecipePage';
-import ExpiringItems from './Pages/ExpiringItems';
-import Settings from './Pages/Settings';
+import Alerts from './Pages/Alerts';
 import SignedOut from './Pages/SignedOut';
 import Home from './Pages/Home';
 import LazySusan from './Pages/LazySusan';
@@ -42,8 +41,7 @@ function App() {
             <Route path="/startshopping" element={<StartShopping />} />
             <Route path="/recipes" element={<RecipePage />} />
             <Route path="/updateitem/:itemId" element={<Update />} />
-            <Route path="/expiringitems" element={<ExpiringItems />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/alerts" element={<Alerts />} />
             <Route path="/signedout" element={<SignedOut />} />
             <Route path="/home" element={<Home />} />
             <Route path="/cuisine/:type" element={<Cuisine />} />

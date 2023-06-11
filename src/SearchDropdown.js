@@ -39,11 +39,15 @@ const SearchDropdown = ({ dropdownOptions, selectedOption, onSelectOption, onSea
     }, []);
   
     return (
-      <div className="relative">
+      <div className="flex justify-center">
+      <div className="h-full ml-8 mr-4 mt-14 mb-10 md:ml-20 md:mr-4 whitespace-nowrap">
+    
+      {/* <div className="relative"> */}
         <button
         ref={searchRef}
-        className="inline-flex items-center ppl-4  font-medium text-center
-          w-full border-none bg-gradient-to-br from-gray-100 to-blue-200 text-gray text-m px-12 py-2 rounded-lg focus:outline-none"
+        className="inline-flex items-center ppl-4 font-medium text-center
+          w-full border-none bg-gradient-to-tr from-gray-100 to-blue-200 text-gray 
+          text-m px-12 py-2.5 rounded-lg rounded-r-none focus:outline-none"
 
           // className="flex-shrink-0 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center
           //  text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg
@@ -53,6 +57,7 @@ const SearchDropdown = ({ dropdownOptions, selectedOption, onSelectOption, onSea
           onClick={handleToggleDropdown}
           aria-haspopup="true"
           aria-expanded={isOpen}
+          style={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
         >
           {selectedOption.label}
           <svg
@@ -89,6 +94,7 @@ const SearchDropdown = ({ dropdownOptions, selectedOption, onSelectOption, onSea
             </ul>
           </div>
         )}
+      </div>
       </div>
     );
   };

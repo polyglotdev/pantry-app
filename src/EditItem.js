@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import { set } from 'mongoose';
 
-const Update = () => {
-  const { itemId } = useParams();
-  const navigate = useNavigate();
 
+const Update = ({itemId}) => {
   const [item, setItem] = useState({});
   const [alertOption, setAlertOption] = useState('');
 
@@ -60,25 +60,23 @@ const Update = () => {
   }, [item.expirationDate, alertOption]);
 
   const handleUpdateItem = async () => {
-    try {
-      // Make the HTTP request to update the item
-      const response = await axios.put(`http://localhost:3001/item/${itemId}`, item);
+  try {
+    // Make the HTTP request to update the item
+    const response = await axios.put(`http://localhost:3001/item/${itemId}`, item);
 
-      // Handle the successful update
-      console.log('Item updated successfully:', response.data);
-      navigate(-1);
-    } catch (error) {
-      // Handle the error
-      console.log('Error updating item:', error);
-      // You can perform additional error handling here, such as displaying an error message
-    }
+    // Handle the successful update
+    console.log('Item updated successfully:', response.data);
+    window.location.reload();
+  } catch (error) {
+    // Handle the error
+    console.log('Error updating item:', error);
+    // You can perform additional error handling here, such as displaying an error message
+  }
 };
 
-
   return(
-    
-    <main className="relative flex min-h-screen flex-col justify-center bg-gray-600 p-12">
-    <h1 className="text-3xl font-bold text-white ">Update: {item.name}</h1>
+    <div>
+    <h1 className="text-3xl font-bold text-black ">Update: {item.name}</h1>
     <br></br>
     <div className="w-full rounded-xl bg-white p-4 shadow-2xl shadow-teal/40">
       {/* White Background  */}
@@ -287,14 +285,16 @@ const Update = () => {
         </div>
       </div>
     </div> 
-    
-    
-  
   </div>
-  
-  </main>   
+  </div>  
  )
 }
+
+Update.propTypes = {
+  itemId: PropTypes.string.isRequired,
+  // Other prop types
+};
+
 
 export default Update;
 

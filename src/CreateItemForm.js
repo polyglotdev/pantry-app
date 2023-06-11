@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import ItemInformation from './ItemInformation'
 
 const initialState = {
@@ -14,131 +14,122 @@ const initialState = {
   alertDate: ''
 };
 
+
 const CreateItem = () => {
-  const [item, setItem] = useState(initialState)
-  const [items, setItems] = useState([])
-  const [alertOption, setAlertOption]=useState('')
+  const [item, setItem] = useState(initialState);
+  const [items, setItems] = useState([]);
+  const [alertOption, setAlertOption] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
   const [addToShoppingList, setAddToShoppingList] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const navigate = useNavigate();
 
   const options = [
-    {label: '1 week before',value: '1'},
-    {label: '2 weeks before',value: '2'},
-    {label: '3 weeks before',value: '3'},
-    {label: '1 month before',value: '4'},
-]
+    { label: '1 week before', value: '1' },
+    { label: '2 weeks before', value: '2' },
+    { label: '3 weeks before', value: '3' },
+    { label: '1 month before', value: '4' },
+  ];
 
-const calculateAlertDate = () => {
-  if (!item.expirationDate || !alertOption) {
-    return '';
-  }
-  const expirationDate = new Date(item.expirationDate);
-  const parsedAlertOption = parseInt(alertOption);
-  const alertDate = new Date(
-    expirationDate.getTime() - parsedAlertOption *7 * 24 * 60 * 60 *1000);
+  const calculateAlertDate = () => {
+    if (!item.expirationDate || !alertOption) {
+      return '';
+    }
+    const expirationDate = new Date(item.expirationDate);
+    const parsedAlertOption = parseInt(alertOption);
+    const alertDate = new Date(
+      expirationDate.getTime() - parsedAlertOption * 7 * 24 * 60 * 60 * 1000
+    );
 
-  return alertDate.toLocaleDateString('en-US'); 
-};
-
-useEffect(() => {
-  if (item.expirationDate && alertOption) {
-    const calculateDate = calculateAlertDate();
-    setItem((prevItem) => ({ ...prevItem, alertDate: calculateDate }));
-  }
-}, [item.expirationDate, alertOption]);
-
-const handleAddAnotherItem = (event) => {
-  event.preventDefault();
-
-  const userId = window.localStorage.getItem('user');
-
-  // Create a new item using the ItemModel
-  const newItem = {
-    name: item.name,
-    expirationDate: item.expirationDate,
-    quantity: item.quantity,
-    unit: item.unit,
-    minimumQuantity: item.minimumQuantity,
-    location: item.location,
-    foodGroup: item.foodGroup,
-    restock: addToShoppingList,
-    alertDate: item.alertDate,
-    userOwner: userId
+    return alertDate.toLocaleDateString('en-US');
   };
 
-  console.log('New item:', newItem);
+  useEffect(() => {
+    if (item.expirationDate && alertOption) {
+      const calculateDate = calculateAlertDate();
+      setItem((prevItem) => ({ ...prevItem, alertDate: calculateDate }));
+    }
+  }, [item.expirationDate, alertOption]);
 
-  // Send the new item to the server
-  axios.post('http://localhost:3001/item/newItem', newItem)
-    .then(response => {
-      console.log('Item saved:', response.data);
-      // Clear form fields or perform other actions as needed
-      setItem(initialState); // Clear the form fields
-    })
-    .catch(error => {
-      console.error('Error saving item:', error);
-      // Handle the error appropriately
-    });
-};
+  const handleAddAnotherItem = (event) => {
+    event.preventDefault();
 
-const handleAddItemAndReturn = (event) => {
-  event.preventDefault();
+    const userId = window.localStorage.getItem('user');
 
-  const userId = window.localStorage.getItem('user');
+    // Create a new item using the ItemModel
+    const newItem = {
+      name: item.name,
+      expirationDate: item.expirationDate,
+      quantity: item.quantity,
+      unit: item.unit,
+      minimumQuantity: item.minimumQuantity,
+      location: item.location,
+      foodGroup: item.foodGroup,
+      restock: addToShoppingList,
+      alertDate: item.alertDate,
+      userOwner: userId
+    };
 
-  // Create a new item using the ItemModel
-  const newItem = {
-    name: item.name,
-    expirationDate: item.expirationDate,
-    quantity: item.quantity,
-    unit: item.unit,
-    minimumQuantity: item.minimumQuantity,
-    location: item.location,
-    foodGroup: item.foodGroup,
-    restock: addToShoppingList,
-    alertDate: item.alertDate,
-    userOwner: userId
+    console.log('New item:', newItem);
+
+    // Send the new item to the server
+    axios
+      .post('http://localhost:3001/item/newItem', newItem)
+      .then((response) => {
+        console.log('Item saved:', response.data);
+        // Clear form fields or perform other actions as needed
+        setItem(initialState); // Clear the form fields
+      })
+      .catch((error) => {
+        console.error('Error saving item:', error);
+        // Handle the error appropriately
+      });
   };
 
-  console.log('New item:', newItem);
+  const handleAddItemAndReturn = (event) => {
+    event.preventDefault();
 
-  // Send the new item to the server
-  axios.post('http://localhost:3001/item/newItem', newItem)
-    .then(response => {
-      console.log('Item saved:', response.data);
-      // Clear form fields or perform other actions as needed
-      navigate(-1)
-    })
-    .catch(error => {
-      console.error('Error saving item:', error);
-      // Handle the error appropriately
-    });
-};
+    const userId = window.localStorage.getItem('user');
 
+    // Create a new item using the ItemModel
+    const newItem = {
+      name: item.name,
+      expirationDate: item.expirationDate,
+      quantity: item.quantity,
+      unit: item.unit,
+      minimumQuantity: item.minimumQuantity,
+      location: item.location,
+      foodGroup: item.foodGroup,
+      restock: addToShoppingList,
+      alertDate: item.alertDate,
+      userOwner: userId
+    };
 
-const validateForm = () => {
-  const { name, unit, quantity, expirationDate, location, foodGroup, minimumQuantity } = item;
+    console.log('New item:', newItem);
 
-  // Check if all the fields are filled out
-  const isAllFieldsFilled = name && unit && quantity && expirationDate && location && foodGroup && minimumQuantity;
+    // Send the new item to the server
+    axios
+      .post('http://localhost:3001/item/newItem', newItem)
+      .then((response) => {
+        console.log('Item saved:', response.data);
+        // Clear form fields or perform other actions as needed
+        setItem(initialState); // Clear the form fields
+        closeModal(); // Open the modal
+      })
+      .catch((error) => {
+        console.error('Error saving item:', error);
+        // Handle the error appropriately
+      });
+  };
 
-  setIsFormValid(isAllFieldsFilled);
-};
+  const closeModal = () => {
+    setIsModalOpen(false); // Navigate to the dashboard after closing the modal
+  };
 
-useEffect(() => {
-  validateForm();
-}, [item]);
-
-return( 
-  <main className="relative flex min-h-screen flex-col justify-center bg-gray-600 p-12">
-
-    <div className="w-full rounded-xl bg-white p-4 shadow-2xl shadow-teal/40">
-      {/* White Background  */}
-      <div className="mb-5 grid grid-cols-1 gap-5">
-        <h1 className="text-3xl font-bold text-black ">Add Item</h1>
-        
-        <div className="flex flex-col md: gap-5">
+  return (
+    
+      <div className="mx-auto bg-white p-6 rounded-lg shadow-md">
+          <div className="flex flex-col md: gap-5">
           <label htmlFor="name" className="mb-2 font-semibold">Name</label>
           <input 
           type="text" 
@@ -295,10 +286,9 @@ return(
         Alert Date: {item.alertDate}
       </p>
       )}
-      </div>  
-
+    </div>  
    {/* Minimum Quantity Input */}
-   <div className="flex flex-col">
+    <div className="flex flex-col">
         <label htmlFor="minimumQuantity" className="mb-2 font-semibold">Minimum Quantity</label>
         <input 
         type="number" 
@@ -311,41 +301,54 @@ return(
         onChange={(e) => setItem({...item, minimumQuantity: Number(e.target.value)})}
         className="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-gray-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" />
       {/* Add item button*/}
-      <div className="flex items-center mt-2">
-        <input
-          type="checkbox"
-          id="addToShoppingList"
-          checked={addToShoppingList}
-          onChange={(e) => setAddToShoppingList(e.target.checked)}
-          className="mr-2"
-        />
-        <label htmlFor="addToShoppingList" className="mb-2 font-semibold">
-          Add to Shopping List
-        </label>
+        <div className="flex items-center mt-2">
+          <input
+            type="checkbox"
+            id="addToShoppingList"
+            checked={addToShoppingList}
+            onChange={(e) => setAddToShoppingList(e.target.checked)}
+            className="mr-2"
+          />
+          <label htmlFor="addToShoppingList" className="mb-2 font-semibold">
+            Add to Shopping List
+          </label>
         </div>
-      <div className="mb-5 grid-cols-1 gap-5 flex flex-col"></div>
-      <button
-      type="submit"
-      className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-      onClick={handleAddAnotherItem}
-      disabled={!isFormValid}
-    >
-      Add Item
-    </button>
-    <button
-      type="submit"
-      className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-      onClick={handleAddItemAndReturn}
-      disabled={!isFormValid}
-    >
-      Add Item and Return to Previous Page
-    </button> 
+        <div className="flex items-center justify-end mt-4">
+          <button
+            onClick={handleAddAnotherItem}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md mr-2"
+          >
+            Add Another Item
+          </button>
+          <button
+            onClick={handleAddItemAndReturn}
+            className="px-4 py-2 bg-green-500 text-white rounded-md"
+          >
+            Add Item
+          </button>
+        </div>
       </div>
+      {/* Modal */}
+      {isModalOpen && (
+  <div className="fixed inset-0 flex items-center justify-center z-10">
+    <div className="absolute inset-0 bg-black opacity-50"></div>
+    <div className="bg-white p-4 rounded-lg z-20 w-64">
+      <h2 className="text-lg font-semibold mb-2">Item Added</h2>
+      <p>Your item has been added successfully.</p>
+      <div className="flex justify-end mt-4">
+        <button
+          onClick={closeModal}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md"
+        >
+          Close
+        </button>
       </div>
-    </div> 
+    </div>
   </div>
-</main>   
-)
-}
+)}
+      </div>
+      </div>
+  );
+};
 
 export default CreateItem;

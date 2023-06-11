@@ -2,8 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import SearchDropdown from "./SearchDropdown";
 import {useNavigate} from "react-router-dom";
+import {  Dialog } from '@headlessui/react';
+import {  XMarkIcon } from '@heroicons/react/24/outline';
 import { BsFillTrashFill, BsFillCartPlusFill,BsFillPencilFill} from "react-icons/bs";
 import { FaSearch } from 'react-icons/fa'
+import EditItem from "./EditItem"
 import axios from "axios";
 
 
@@ -22,6 +25,8 @@ export default function Search() {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
     const [items, setItems] = useState([]);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [editItemId, setEditItemId] = useState(null);
 
     useEffect(() => {
       const user = localStorage.getItem('user');
@@ -38,7 +43,15 @@ export default function Search() {
       fetchData();
     }, []);
 
-    
+    const openEditModal = (itemId) => {
+      setEditItemId(itemId);
+      setIsEditModalOpen(true);
+    };
+   
+    const closeEditModal = () => {
+      setIsEditModalOpen(false);
+    };
+  
  
     const handleSearchSubmit = (event) => {
       event.preventDefault();
@@ -68,21 +81,13 @@ export default function Search() {
       
       
        };
-       const deleteRow = (itemID, location) => {
+       const deleteRow = (itemID) => {
         const confirmed = window.confirm('Are you sure you want to delete this item?');
-        if (confirmed) {
+       
           axios.delete(`http://localhost:3001/item/${itemID}`);
-          if (location === "pantry") {
-            setPantryItems(pantryItems.filter((item) => item._id !== itemID));
-          }
-          if (location === "refrigerator") {
-            setRefrigeratorItems(refrigeratorItems.filter((item) => item._id !== itemID));
-          }
-          if (location === "freezer") {
-            setFreezerItems(freezerItems.filter((item) => item._id !== itemID));
-          }
+         window.location.reload()
       }
-      };
+      
    
       const shopRow = (itemID) => {
         // Shopping logic here
@@ -188,13 +193,15 @@ export default function Search() {
                               {new Date(item.expirationDate).toLocaleDateString("en-US")}
                             </td>
                             <td className="py-2 px-8 text-left flex items-center">
+                           
                             <BsFillPencilFill
-                                className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                                onClick={() => editRow(item._id)}
-                              />
+                             className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
+                              onClick={() => openEditModal(item._id)}
+                             />
+
                               <BsFillTrashFill
                                 className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
-                                onClick={() => deleteRow(item._id, item.location)}
+                                onClick={() => deleteRow(item._id)}
                               />
                               <BsFillCartPlusFill
                                 className="flex flex-col justify-center items-center rounded-full p-1 m-1 text-center text-white bg-gradient-to-br from-gray-900 to-gray-700 w-6 h-6 cursor-pointer transform scale-80 hover:scale-100 hover:bg-gradient-to-br hover:from-gray-900 hover:to-gray-600 hover:ring-2 hover:ring-green-500 transition-all duration-300"
@@ -207,6 +214,26 @@ export default function Search() {
       </table>
       </div>
     </div>
+    <Dialog
+        open={isEditModalOpen}
+        onClose={closeEditModal}
+        className="fixed z-10 inset-0 overflow-y-auto"
+      >
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="bg-white rounded-lg w-full max-w-md mx-auto p-6">
+            <div className="flex justify-end">
+              <XMarkIcon
+                className="h-6 w-6 text-gray-700 cursor-pointer hover:text-gray-900"
+                onClick={closeEditModal}
+              />
+            </div>
+
+
+            <EditItem itemId={editItemId} closeModal={closeEditModal} />
+          </div>
+        </div>
+      </Dialog>
+
   </div>
   </div>
       )}

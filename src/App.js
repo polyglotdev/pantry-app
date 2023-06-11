@@ -12,7 +12,7 @@ import Update from './Pages/EditItem';
 import SearchPage from './Pages/SearchPage';
 import StartShopping from './Pages/StartShopping';
 import RecipePage from './Pages/RecipePage';
-import ExpiringItems from './Pages/ExpiringItems';
+import AlertsPage from './Pages/AlertsPage';
 import Settings from './Pages/Settings';
 import SignedOut from './Pages/SignedOut';
 import Home from './Pages/Home';
@@ -42,7 +42,7 @@ function App() {
             <Route path="/startshopping" element={<StartShopping />} />
             <Route path="/recipes" element={<RecipePage />} />
             <Route path="/updateitem/:itemId" element={<Update />} />
-            <Route path="/expiringitems" element={<ExpiringItems />} />
+            <Route path="/alerts" element={<AlertsPage />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/signedout" element={<SignedOut />} />
             <Route path="/home" element={<Home />} />

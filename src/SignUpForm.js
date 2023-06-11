@@ -53,11 +53,12 @@ export default function SignUpForm() {
     };
 
     return (
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"> 
+        <main className="flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-3 lg:px-8"> 
+            <h1 className="text-2xl font-extrabold mb-4">Sign Up</h1>
             <form>
                 <div className="space-y-12 sm:space-y-16">
                     <div>
-                        <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
                         <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
                             Create a username and password for your LazySusan.
                         </p>
@@ -121,5 +122,6 @@ export default function SignUpForm() {
                 </div>
             </form> 
         </div>
+    </main>
     )
 }

@@ -99,7 +99,9 @@ export default function Search() {
 
       return (
         <main className="min-h-full flex-1 flex-col px-6 py-12">
+         
           <div className="mt-14 mb-10 md:ml-20 md:mr-20">
+             <h1 className="text-2xl font-extrabold mb-4">Search</h1>
             <form onSubmit={handleSearchSubmit} className="flex items-center">
               <label htmlFor="search-dropdown" className="sr-only">
                 {selectedOption.label}
@@ -238,7 +240,8 @@ export default function Search() {
   </div>
       )}
 
-</main>
+
+      </main>
     );
   }
 

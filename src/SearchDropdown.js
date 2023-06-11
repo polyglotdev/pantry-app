@@ -42,10 +42,13 @@ const SearchDropdown = ({ dropdownOptions, selectedOption, onSelectOption, onSea
       <div className="relative">
         <button
         ref={searchRef}
-          className="flex-shrink-0 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center
-           text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg
-            hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700
-             dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+        className="inline-flex items-center ppl-4  font-medium text-center
+          w-full border-none bg-gradient-to-br from-gray-100 to-blue-200 text-gray text-m px-12 py-2 rounded-lg focus:outline-none"
+
+          // className="flex-shrink-0 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center
+          //  text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg
+          //   hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700
+          //    dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
              
           onClick={handleToggleDropdown}
           aria-haspopup="true"
@@ -66,7 +69,8 @@ const SearchDropdown = ({ dropdownOptions, selectedOption, onSelectOption, onSea
           </svg>
         </button>
         {isOpen && (
-          <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+           <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 top-[-3rem]">
+          {/* <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"> */}
             <ul className="py-2 text-sm text-gray-700 dark:text-gray-200"
             //  role="menu"
              >

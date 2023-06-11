@@ -125,7 +125,7 @@ export default function Dashboard() {
 
         {/* <!-- Pantry Summaries --> */}
 
-
+      
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-4 text-black dark:text-white">
           <div className="md:col-span-2 xl:col-span-3">
           </div>

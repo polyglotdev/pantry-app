@@ -92,86 +92,58 @@ export default function Search() {
         navigate(`/updateitem/${itemID}`);
       };
 
-  
-    
-  
-    return (
-      <main >
-      <div className="h-full ml-8  mt-14 mb-10 md:ml-20 md:mr-4 p">
-        <form onSubmit={handleSearchSubmit} className="flex ">
-          <div className="m1-auto">
-           <SearchDropdown
-              dropdownOptions={dropdownOptions}
-              selectedOption={selectedOption}
-              onSelectOption={handleSelectOption}
-              onSearchSubmit={handleSearchSubmit}
-            />
-{/*          
-          <div className="relative"> */}
-            <label
-              htmlFor="search-dropdown"
-              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-            >
-              {selectedOption.label}
-            </label>
-               </div>
-          {/* </div> */}
-            {/* <div className="relative w-full"> */}
-            <div className="mr-auto">
-            <div className=" mt-14 ">
-              <input
-                type="search"
-                id="search-dropdown"
-                className="p-2.5 w-full max h-11 border-none bg-gradient-to-br from-blue-200 to-gray-100 text-gray text-lg px-7 py-5 rounded-lg rounded-l-none focus:outline-none"
-                // className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                placeholder={selectedOption.label}
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter') {
-                    event.preventDefault(); 
-                    handleSearchSubmit(event); 
-                  }
-                }}
+      return (
+        <main className="min-h-full flex-1 flex-col px-6 py-12">
+          <div className="mt-14 mb-10 md:ml-20 md:mr-20">
+            <form onSubmit={handleSearchSubmit} className="flex items-center">
+              <label htmlFor="search-dropdown" className="sr-only">
+                {selectedOption.label}
+              </label>
+              <SearchDropdown
+                dropdownOptions={dropdownOptions}
+                selectedOption={selectedOption}
+                onSelectOption={handleSelectOption}
+                onSearchSubmit={handleSearchSubmit}
               />
-              <button
-                type="submit"
-                className=" mr=auto top-1/2  transform -translate-y-1/2 text-green-900">
-              {/*  className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-300 rounded-r-lg border border-blue-300 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >  */}
-              
-
-                <svg
-                  aria-hidden="true"
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+              <div className="relative flex-grow">
+                <input
+                  type="search"
+                  id="search-dropdown"
+                  className="w-10/12 py-2.5 pl-9 pr-12 text-sm text-gray-900 bg-gradient-to-bl from-gray-100 to-blue-200  hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700
+                  dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                  placeholder={selectedOption.label}
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                      event.preventDefault();
+                      handleSearchSubmit(event);
+                    }
+                  }}
+                />
+                <button
+                  type="submit"
+                  className="absolute top-0  px-9 py-2.5 text-sm font-medium text-white bg-gradient-to-br from-gray-100 to-blue-200  rounded-r-lg  hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700
+                  dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-                {/* <span className="sr-only">Search </span> */}
-              </button>
+                  <FaSearch style={{ color: 'green' }} className="w-5 h-5 " />
+                  <span className="sr-only">Search</span>
+                </button>
               </div>
-            </div>
-            
-        </form>
-       
-            
-        
-        {/* <div className="mt-8 flow-root"> */}
+            </form>
+          </div>
+    
           {filteredItems.length === 0 && searchQuery !== '' ? (
             <p className="px-3 py-4 text-center text-sm text-gray-500">
-        No items found.</p>
-         ) : (
-          <div className="flex justify-center">
-          <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
+              No items found.
+            </p>
+          ) : (
+            <div className="flex justify-center">
+              <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
+            
+    
+  
+     
             <div className="table-wrapper overflow-x-auto">
                   <div className="container flex bg-gray-200 rounded-lg p-2">
                     <table className="table flex-auto bg-blue-100 shadow-lg rounded-lg min-w-max-screen">
@@ -233,12 +205,11 @@ export default function Search() {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   </div>
   </div>
-  </div>
       )}
-</div>
 
 </main>
     );

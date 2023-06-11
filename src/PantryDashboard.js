@@ -1,6 +1,9 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
 import axios from 'axios'
+import {  Dialog } from '@headlessui/react';
+import {  XMarkIcon } from '@heroicons/react/24/outline';
+import EditItem from "./EditItem"
 
 
 export default function Dashboard() {
@@ -10,6 +13,8 @@ export default function Dashboard() {
   const [refrigeratorItems, setRefrigeratorItems] = useState([]);
   const [freezerItems, setFreezerItems] = useState([]);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [editItemId, setEditItemId] = useState(null);
 
   const user = localStorage.getItem('user');
 
@@ -52,6 +57,14 @@ export default function Dashboard() {
       sessionStorage.setItem('scrollPosition', scrollPosition);
     }, [scrollPosition]);
 
+    const openEditModal = (itemId) => {
+      setEditItemId(itemId);
+      setIsEditModalOpen(true);
+    };
+
+    const closeEditModal = () => {
+      setIsEditModalOpen(false);
+    };
 
     return ( 
       <div className="flex justify-center">
@@ -120,7 +133,7 @@ export default function Dashboard() {
                   key={item.id}
                   className="bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer"
                 >
-                <a href={`/updateitem/${item._id}`} className="text-blue-600">
+                <a href= '#' onClick={() => openEditModal(item._id)} className="text-blue-600">
                   {item.name}
                 </a>
                   {expiringItems.includes(item) && (
@@ -232,6 +245,24 @@ export default function Dashboard() {
             </div>
             </div>
           </div>
+          <Dialog
+            open={isEditModalOpen}
+            onClose={closeEditModal}
+            className="fixed z-10 inset-0 overflow-y-auto"
+          >
+            <div className="flex items-center justify-center min-h-screen">
+              <div className="bg-white rounded-lg w-full max-w-md mx-auto p-6">
+                <div className="flex justify-end">
+                  <XMarkIcon
+                    className="h-6 w-6 text-gray-700 cursor-pointer hover:text-gray-900"
+                    onClick={closeEditModal}
+                  />
+                </div>
+
+                <EditItem itemId={editItemId} closeModal={closeEditModal} />
+              </div>
+            </div>
+          </Dialog>
         </div>
        </div> 
       

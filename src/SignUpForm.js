@@ -54,7 +54,7 @@ export default function SignUpForm() {
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"> 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="space-y-12 sm:space-y-16">
                     <div>
                         <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>

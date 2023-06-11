@@ -23,8 +23,11 @@ export default function ExpirationAndLowStock() {
         const response = await axios.get(`http://localhost:3001/item/inventory/${user}`);
         const inventoryData = response.data;
 
-        const expiring = inventoryData.filter((item) => item.restock);
-        setExpiringItems(expiring);
+        const currentDate = new Date();
+        const expiring = inventoryData.filter((item) => {
+        const alertDate = new Date(item.alertDate);
+        return alertDate <= currentDate;})
+        setExpiringItems(expiring)
 
         const lowStock = inventoryData.filter((item) => item.quantity <= item.minimumQuantity);
         setLowStockItems(lowStock);

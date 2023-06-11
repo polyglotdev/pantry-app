@@ -90,7 +90,17 @@ export default function GeneratedShoppingList() {
   return (
     <div className="flex justify-center">
     <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
+<<<<<<< HEAD
       <h1 className="text-2xl font-extrabold mb-4">Shopping List</h1>
+=======
+      <div className="py-4 text-left">
+        <Link to="/itemform">
+          <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-900 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Add New Item
+          </button>
+        </Link>
+      </div>
+>>>>>>> e9cbe69319c2456b7198110561497834fc8880a0
       <div className="grid grid-cols-1 gap-4">
         {items.map((item, index) => (
           <div key={item._id} className="py-5">
@@ -152,6 +162,7 @@ export default function GeneratedShoppingList() {
           </div>
         ))}
       </div>
+<<<<<<< HEAD
       <div className="py-4 text-">
         <Link to="/itemform">
           <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -160,6 +171,11 @@ export default function GeneratedShoppingList() {
         </Link>
        <button
           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+=======
+      <div className="py-4 text-left">
+        <button
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-900 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+>>>>>>> e9cbe69319c2456b7198110561497834fc8880a0
           onClick={handleSubmit}
         >
           Update Items

@@ -43,8 +43,8 @@ function PantryRecipe() {
     return  (
     <div className="flex justify-center">
     <div className="h-full ml-14 mr-14  mb-10 md:ml-20 md:mr-20 w-screen">
-    <div className="m-0 p-0 box-border bg-white-100"><h3 className="text-1xl font-semi-bold mb-4 text-gradient">Pantry Dishes </h3>
-    <div className=" bg-gray-100 wrapper flex flex-wrap hover:flex-wrap-reverse m-4">
+    <div className="m-0 p-0 box-border bg-white-100"><h3 className="text-2xl font-extrabold ml-3 mb-4">Recipe Suggestions </h3>
+    <div className="border-none bg-gradient-to-br from-blue-200 to-gray-100 shadow-lg rounded-md justify-between p-3 border-b-4 border-gray-700 dark:border-gray-600 text-gray-600 font-medium group">
     
       {pantryRecipe && pantryRecipe.length > 0 ? (
         <Splide

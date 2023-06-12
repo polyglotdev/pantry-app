@@ -35,7 +35,7 @@ function LowStock() {
       const ingredientsNames = lowStockItems.map((item) => item.name).join(",");
       console.log(ingredientsNames);
       try {
-        const response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=0ae06dc4401d466997fffeb5bdf5ff3d&ingredients=${ingredientsNames}&number=3`);
+        const response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=fafd9ff6a143416a83ad19289ee5490d&ingredients=${ingredientsNames}&number=8`);
         const data = response.data;
         console.log(data);
         setLowStock(data);
@@ -57,7 +57,7 @@ function LowStock() {
           lowStock && lowStock.length > 0 ? (
             <Splide
               options={{
-                perPage: 3,
+                perPage: 4,
                 arrows: false,
                 pagination: false,
                 drag: "free",

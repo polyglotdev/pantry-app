@@ -29,7 +29,7 @@ function PantryRecipe() {
       const ingredientsNames = inventory.map((item) => item.name).join(",");
       console.log(ingredientsNames);
       try {
-        const response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=0ae06dc4401d466997fffeb5bdf5ff3d&ingredients=${ingredientsNames}&number=4`);
+        const response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=fafd9ff6a143416a83ad19289ee5490d&ingredients=${ingredientsNames}&number=8`);
         const data = response.data;
         console.log(data);
         setPantryRecipe(data);

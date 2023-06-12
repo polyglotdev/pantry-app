@@ -80,7 +80,7 @@ export default function Dashboard() {
         {/* <h1 className="text-2xl font-extrabold ml-3 mb-4">My Lazy Susan Dashboard </h1> */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
           <button>
-          <a href='/expiringitems' className="border-none bg-gradient-to-br from-blue-200 to-gray-100 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-gray-700 dark:border-gray-600 text-gray-600 font-medium group">
+          <a href='/alerts' className="border-none bg-gradient-to-br from-blue-200 to-gray-100 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-gray-700 dark:border-gray-600 text-gray-600 font-medium group">
             <div className="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
               <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="stroke-current text-green-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 2c-.8 0-1.5.7-1.5 1.5v.688C7.344 4.87 5 7.62 5 11v4.5l-2 2.313V19h18v-1.188L19 15.5V11c0-3.379-2.344-6.129-5.5-6.813V3.5c0-.8-.7-1.5-1.5-1.5zm-2 18c0 1.102.898 2 2 2 1.102 0 2-.898 2-2z"></path></svg>
             </div>
@@ -143,11 +143,11 @@ export default function Dashboard() {
                 <h2 className="text-m text-gray-600 font-bold">Pantry</h2>
                 {/* <svg className="h-4 fill-current text-gray-600 dark:text-gray-500 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 10a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4zm7 0a1.999 1.999 0 1 0 0 4 1.999 1.999 0 1 0 0-4z" /></svg> */}
               </div>
-              <div className="text-sm text-black dark:text-gray-50 mt-2">
+              <div className="text-sm text-black dark:text-gray-50 mt-2 ">
               {pantryItems.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer"
+                  className="bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer flex justify-between"
                 >
                 <a href= '#' onClick={() => openEditModal(item._id)} className="text-gray-600">
                   {item.name}
@@ -162,8 +162,8 @@ export default function Dashboard() {
                     </span>
                   </div>
                 )}
-                {item.isLowStock && (
-                  <div className="flex justify-between items-start mt-2 ml-2 text-white text-xs">
+                {item.quantity <= item.minimumQuantity  && (
+                  <div className="flex justify-between items-start mt-2 ml-2 text-white text-xs flex justify-between">
                     <span className="bg-yellow-600 rounded p-1 text-xs flex items-right">
                       <svg className="h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M12 2c-.8 0-1.5.7-1.5 1.5v.688C7.344 4.87 5 7.62 5 11v4.5l-2 2.313V19h18v-1.188L19 15.5V11c0-3.379-2.344-6.129-5.5-6.813V3.5c0-.8-.7-1.5-1.5-1.5zm-2 18c0 1.102.898 2 2 2 1.102 0 2-.898 2-2z" />
@@ -188,7 +188,7 @@ export default function Dashboard() {
               {refrigeratorItems.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer"
+                  className="bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer flex justify-between"
                 >
                 <a href= '#' onClick={() => openEditModal(item._id)} className="text-gray-600">
                   {item.name}
@@ -203,7 +203,7 @@ export default function Dashboard() {
                     </span>
                   </div>
                 )}
-                {item.restock && (
+                {item.quantity <= item.minimumQuantity && (
                   <div className="flex justify-between items-start mt-2 ml-2 text-white text-xs">
                     <span className="bg-yellow-600 rounded p-1 text-xs flex items-right">
                       <svg className="h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -244,7 +244,7 @@ export default function Dashboard() {
                     </span>
                   </div>
                 )}
-                {item.restock && (
+                {item.quantity <= item.minimumQuantity && (
                   <div className="flex justify-between items-start mt-2 ml-2 text-white text-xs">
                     <span className="bg-yellow-600 rounded p-1 text-xs flex items-right">
                       <svg className="h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

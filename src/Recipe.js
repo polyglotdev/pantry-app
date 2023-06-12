@@ -40,7 +40,7 @@ function Recipe() {
       const ingredientsNames = expiringItems.map((item) => item.name).join(",");
       console.log(ingredientsNames);
       try {
-        const response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=fafd9ff6a143416a83ad19289ee5490d&ingredients=${ingredientsNames}&number=8`);
+        const response = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?apiKey=fafd9ff6a143416a83ad19289ee5490d&ingredients=${ingredientsNames}&number=4`);
         const data = response.data;
         console.log(data);
         setRecipe(data);

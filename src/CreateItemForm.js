@@ -316,13 +316,14 @@ const CreateItem = () => {
         <div className="flex items-center justify-end mt-4">
           <button
             onClick={handleAddAnotherItem}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md mr-2"
+            className="px-4 py-2 bg-teal-900
+           text-white rounded-md mr-2"
           >
             Add Another Item
           </button>
           <button
             onClick={handleAddItemAndReturn}
-            className="px-4 py-2 bg-green-500 text-white rounded-md"
+            className="px-4 py-2 bg-teal-900 text-white rounded-md"
           >
             Add Item
           </button>

@@ -7,6 +7,8 @@ import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
+
+
 export default function ShoppingCart() {
   const [products, setProducts] = useState([]);
   const [quantityToAdd, setQuantityToAdd] = useState(1);

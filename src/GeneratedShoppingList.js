@@ -92,7 +92,7 @@ export default function GeneratedShoppingList() {
     <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
       <div className="py-4 text-left">
         <Link to="/itemform">
-          <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-900 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             Add New Item
           </button>
         </Link>
@@ -103,7 +103,7 @@ export default function GeneratedShoppingList() {
             <div className="flex items-center justify-between">
               <div className="flex items-start gap-x-3">
                 <input type="checkbox" checked={item.checked} onChange={() => handleCheckboxChange(index)} />
-                <p className="text-sm font-semibold leading-6 text-gray-900">{item.name}</p>
+                <p className="-sm font-semibold leading-6 text-gray-900">{item.name}</p>
                 <p
                   className={classNames(
                     item.checked ? statuses.Purchased : statuses['In progress'],
@@ -113,9 +113,8 @@ export default function GeneratedShoppingList() {
                   {item.checked ? 'Purchased' : 'In progress'}
                 </p>
               </div>
-              <div className="flex flex-none items-center gap-x-4">
                 <form className="flex items-center gap-x-4">
-                  <label className="-sm font-semibold leading-6 text-gray-900 ">
+                  <label className="text-sm font-semibold leading-6 text-gray-900 ">
                     Quantity:
                     <input type="number" name={`quantity_${item._id}`} onChange={(event) => handleQuantityChange(event, item._id)}  className="w-16 px-2 py-1 border border-gray-300 rounded-md" />
                   </label>
@@ -144,40 +143,14 @@ export default function GeneratedShoppingList() {
                               'block px-3 py-1 text-sm leading-6 text-gray-900'
                             )}
                           >
-                            Add<span className="sr-only">, {item.name}</span>
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? 'bg-gray-50' : '',
-                              'block px-3 py-1 text-sm leading-6 text-gray-900'
-                            )}
-                          >
-                            Remove<span className="sr-only">, {item.name}</span>
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? 'bg-gray-50' : '',
-                              'block px-3 py-1 text-sm leading-6 text-gray-900'
-                            )}
-                          >
-                            Add Expiration<span className="sr-only">, {item.name}</span>
+                            Remove Item<span className="sr-only">, {item.name}</span>
                           </a>
                         )}
                       </Menu.Item>
                     </Menu.Items>
                   </Transition>
                 </Menu>
-              </div>
+              
             </div>
             <div className="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
             <p className="whitespace-nowrap">you currently have {item.quantity} {item.unit} in stock</p>
@@ -187,7 +160,7 @@ export default function GeneratedShoppingList() {
       </div>
       <div className="py-4 text-left">
         <button
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-900 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           onClick={handleSubmit}
         >
           Update Items

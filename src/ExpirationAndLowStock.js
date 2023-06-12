@@ -70,7 +70,7 @@ export default function ExpirationAndLowStock() {
   return (
     <div className="flex justify-center">
       <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
-      <h1 className="text-2xl font-extrabold mb-4">My Alerts</h1>
+      <h1 className="text-4xl font-extrabold mb-4">My Alerts</h1>
         {/* Pantry Card */}
         <h2 className="text-2xl font-bold mb-4">Expiring Items</h2>
         <div className="table-wrapper overflow-x-auto">
@@ -136,7 +136,7 @@ export default function ExpirationAndLowStock() {
           </div>
         </div>
 
-        {/* Refrigerator Card */}
+        {/* Low Stock Card */}
         <div className="mt-6"></div>
         <h2 className="text-2xl font-bold mt-2 mb-4">Low Stock Items</h2>
         <div className="table-wrapper overflow-x-auto">

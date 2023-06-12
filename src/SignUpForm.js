@@ -57,7 +57,6 @@ export default function SignUpForm() {
             <form onSubmit={handleSubmit}>
                 <div className="space-y-12 sm:space-y-16">
                     <div>
-                        <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
                         <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
                             Create a username and password for your LazySusan.
                         </p>
@@ -106,9 +105,11 @@ export default function SignUpForm() {
                 </div>
 
                 <div className="mt-6 flex items-center justify-end gap-x-6">
+                    <Link to="/LazySusan"> 
                     <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
                         Cancel
                     </button>
+                    </Link>
                     <Link to="/login"> 
                     <button
                         type="submit"

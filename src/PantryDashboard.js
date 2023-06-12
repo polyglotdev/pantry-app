@@ -190,7 +190,7 @@ export default function Dashboard() {
                   key={item.id}
                   className="bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer"
                 >
-                <a href={`/updateitem/${item._id}`} className="text-gray-600">
+                <a href= '#' onClick={() => openEditModal(item._id)} className="text-gray-600">
                   {item.name}
                 </a>
                   {expiringItems.includes(item) && (
@@ -231,7 +231,7 @@ export default function Dashboard() {
                   key={item.id}
                   className="bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded mt-1 border-b border-gray-100 dark:border-gray-900 cursor-pointer"
                 >
-                <a href={`/updateitem/${item._id}`} className="text-gray-600">
+                <a href= '#' onClick={() => openEditModal(item._id)} className="text-gray-600">
                   {item.name}
                 </a>
                   {expiringItems.includes(item) && (

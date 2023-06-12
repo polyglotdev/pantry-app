@@ -91,13 +91,7 @@ export default function Alerts() {
     <div className="flex justify-center">
     <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
     <h1 className="text-3xl font-extrabold ml-2 mb-4">Shopping List</h1> 
-    <div className="py-4 text-left">
-        <Link to="/itemform">
-          <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-900 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            Add New Item
-          </button>
-        </Link>
-      </div>
+
       <div className="grid grid-cols-1 gap-4">
         {items.map((item, index) => (
           <div key={item._id} className="py-5">
@@ -114,6 +108,7 @@ export default function Alerts() {
                   {item.checked ? 'Purchased' : 'In progress'}
                 </p>
               </div>
+              <div className="flex justify-end">
                 <form className="flex items-center gap-x-4">
                   <label className="text-sm font-semibold leading-6 text-gray-900 ">
                     Quantity:
@@ -149,9 +144,10 @@ export default function Alerts() {
                         )}
                       </Menu.Item>
                     </Menu.Items>
+                    
                   </Transition>
                 </Menu>
-              
+                </div>
             </div>
             <div className="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
             <p className="whitespace-nowrap">you currently have {item.quantity} {item.unit} in stock</p>

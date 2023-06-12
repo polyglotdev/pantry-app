@@ -12,7 +12,7 @@ import Update from './Pages/EditItem';
 import SearchPage from './Pages/SearchPage';
 import StartShopping from './Pages/StartShopping';
 import RecipePage from './Pages/RecipePage';
-import Alerts from './GeneratedShoppingList';
+import Alerts from './Pages/Alerts';
 import SignedOut from './Pages/SignedOut';
 import Home from './Pages/Home';
 import LazySusan from './Pages/LazySusan';

@@ -3,11 +3,11 @@ import ExpirationAndLowStock from "../ExpirationAndLowStock";
 import NavBar from "../Navbar";
 
 
-function ExpiringItems() {
+function Alerts() {
   return <div className="App">
     <NavBar />
     <ExpirationAndLowStock />
     </div>
 }
 
-export default ExpiringItems;
+export default Alerts;

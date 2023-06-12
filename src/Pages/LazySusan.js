@@ -42,15 +42,14 @@ export default function LoginPage() {
                     Look no further for your solution.
                     </h4>
                     <h4 className="mt-10 text-center text-xl leading-9 tracking-tight text-gray-900">
-                         Team Rocket presents its first app - Lazy Susan. This app was curated by the finest engineers in the industry. With the shared mission to reduce food waste, the team banded together to utilize ReactJS, MongoDB, ExpressJS, and NodeJS to make a one-of-a-kind solution.   Whether it is in the pantry, refridgerator, or freezer, get information (like quanitity, expiration date, etc.) you need to shop and find unique recipes for you and the family. 
-                    </h4>
+                    Team Rocket presents its first app, Lazy Susan. This app was curated by the finest engineers in the industry, with the shared mission to reduce food waste. The team banded together to utilize ReactJS, MongoDB, and TailwindCSS to create a one-of-a-kind solution. Whether it is in the pantry, refrigerator, or freezer, Lazy Susan provides you with the information you need, such as quantity and expiration date, to shop smart and discover unique recipes for you and your family.                    </h4>
                     <h2 className="mt-10 text-center text-2xl font-bold leading- tracking-tight text-gray-1000">
                     JOIN LAZY SUSAN TODAY!                    
                     </h2>
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" /*action="#" method="POST" /*onSubmit={ handleSubmit }*/>
+                    <form className="space-y-6" /*action="#" method="POST" /*onSubmit={ handleSubmit }*/>           
                         <div>
                             <Link to="/signup">
                             <button

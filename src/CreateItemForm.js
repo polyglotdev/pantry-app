@@ -130,8 +130,8 @@ const CreateItem = () => {
 
   return (
     
-      <div className="mx-auto bg-white p-6 rounded-lg shadow-md">
-          <div className="flex flex-col md: gap-5">
+      <div className="mx-auto bg-white p-6 rounded-lg shadow-md ">
+          <div className="flex flex-col ">
           <label htmlFor="name" className="mb-2 font-semibold">Name</label>
           <input 
           type="text" 
@@ -144,7 +144,7 @@ const CreateItem = () => {
           className="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-gray-500 focus:outline-none focus:ring focus:ring-blue-00/40 active:ring active:ring-blue-500/40" />
         </div>
         {/* Unit input */}
-        <div className="mb-5 flex flex-col">
+        <div className="mb-5 flex flex-col md: gap-0">
           <label htmlFor="unit" className="mb-2 font-semibold">
             Unit
           </label>
@@ -318,13 +318,13 @@ const CreateItem = () => {
         <div className="flex items-center justify-end mt-4">
           <button
             onClick={handleAddAnotherItem}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md mr-2"
+            className="px-4 py-2 bg-teal-900 text-white rounded-md mr-2"
           >
             Add Another Item
           </button>
           <button
             onClick={handleAddItemAndReturn}
-            className="px-4 py-2 bg-green-500 text-white rounded-md"
+            className="px-4 py-2 bg-teal-900 text-white rounded-md"
           >
             Add Item
           </button>

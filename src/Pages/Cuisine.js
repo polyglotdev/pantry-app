@@ -24,7 +24,7 @@ function Cuisine() {
   return (
     <><NavBar /><div className="flex justify-center">
       <div className="h-full ml-14 mr-14 mt-14 mb-10 md:ml-20 md:mr-20 w-screen">
-        <div className="mt-5 m-8 grid grid-cols-5 gap-10">
+              <div className="mt-5 m-8 grid grid-cols-5 gap-10">
           {cuisine && cuisine.length > 0 ? (
             cuisine.map((item) => (
 
@@ -33,13 +33,23 @@ function Cuisine() {
                   <img src={item.image} alt="" className="h-0.5w-full rounded-2xl" />
                   <h4 className="text-center py-4">{item.title}</h4>
                 </Link>
-              </div>
+                </div>
+              
             ))
           ) : (
             <p>Loading...</p>
           )}
         </div>
+        <div className='flex justify-center'>
+                <p>
+                <Link to="/recipes" className="font-medium text-teal-900 hover:text-teal-800">
+                Return to the Recipe Page
+                <span aria-hidden="true"> &rarr;</span>
+              </Link>
+              </p>
+              </div>
       </div>
+    
     </div></>
 
   );

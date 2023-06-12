@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import NavBar from "../Navbar";
 import RecipeCategory from "../RecipeCategory";
 import RecipeSearch from "../RecipeSearch";
+import { Link } from "react-router-dom";
 
 function RecipeDetail() {
 
@@ -81,6 +82,14 @@ function RecipeDetail() {
               )}
             </div>
           </div>
+          <div className='flex justify-center'>
+                <p>
+                <Link to="/recipes" className="font-medium text-teal-900 hover:text-teal-800">
+                Return to the Recipe Page
+                <span aria-hidden="true"> &rarr;</span>
+              </Link>
+              </p>
+              </div>
         </div>
       </div>
     </>

@@ -53,10 +53,8 @@ export default function SignUpForm() {
     };
 
     return (
-        <main className="flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-3 lg:px-8"> 
-            <h1 className="text-2xl font-extrabold mb-4">Sign Up</h1>
-            <form>
+        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"> 
+            <form onSubmit={handleSubmit}>
                 <div className="space-y-12 sm:space-y-16">
                     <div>
                         <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-600">
@@ -124,6 +122,5 @@ export default function SignUpForm() {
                 </div>
             </form> 
         </div>
-    </main>
     )
 }
